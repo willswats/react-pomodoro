@@ -1,0 +1,17 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #86221f;
+  border-radius: 10px;
+}
+
+.timer__inputs {
+  display: flex;
+}
+
+.timer__colon {
+  font-size: 2rem;
+}
