@@ -10,8 +10,10 @@
 
 .timer__inputs {
   display: flex;
+  margin: 0 0 2rem;
 }
 
 .timer__colon {
   font-size: 2rem;
+  margin: 0 1rem;
 }

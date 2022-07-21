@@ -15,9 +15,11 @@ const Timer = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (timeRemaining.minutes <= 0 && timeRemaining.seconds <= 0) {
+      if (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) {
         setTimerRunning(false);
-      } else if (timeRemaining.seconds === 0) {
+        return;
+      }
+      if (timeRemaining.seconds === 0) {
         setTimeRemaining((prevState) => {
           return {
             ...prevState,
@@ -83,6 +85,9 @@ const Timer = () => {
   };
 
   const startStopClickHandler = () => {
+    if (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) {
+      return;
+    }
     setTimerRunning(!timerRunning);
   };
 
