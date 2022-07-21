@@ -15,7 +15,11 @@ const Timer = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) {
+      if (
+        (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) ||
+        isNaN(timeRemaining.seconds) ||
+        isNaN(timeRemaining.minutes)
+      ) {
         setTimerRunning(false);
         return;
       }
@@ -46,16 +50,8 @@ const Timer = () => {
     };
   });
 
-  const minutesChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputVal = parseFloat(event.target.value);
-    if (!isNaN(inputVal)) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          minutes: inputVal,
-        };
-      });
-    } else {
+  const minutesBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(parseFloat(event.target.value))) {
       setTimeRemaining((prevState) => {
         return {
           ...prevState,
@@ -65,16 +61,8 @@ const Timer = () => {
     }
   };
 
-  const secondsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputVal = parseFloat(event.target.value);
-    if (!isNaN(inputVal)) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          seconds: inputVal,
-        };
-      });
-    } else {
+  const secondsBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(parseFloat(event.target.value))) {
       setTimeRemaining((prevState) => {
         return {
           ...prevState,
@@ -84,11 +72,52 @@ const Timer = () => {
     }
   };
 
-  const startStopClickHandler = () => {
-    if (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) {
-      return;
+  const minutesChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputVal = parseFloat(event.target.value);
+    if (timerRunning) {
+      setTimerRunning(false);
     }
-    setTimerRunning(!timerRunning);
+    setTimeRemaining((prevState) => {
+      return {
+        ...prevState,
+        minutes: inputVal,
+      };
+    });
+  };
+
+  const secondsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputVal = parseFloat(event.target.value);
+    if (timerRunning) {
+      setTimerRunning(false);
+    }
+    setTimeRemaining((prevState) => {
+      return {
+        ...prevState,
+        seconds: inputVal,
+      };
+    });
+  };
+
+  const startStopClickHandler = () => {
+    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
+      return;
+    } else if (isNaN(timeRemaining.minutes)) {
+      setTimeRemaining((prevState) => {
+        return {
+          ...prevState,
+          minutes: 0,
+        };
+      });
+    } else if (isNaN(timeRemaining.seconds)) {
+      setTimeRemaining((prevState) => {
+        return {
+          ...prevState,
+          seconds: 0,
+        };
+      });
+    } else {
+      setTimerRunning(!timerRunning);
+    }
   };
 
   return (
@@ -96,11 +125,13 @@ const Timer = () => {
       <div className={classes['timer__inputs']}>
         <InputMinutes
           minutes={timeRemaining.minutes}
+          blurHandler={minutesBlurHandler}
           changeHandler={minutesChangeHandler}
         />
         <span className={classes['timer__colon']}>:</span>
         <InputSeconds
           seconds={timeRemaining.seconds}
+          blurHandler={secondsBlurHandler}
           changeHandler={secondsChangeHandler}
         />
       </div>

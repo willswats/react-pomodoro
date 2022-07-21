@@ -1,9 +1,10 @@
 .input-minutes {
-  width: 100px;
+  width: 200px;
   text-align: center;
   background-color: #181a1b;
   border-radius: 4px;
   border-color: transparent;
   color: #fff;
-  font-size: 2rem;
+  font-size: 4rem;
+  padding: 1rem;
 }
