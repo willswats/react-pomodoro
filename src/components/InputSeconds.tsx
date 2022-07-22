@@ -9,33 +9,41 @@ interface InputSecondsProps {
 }
 
 const InputSeconds = ({ state, dispatch }: InputSecondsProps) => {
+  const { timerRunning, timeRemaining } = state;
+
   const blurHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (isNaN(parseFloat(event.target.value))) {
       dispatch({
-        type: ACTIONS.SET_SECONDS,
-        payload: { ...state, seconds: 0 },
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { ...timeRemaining, seconds: 0 },
+        },
       });
     }
   };
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const inputVal = parseFloat(event.target.value);
-    if (state.running) {
+    if (timerRunning) {
       dispatch({
-        type: ACTIONS.SET_RUNNING,
-        payload: { ...state, running: false },
+        type: ACTIONS.SET_TIMER_RUNNING,
+        payload: { ...state, timerRunning: false },
       });
     }
     dispatch({
-      type: ACTIONS.SET_SECONDS,
-      payload: { ...state, seconds: inputVal },
+      type: ACTIONS.SET_TIME_REMAINING,
+      payload: {
+        ...state,
+        timeRemaining: { ...timeRemaining, seconds: inputVal },
+      },
     });
   };
 
   return (
     <input
       className={classes['input-seconds']}
-      value={state.seconds}
+      value={timeRemaining.seconds}
       onBlur={blurHandler}
       onChange={changeHandler}
       type="number"

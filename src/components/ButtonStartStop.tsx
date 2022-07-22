@@ -9,16 +9,18 @@ interface ButtonStartStopProps {
 }
 
 const ButtonStartStop = ({ state, dispatch }: ButtonStartStopProps) => {
+  const { timerRunning } = state;
+
   const clickHandler = () => {
     dispatch({
-      type: ACTIONS.SET_RUNNING,
-      payload: { ...state, running: !state.running },
+      type: ACTIONS.SET_TIMER_RUNNING,
+      payload: { ...state, timerRunning: !timerRunning },
     });
   };
 
   return (
     <button className={classes['button-start-stop']} onClick={clickHandler}>
-      {state.running === false ? 'START' : 'STOP'}
+      {timerRunning === false ? 'START' : 'STOP'}
     </button>
   );
 };

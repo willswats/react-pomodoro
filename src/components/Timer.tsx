@@ -7,9 +7,11 @@ import ButtonStartStop from './ButtonStartStop';
 import classes from './Timer.module.css';
 
 export interface State {
-  running: boolean;
-  minutes: number;
-  seconds: number;
+  timerRunning: boolean;
+  timeRemaining: {
+    minutes: number;
+    seconds: number;
+  };
 }
 
 export interface Action {
@@ -18,33 +20,32 @@ export interface Action {
 }
 
 export const ACTIONS = {
-  SET_RUNNING: 'SET_RUNNING',
-  SET_MINUTES: 'SET_MINUTES',
-  SET_SECONDS: 'SET_SECONDS',
+  SET_TIMER_RUNNING: 'SET_TIMER_RUNNING',
+  SET_TIME_REMAINING: 'SET_TIME_REMAINING',
 };
 
 const initialState: State = {
-  running: false,
-  minutes: 25,
-  seconds: 0,
+  timerRunning: false,
+  timeRemaining: {
+    minutes: 25,
+    seconds: 0,
+  },
 };
 
 const reducer = (state: State, { type, payload }: Action): State => {
   switch (type) {
-    case ACTIONS.SET_RUNNING:
+    case ACTIONS.SET_TIMER_RUNNING:
       return {
         ...state,
-        running: payload.running,
+        timerRunning: payload.timerRunning,
       };
-    case ACTIONS.SET_MINUTES:
+    case ACTIONS.SET_TIME_REMAINING:
       return {
         ...state,
-        minutes: payload.minutes,
-      };
-    case ACTIONS.SET_SECONDS:
-      return {
-        ...state,
-        seconds: payload.seconds,
+        timeRemaining: {
+          minutes: payload.timeRemaining.minutes,
+          seconds: payload.timeRemaining.seconds,
+        },
       };
     default:
       return {
@@ -56,31 +57,41 @@ const reducer = (state: State, { type, payload }: Action): State => {
 const Timer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const { timerRunning, timeRemaining } = state;
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (state.minutes === 0 && state.seconds === 0) {
+      if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
         dispatch({
-          type: ACTIONS.SET_RUNNING,
-          payload: { ...state, running: false },
+          type: ACTIONS.SET_TIMER_RUNNING,
+          payload: { ...state, timerRunning: false },
         });
-      } else if (state.seconds === 0) {
+      } else if (timeRemaining.seconds === 0) {
         dispatch({
-          type: ACTIONS.SET_MINUTES,
-          payload: { ...state, minutes: state.minutes - 1 },
-        });
-        dispatch({
-          type: ACTIONS.SET_SECONDS,
-          payload: { ...state, seconds: 60 },
+          type: ACTIONS.SET_TIME_REMAINING,
+          payload: {
+            ...state,
+            timeRemaining: {
+              minutes: timeRemaining.minutes - 1,
+              seconds: 60,
+            },
+          },
         });
       } else {
         dispatch({
-          type: ACTIONS.SET_SECONDS,
-          payload: { ...state, seconds: state.seconds - 1 },
+          type: ACTIONS.SET_TIME_REMAINING,
+          payload: {
+            ...state,
+            timeRemaining: {
+              ...timeRemaining,
+              seconds: timeRemaining.seconds - 1,
+            },
+          },
         });
       }
     }, 1000);
 
-    if (state.running === false) {
+    if (timerRunning === false) {
       clearInterval(intervalId);
     }
 
