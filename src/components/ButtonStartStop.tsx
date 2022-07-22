@@ -9,9 +9,12 @@ interface ButtonStartStopProps {
 }
 
 const ButtonStartStop = ({ state, dispatch }: ButtonStartStopProps) => {
-  const { timerRunning } = state;
+  const { timerRunning, timeRemaining } = state;
 
   const clickHandler = () => {
+    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
+      return;
+    }
     dispatch({
       type: ACTIONS.SET_TIMER_RUNNING,
       payload: { ...state, timerRunning: !timerRunning },

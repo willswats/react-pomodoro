@@ -60,20 +60,22 @@ const Timer = () => {
   const { timerRunning, timeRemaining } = state;
 
   useEffect(() => {
+    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
+      dispatch({
+        type: ACTIONS.SET_TIMER_RUNNING,
+        payload: { ...state, timerRunning: false },
+      });
+    }
+
     const intervalId = setInterval(() => {
-      if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
-        dispatch({
-          type: ACTIONS.SET_TIMER_RUNNING,
-          payload: { ...state, timerRunning: false },
-        });
-      } else if (timeRemaining.seconds === 0) {
+      if (timeRemaining.seconds === 0) {
         dispatch({
           type: ACTIONS.SET_TIME_REMAINING,
           payload: {
             ...state,
             timeRemaining: {
               minutes: timeRemaining.minutes - 1,
-              seconds: 60,
+              seconds: 59,
             },
           },
         });
