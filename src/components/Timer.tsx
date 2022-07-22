@@ -1,47 +1,86 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useReducer, useEffect } from 'react';
 
-import InputSeconds from './InputSeconds';
 import InputMinutes from './InputMinutes';
+import InputSeconds from './InputSeconds';
 import ButtonStartStop from './ButtonStartStop';
 
 import classes from './Timer.module.css';
 
+export interface State {
+  running: boolean;
+  minutes: number;
+  seconds: number;
+}
+
+export interface Action {
+  type: string;
+  payload: State;
+}
+
+export const ACTIONS = {
+  SET_RUNNING: 'SET_RUNNING',
+  SET_MINUTES: 'SET_MINUTES',
+  SET_SECONDS: 'SET_SECONDS',
+};
+
+const initialState: State = {
+  running: false,
+  minutes: 25,
+  seconds: 0,
+};
+
+const reducer = (state: State, { type, payload }: Action): State => {
+  switch (type) {
+    case ACTIONS.SET_RUNNING:
+      return {
+        ...state,
+        running: payload.running,
+      };
+    case ACTIONS.SET_MINUTES:
+      return {
+        ...state,
+        minutes: payload.minutes,
+      };
+    case ACTIONS.SET_SECONDS:
+      return {
+        ...state,
+        seconds: payload.seconds,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
+
 const Timer = () => {
-  const [timerRunning, setTimerRunning] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState({
-    minutes: 25,
-    seconds: 0,
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (
-        (timeRemaining.seconds === 0 && timeRemaining.minutes === 0) ||
-        isNaN(timeRemaining.seconds) ||
-        isNaN(timeRemaining.minutes)
-      ) {
-        setTimerRunning(false);
-        return;
-      }
-      if (timeRemaining.seconds === 0) {
-        setTimeRemaining((prevState) => {
-          return {
-            ...prevState,
-            minutes: prevState.minutes - 1,
-            seconds: 60,
-          };
+      if (state.minutes === 0 && state.seconds === 0) {
+        dispatch({
+          type: ACTIONS.SET_RUNNING,
+          payload: { ...state, running: false },
+        });
+      } else if (state.seconds === 0) {
+        dispatch({
+          type: ACTIONS.SET_MINUTES,
+          payload: { ...state, minutes: state.minutes - 1 },
+        });
+        dispatch({
+          type: ACTIONS.SET_SECONDS,
+          payload: { ...state, seconds: 60 },
         });
       } else {
-        setTimeRemaining((prevState) => {
-          return {
-            ...prevState,
-            seconds: prevState.seconds - 1,
-          };
+        dispatch({
+          type: ACTIONS.SET_SECONDS,
+          payload: { ...state, seconds: state.seconds - 1 },
         });
       }
     }, 1000);
 
-    if (!timerRunning) {
+    if (state.running === false) {
       clearInterval(intervalId);
     }
 
@@ -50,95 +89,14 @@ const Timer = () => {
     };
   });
 
-  const minutesBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isNaN(parseFloat(event.target.value))) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          minutes: 0,
-        };
-      });
-    }
-  };
-
-  const secondsBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isNaN(parseFloat(event.target.value))) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          seconds: 0,
-        };
-      });
-    }
-  };
-
-  const minutesChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputVal = parseFloat(event.target.value);
-    if (timerRunning) {
-      setTimerRunning(false);
-    }
-    setTimeRemaining((prevState) => {
-      return {
-        ...prevState,
-        minutes: inputVal,
-      };
-    });
-  };
-
-  const secondsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputVal = parseFloat(event.target.value);
-    if (timerRunning) {
-      setTimerRunning(false);
-    }
-    setTimeRemaining((prevState) => {
-      return {
-        ...prevState,
-        seconds: inputVal,
-      };
-    });
-  };
-
-  const startStopClickHandler = () => {
-    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
-      return;
-    } else if (isNaN(timeRemaining.minutes)) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          minutes: 0,
-        };
-      });
-    } else if (isNaN(timeRemaining.seconds)) {
-      setTimeRemaining((prevState) => {
-        return {
-          ...prevState,
-          seconds: 0,
-        };
-      });
-    } else {
-      setTimerRunning(!timerRunning);
-    }
-  };
-
   return (
     <div className={classes['timer']}>
       <div className={classes['timer__inputs']}>
-        <InputMinutes
-          minutes={timeRemaining.minutes}
-          blurHandler={minutesBlurHandler}
-          changeHandler={minutesChangeHandler}
-        />
+        <InputMinutes state={state} dispatch={dispatch} />
         <span className={classes['timer__colon']}>:</span>
-        <InputSeconds
-          seconds={timeRemaining.seconds}
-          blurHandler={secondsBlurHandler}
-          changeHandler={secondsChangeHandler}
-        />
+        <InputSeconds state={state} dispatch={dispatch} />
       </div>
-      <ButtonStartStop
-        timerRunning={timerRunning}
-        clickHandler={startStopClickHandler}
-      />
+      <ButtonStartStop state={state} dispatch={dispatch} />
     </div>
   );
 };
