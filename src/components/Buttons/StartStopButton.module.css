@@ -1,11 +1,9 @@
-.button-start-stop {
+.start-stop-btn {
   width: 200px;
   height: 50px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #db5f5b;
   background-color: #181a1b;
-  border: none;
   border-radius: 4px;
-  cursor: pointer;
 }

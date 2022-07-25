@@ -1,12 +1,14 @@
 import { useReducer, useEffect } from 'react';
 
-import InputMinutes from './InputMinutes';
-import InputSeconds from './InputSeconds';
-import ButtonStartStop from './ButtonStartStop';
+import MinutesInput from './Inputs/MinutesInput';
+import SecondsInput from './Inputs/SecondsInput';
+import ModeButton from './Buttons/ModeButton';
+import StartStopButton from './Buttons/StartStopButton';
 
 import classes from './Timer.module.css';
 
 export interface State {
+  timerMode: string;
   timerRunning: boolean;
   timeRemaining: {
     minutes: number;
@@ -20,11 +22,19 @@ export interface Action {
 }
 
 export const ACTIONS = {
-  SET_TIMER_RUNNING: 'SET_TIMER_RUNNING',
-  SET_TIME_REMAINING: 'SET_TIME_REMAINING',
+  SET_TIMER_RUNNING: 'set-timer-running',
+  SET_TIME_REMAINING: 'set-time-remaining',
+  SET_TIMER_MODE: 'set-timer-mode',
+};
+
+export const MODES = {
+  POMODORO: 'pomodoro',
+  SHORT_BREAK: 'short-break',
+  LONG_BREAK: 'long-break',
 };
 
 const initialState: State = {
+  timerMode: MODES.POMODORO,
   timerRunning: false,
   timeRemaining: {
     minutes: 25,
@@ -46,6 +56,11 @@ const reducer = (state: State, { type, payload }: Action): State => {
           minutes: payload.timeRemaining.minutes,
           seconds: payload.timeRemaining.seconds,
         },
+      };
+    case ACTIONS.SET_TIMER_MODE:
+      return {
+        ...state,
+        timerMode: payload.timerMode,
       };
     default:
       return {
@@ -104,12 +119,29 @@ const Timer = () => {
 
   return (
     <div className={classes['timer']}>
-      <div className={classes['timer__inputs']}>
-        <InputMinutes state={state} dispatch={dispatch} />
-        <span className={classes['timer__colon']}>:</span>
-        <InputSeconds state={state} dispatch={dispatch} />
+      <div className={classes['timer__mode-btns']}>
+        <ModeButton
+          state={state}
+          dispatch={dispatch}
+          modeType={MODES.POMODORO}
+        />
+        <ModeButton
+          state={state}
+          dispatch={dispatch}
+          modeType={MODES.SHORT_BREAK}
+        />
+        <ModeButton
+          state={state}
+          dispatch={dispatch}
+          modeType={MODES.LONG_BREAK}
+        />
       </div>
-      <ButtonStartStop state={state} dispatch={dispatch} />
+      <div className={classes['timer__inputs']}>
+        <MinutesInput state={state} dispatch={dispatch} />
+        <span className={classes['timer__colon']}>:</span>
+        <SecondsInput state={state} dispatch={dispatch} />
+      </div>
+      <StartStopButton state={state} dispatch={dispatch} />
     </div>
   );
 };

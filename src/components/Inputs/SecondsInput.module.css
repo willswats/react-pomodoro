@@ -1,4 +1,4 @@
-.input-minutes {
+.seconds-input {
   width: 200px;
   text-align: center;
   background-color: #181a1b;
@@ -6,5 +6,6 @@
   border-color: transparent;
   color: #fff;
   font-size: 4rem;
+  font-weight: bold;
   padding: 1rem;
 }

@@ -8,12 +8,17 @@
   border-radius: 10px;
 }
 
+.timer__mode-btns {
+  display: flex;
+}
+
 .timer__inputs {
   display: flex;
-  margin: 0 0 2rem;
+  margin: 2rem 0;
 }
 
 .timer__colon {
   font-size: 4rem;
+  font-weight: bold;
   margin: 1rem;
 }

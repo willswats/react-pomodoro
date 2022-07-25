@@ -1,14 +1,14 @@
 import { ChangeEvent, Dispatch } from 'react';
-import { State, Action, ACTIONS } from './Timer';
+import { State, Action, ACTIONS } from '../Timer';
 
-import classes from './InputSeconds.module.css';
+import classes from './MinutesInput.module.css';
 
-interface InputSecondsProps {
+interface MinutesInputProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const InputSeconds = ({ state, dispatch }: InputSecondsProps) => {
+const MinutesInput = ({ state, dispatch }: MinutesInputProps) => {
   const { timerRunning, timeRemaining } = state;
 
   const blurHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +17,7 @@ const InputSeconds = ({ state, dispatch }: InputSecondsProps) => {
         type: ACTIONS.SET_TIME_REMAINING,
         payload: {
           ...state,
-          timeRemaining: { ...timeRemaining, seconds: 0 },
+          timeRemaining: { ...timeRemaining, minutes: 0 },
         },
       });
     }
@@ -35,15 +35,15 @@ const InputSeconds = ({ state, dispatch }: InputSecondsProps) => {
       type: ACTIONS.SET_TIME_REMAINING,
       payload: {
         ...state,
-        timeRemaining: { ...timeRemaining, seconds: inputVal },
+        timeRemaining: { ...timeRemaining, minutes: inputVal },
       },
     });
   };
 
   return (
     <input
-      className={classes['input-seconds']}
-      value={timeRemaining.seconds}
+      className={classes['minutes-input']}
+      value={timeRemaining.minutes}
       onBlur={blurHandler}
       onChange={changeHandler}
       type="number"
@@ -51,4 +51,4 @@ const InputSeconds = ({ state, dispatch }: InputSecondsProps) => {
   );
 };
 
-export default InputSeconds;
+export default MinutesInput;

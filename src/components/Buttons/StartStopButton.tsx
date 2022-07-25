@@ -1,14 +1,14 @@
 import { Dispatch } from 'react';
-import { State, Action, ACTIONS } from './Timer';
+import { State, Action, ACTIONS } from '../Timer';
 
-import classes from './ButtonStartStop.module.css';
+import classes from './StartStopButton.module.css';
 
-interface ButtonStartStopProps {
+interface StartStopButtonProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const ButtonStartStop = ({ state, dispatch }: ButtonStartStopProps) => {
+const StartStopButton = ({ state, dispatch }: StartStopButtonProps) => {
   const { timerRunning, timeRemaining } = state;
 
   const clickHandler = () => {
@@ -22,10 +22,10 @@ const ButtonStartStop = ({ state, dispatch }: ButtonStartStopProps) => {
   };
 
   return (
-    <button className={classes['button-start-stop']} onClick={clickHandler}>
+    <button className={classes['start-stop-btn']} onClick={clickHandler}>
       {timerRunning === false ? 'START' : 'STOP'}
     </button>
   );
 };
 
-export default ButtonStartStop;
+export default StartStopButton;
