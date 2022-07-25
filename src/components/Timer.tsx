@@ -22,9 +22,9 @@ export interface Action {
 }
 
 export const ACTIONS = {
+  SET_TIMER_MODE: 'set-timer-mode',
   SET_TIMER_RUNNING: 'set-timer-running',
   SET_TIME_REMAINING: 'set-time-remaining',
-  SET_TIMER_MODE: 'set-timer-mode',
 };
 
 export const MODES = {
@@ -44,6 +44,11 @@ const initialState: State = {
 
 const reducer = (state: State, { type, payload }: Action): State => {
   switch (type) {
+    case ACTIONS.SET_TIMER_MODE:
+      return {
+        ...state,
+        timerMode: payload.timerMode,
+      };
     case ACTIONS.SET_TIMER_RUNNING:
       return {
         ...state,
@@ -56,11 +61,6 @@ const reducer = (state: State, { type, payload }: Action): State => {
           minutes: payload.timeRemaining.minutes,
           seconds: payload.timeRemaining.seconds,
         },
-      };
-    case ACTIONS.SET_TIMER_MODE:
-      return {
-        ...state,
-        timerMode: payload.timerMode,
       };
     default:
       return {

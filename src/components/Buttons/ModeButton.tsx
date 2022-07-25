@@ -18,15 +18,27 @@ const ModeButton = ({ state, dispatch, modeType }: ModeButtonProps) => {
         type: ACTIONS.SET_TIMER_MODE,
         payload: { ...state, timerMode: MODES.POMODORO },
       });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: { ...state, timeRemaining: { minutes: 25, seconds: 0 } },
+      });
     } else if (modeType === MODES.SHORT_BREAK) {
       dispatch({
         type: ACTIONS.SET_TIMER_MODE,
         payload: { ...state, timerMode: MODES.SHORT_BREAK },
       });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: { ...state, timeRemaining: { minutes: 5, seconds: 0 } },
+      });
     } else if (modeType === MODES.LONG_BREAK) {
       dispatch({
         type: ACTIONS.SET_TIMER_MODE,
         payload: { ...state, timerMode: MODES.LONG_BREAK },
+      });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: { ...state, timeRemaining: { minutes: 15, seconds: 0 } },
       });
     }
   };
