@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 
-import ModeButton from './UI/Buttons/ModeButton';
-import TimeParagraph from './UI/Paragraphs/TimeParagraph';
+import TimerModeButtons from './TimerModeButtons';
+import TimerCount from './TimerCount';
 import StartStopButton from './UI/Buttons/StartStopButton';
 
 import classes from './Timer.module.css';
@@ -118,28 +118,8 @@ const Timer = () => {
 
   return (
     <div className={classes['timer']}>
-      <div className={classes['timer__mode-btns']}>
-        <ModeButton
-          state={state}
-          dispatch={dispatch}
-          modeType={MODES.POMODORO}
-        />
-        <ModeButton
-          state={state}
-          dispatch={dispatch}
-          modeType={MODES.SHORT_BREAK}
-        />
-        <ModeButton
-          state={state}
-          dispatch={dispatch}
-          modeType={MODES.LONG_BREAK}
-        />
-      </div>
-      <div className={classes['timer__count']}>
-        <TimeParagraph time={timeRemaining.minutes} />
-        <span className={classes['timer__count-colon']}>:</span>
-        <TimeParagraph time={timeRemaining.seconds} />
-      </div>
+      <TimerModeButtons state={state} dispatch={dispatch} />
+      <TimerCount state={state} />
       <StartStopButton state={state} dispatch={dispatch} />
     </div>
   );

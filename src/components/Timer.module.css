@@ -4,26 +4,6 @@
   align-items: center;
   flex-direction: column;
   padding: 2rem;
-  background-color: #86221f;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-}
-
-.timer__mode-btns {
-  display: flex;
-}
-
-.timer__count {
-  display: flex;
-  text-align: center;
-  background-color: #181a1b;
-  padding: 1rem 4rem;
-  margin: 2rem 0;
-  font-size: 6rem;
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-.timer__count-colon {
-  margin: 0 2rem;
-  font-size: 6rem;
 }
