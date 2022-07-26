@@ -1,7 +1,6 @@
 import { useReducer, useEffect } from 'react';
 
-import MinutesInput from './Inputs/MinutesInput';
-import SecondsInput from './Inputs/SecondsInput';
+import TimeParagraph from './TimeParagraph';
 import ModeButton from './Buttons/ModeButton';
 import StartStopButton from './Buttons/StartStopButton';
 
@@ -136,10 +135,10 @@ const Timer = () => {
           modeType={MODES.LONG_BREAK}
         />
       </div>
-      <div className={classes['timer__inputs']}>
-        <MinutesInput state={state} dispatch={dispatch} />
+      <div className={classes['timer__paragraphs']}>
+        <TimeParagraph time={timeRemaining.minutes} />
         <span className={classes['timer__colon']}>:</span>
-        <SecondsInput state={state} dispatch={dispatch} />
+        <TimeParagraph time={timeRemaining.seconds} />
       </div>
       <StartStopButton state={state} dispatch={dispatch} />
     </div>
