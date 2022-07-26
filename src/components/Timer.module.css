@@ -12,13 +12,18 @@
   display: flex;
 }
 
-.timer__paragraphs {
+.timer__count {
   display: flex;
+  text-align: center;
+  background-color: #181a1b;
+  padding: 1rem 4rem;
   margin: 2rem 0;
+  font-size: 6rem;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
-.timer__colon {
-  font-size: 4rem;
-  font-weight: bold;
-  margin: 1rem;
+.timer__count-colon {
+  margin: 0 2rem;
+  font-size: 6rem;
 }

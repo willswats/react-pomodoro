@@ -1,8 +1,8 @@
 import { useReducer, useEffect } from 'react';
 
-import TimeParagraph from './TimeParagraph';
-import ModeButton from './Buttons/ModeButton';
-import StartStopButton from './Buttons/StartStopButton';
+import ModeButton from './UI/Buttons/ModeButton';
+import TimeParagraph from './UI/Paragraphs/TimeParagraph';
+import StartStopButton from './UI/Buttons/StartStopButton';
 
 import classes from './Timer.module.css';
 
@@ -135,9 +135,9 @@ const Timer = () => {
           modeType={MODES.LONG_BREAK}
         />
       </div>
-      <div className={classes['timer__paragraphs']}>
+      <div className={classes['timer__count']}>
         <TimeParagraph time={timeRemaining.minutes} />
-        <span className={classes['timer__colon']}>:</span>
+        <span className={classes['timer__count-colon']}>:</span>
         <TimeParagraph time={timeRemaining.seconds} />
       </div>
       <StartStopButton state={state} dispatch={dispatch} />
