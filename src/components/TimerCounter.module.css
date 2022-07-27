@@ -1,0 +1,21 @@
+.timer-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-counter__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #181a1b;
+  font-size: 6rem;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 1rem 4rem;
+  margin: 2rem 0;
+}
+
+.timer-counter__colon {
+  margin: 0 2rem;
+}

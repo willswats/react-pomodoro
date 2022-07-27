@@ -9,9 +9,16 @@
 .timer__content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 400px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding: 2rem;
+}
+
+.timer__mode-btns {
+  display: flex;
 }
 
 .timer__start-stop-btn {
