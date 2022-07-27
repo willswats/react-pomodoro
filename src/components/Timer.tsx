@@ -1,9 +1,9 @@
 import { useReducer, useEffect } from 'react';
 
-import SettingsButton from './Buttons/SettingsButton';
-import ModeButton from './Buttons/ModeButton';
+import SettingsButton from './UI/Buttons/SettingsButton';
+import ModeButton from './UI/Buttons/ModeButton';
 import TimerCounter from './TimerCounter';
-import StartStopButton from './Buttons/StartStopButton';
+import StartStopButton from './UI/Buttons/StartStopButton';
 
 import classes from './Timer.module.css';
 

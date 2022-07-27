@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { State, Action, ACTIONS } from '../Timer';
+import { State, Action, ACTIONS } from '../../Timer';
 
 import classes from './StartStopButton.module.css';
 
