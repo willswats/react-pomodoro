@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from 'react';
 
+import SettingsButton from './Buttons/SettingsButton';
 import ModeButton from './Buttons/ModeButton';
 import TimerCounter from './TimerCounter';
 import StartStopButton from './Buttons/StartStopButton';
@@ -119,6 +120,9 @@ const Timer = () => {
   return (
     <div className={classes['timer']}>
       <div className={classes['timer__content']}>
+        <div className={classes['timer__settings-btn']}>
+          <SettingsButton />
+        </div>
         <div className={classes['timer__mode-btns']}>
           <ModeButton
             state={state}

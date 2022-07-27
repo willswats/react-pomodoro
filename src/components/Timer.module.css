@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 800px;
   height: 400px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -19,9 +19,17 @@
 
 .timer__mode-btns {
   display: flex;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .timer__start-stop-btn {
   display: flex;
   justify-content: center;
+}
+
+.timer__settings-btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 95%;
 }
