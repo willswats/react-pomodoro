@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { State, Action, ACTIONS, MODES } from '../../Timer';
+import { State, Action, ACTIONS, MODES } from '../Timer';
 
 import classes from './ModeButton.module.css';
 

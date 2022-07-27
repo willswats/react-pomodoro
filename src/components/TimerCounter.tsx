@@ -11,10 +11,10 @@ interface TimerCounterProps {
 const TimerCounter = ({ state }: TimerCounterProps) => {
   const { timeRemaining } = state;
   return (
-    <div className={classes['timer-count']}>
-      <div className={classes['timer-count__content']}>
+    <div className={classes['timer-counter']}>
+      <div className={classes['timer-counter__content']}>
         <p>{convertTime(timeRemaining.minutes)}</p>
-        <span className={classes['timer-count__colon']}>:</span>
+        <span className={classes['timer-counter__colon']}>:</span>
         <p>{convertTime(timeRemaining.seconds)}</p>
       </div>
     </div>
