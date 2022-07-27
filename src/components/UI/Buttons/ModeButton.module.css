@@ -1,6 +1,9 @@
 .mode-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
   font-size: 1.5rem;
-  padding: 0 1rem;
   border-radius: 4px;
 }
 

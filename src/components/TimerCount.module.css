@@ -1,12 +1,14 @@
 .timer-count {
   display: flex;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   background-color: #181a1b;
-  padding: 1rem 4rem;
-  margin: 2rem 0;
+
   font-size: 6rem;
   font-weight: bold;
   border-radius: 4px;
+  padding: 1rem 0;
+  margin: 2rem 0;
 }
 
 .timer-count__colon {

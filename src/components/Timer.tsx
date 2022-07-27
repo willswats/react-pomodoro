@@ -118,9 +118,13 @@ const Timer = () => {
 
   return (
     <div className={classes['timer']}>
-      <TimerModeButtons state={state} dispatch={dispatch} />
-      <TimerCount state={state} />
-      <StartStopButton state={state} dispatch={dispatch} />
+      <div className={classes['timer__content']}>
+        <TimerModeButtons state={state} dispatch={dispatch} />
+        <TimerCount state={state} />
+        <div className={classes['timer__start-stop-btn']}>
+          <StartStopButton state={state} dispatch={dispatch} />
+        </div>
+      </div>
     </div>
   );
 };

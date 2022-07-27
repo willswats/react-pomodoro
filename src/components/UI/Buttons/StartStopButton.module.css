@@ -1,8 +1,12 @@
 .start-stop-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  border-radius: 4px;
   font-size: 2rem;
   font-weight: bold;
-  padding: 0.5rem 4rem;
   color: #db5f5b;
   background-color: #181a1b;
-  border-radius: 4px;
 }
