@@ -1,0 +1,11 @@
+.settings-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-input__input {
+  width: 100px;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: #212425;
+}

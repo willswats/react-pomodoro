@@ -3,14 +3,14 @@ import { Dispatch } from 'react';
 import { State, Action, ACTIONS } from '../../Timer';
 import { ReactComponent as IconSettings } from '../../../svgs/settings.svg';
 
-import classes from './SettingsButton.module.css';
+import classes from './ShowSettingsButton.module.css';
 
-interface SettingsButtonProps {
+interface ShowSettingsButtonProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const SettingsButton = ({ state, dispatch }: SettingsButtonProps) => {
+const ShowSettingsButton = ({ state, dispatch }: ShowSettingsButtonProps) => {
   const clickHandler = () => {
     dispatch({
       type: ACTIONS.SET_SETTINGS_ACTIVE,
@@ -19,10 +19,10 @@ const SettingsButton = ({ state, dispatch }: SettingsButtonProps) => {
   };
 
   return (
-    <button onClick={clickHandler} className={classes['settings-button']}>
-      <IconSettings className={classes['settings-button__icon']} />
+    <button onClick={clickHandler} className={classes['show-settings-button']}>
+      <IconSettings className={classes['show-settings-button__icon']} />
     </button>
   );
 };
 
-export default SettingsButton;
+export default ShowSettingsButton;

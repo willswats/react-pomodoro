@@ -1,15 +1,19 @@
 import { Dispatch } from 'react';
 import { State, Action, ACTIONS, MODES } from '../../Timer';
 
-import classes from './ModeButton.module.css';
+import classes from './ChangeModeButton.module.css';
 
-interface ModeButtonProps {
+interface ChangeModeButtonProps {
   state: State;
   dispatch: Dispatch<Action>;
   modeType: string;
 }
 
-const ModeButton = ({ state, dispatch, modeType }: ModeButtonProps) => {
+const ChangeModeButton = ({
+  state,
+  dispatch,
+  modeType,
+}: ChangeModeButtonProps) => {
   const { timerMode } = state;
 
   const clickHandler = () => {
@@ -46,8 +50,8 @@ const ModeButton = ({ state, dispatch, modeType }: ModeButtonProps) => {
   return (
     <button
       onClick={clickHandler}
-      className={`${classes['mode-button']} ${
-        timerMode === modeType ? classes['mode-button--active'] : ''
+      className={`${classes['change-mode-button']} ${
+        timerMode === modeType ? classes['change-mode-button--active'] : ''
       }`}
     >
       {modeType === MODES.POMODORO
@@ -61,4 +65,4 @@ const ModeButton = ({ state, dispatch, modeType }: ModeButtonProps) => {
   );
 };
 
-export default ModeButton;
+export default ChangeModeButton;

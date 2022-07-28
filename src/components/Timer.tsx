@@ -1,8 +1,8 @@
 import { useReducer, useEffect } from 'react';
 
-import ModeButton from './UI/Buttons/ModeButton';
+import ChangeModeButton from './UI/Buttons/ChangeModeButton';
 import StartStopButton from './UI/Buttons/StartStopButton';
-import SettingsButton from './UI/Buttons/SettingsButton';
+import ShowSettingsButton from './UI/Buttons/ShowSettingsButton';
 import SettingsOverlay from './UI/SettingsOverlay';
 import SettingsForm from './UI/SettingsForm';
 
@@ -132,7 +132,7 @@ const Timer = () => {
     <div className={classes['timer']}>
       <div className={classes['timer__content']}>
         <div className={classes['timer__settings-button']}>
-          <SettingsButton state={state} dispatch={dispatch} />
+          <ShowSettingsButton state={state} dispatch={dispatch} />
         </div>
         {showSettings && (
           <SettingsOverlay
@@ -142,17 +142,17 @@ const Timer = () => {
           />
         )}
         <div className={classes['timer__mode-buttons']}>
-          <ModeButton
+          <ChangeModeButton
             state={state}
             dispatch={dispatch}
             modeType={MODES.POMODORO}
           />
-          <ModeButton
+          <ChangeModeButton
             state={state}
             dispatch={dispatch}
             modeType={MODES.SHORT_BREAK}
           />
-          <ModeButton
+          <ChangeModeButton
             state={state}
             dispatch={dispatch}
             modeType={MODES.LONG_BREAK}

@@ -6,6 +6,11 @@
   border-radius: 4px;
 }
 
+.settings-form__inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 768px) {
   .settings-form {
     top: 50px;
