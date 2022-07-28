@@ -1,0 +1,14 @@
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #181a1b;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .settings-form {
+    top: 50px;
+    width: 95%;
+  }
+}

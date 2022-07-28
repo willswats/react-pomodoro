@@ -1,4 +1,4 @@
-.mode-btn {
+.mode-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,10 +8,10 @@
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.mode-btn:hover {
+.mode-button:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.mode-btn--active {
+.mode-button--active {
   background-color: rgba(0, 0, 0, 0.5);
 }

@@ -1,4 +1,4 @@
-.settings-btn {
+.settings-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,10 +8,10 @@
   transition: background-color 0.1s;
 }
 
-.settings-btn:hover {
+.settings-button:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.settings-btn__icon {
+.settings-button__icon {
   transform: scale(1.5);
 }

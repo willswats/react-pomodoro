@@ -17,19 +17,41 @@
   border-radius: 4px;
 }
 
-.timer__mode-btns {
+.timer__settings-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 95%;
+}
+
+.timer__mode-buttons {
   display: flex;
   border-radius: 4px;
   overflow: hidden;
 }
 
-.timer__start-stop-btn {
+.timer__counter {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.timer__settings-btn {
+.timer__counter-content {
   display: flex;
-  justify-content: flex-end;
-  width: 95%;
+  justify-content: center;
+  align-items: center;
+  background-color: #181a1b;
+  font-size: 6rem;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 1rem 4rem;
+  margin: 2rem 0;
+}
+
+.timer__counter-colon {
+  margin: 0 2rem;
+}
+
+.timer__start-stop-button {
+  display: flex;
+  justify-content: center;
 }

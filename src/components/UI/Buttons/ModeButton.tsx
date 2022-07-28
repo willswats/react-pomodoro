@@ -46,8 +46,8 @@ const ModeButton = ({ state, dispatch, modeType }: ModeButtonProps) => {
   return (
     <button
       onClick={clickHandler}
-      className={`${classes['mode-btn']} ${
-        timerMode === modeType ? classes['mode-btn--active'] : ''
+      className={`${classes['mode-button']} ${
+        timerMode === modeType ? classes['mode-button--active'] : ''
       }`}
     >
       {modeType === MODES.POMODORO

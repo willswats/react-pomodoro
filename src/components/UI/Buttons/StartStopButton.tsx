@@ -22,7 +22,7 @@ const StartStopButton = ({ state, dispatch }: StartStopButtonProps) => {
   };
 
   return (
-    <button className={classes['start-stop-btn']} onClick={clickHandler}>
+    <button className={classes['start-stop-button']} onClick={clickHandler}>
       {timerRunning === false ? 'START' : 'STOP'}
     </button>
   );
