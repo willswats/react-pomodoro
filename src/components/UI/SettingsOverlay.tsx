@@ -20,8 +20,8 @@ const SettingsOverlay = ({
 }: SettingsOverlayProps) => {
   const settingsOverlayClickHandler = () => {
     dispatch({
-      type: ACTIONS.SET_SETTINGS_ACTIVE,
-      payload: { ...state, showSettings: false },
+      type: ACTIONS.SET_SETTINGS_VISIBLE,
+      payload: { ...state, settingsVisible: false },
     });
   };
 

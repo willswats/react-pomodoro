@@ -11,13 +11,39 @@ import convertTime from '../helpers/convertTime';
 import classes from './Timer.module.css';
 
 export interface State {
-  timerMode: string;
-  timerRunning: boolean;
-  timeRemaining: {
-    minutes: number;
-    seconds: number;
+  mode: string;
+  running: boolean;
+  counters: {
+    pomodoro: {
+      minutes: number;
+      seconds: number;
+    };
+    shortBreak: {
+      minutes: number;
+      seconds: number;
+    };
+    longBreak: {
+      minutes: number;
+      seconds: number;
+    };
   };
-  showSettings: boolean;
+  settingsVisible: boolean;
+  settings: {
+    counters: {
+      pomodoro: {
+        minutes: number;
+        seconds: number;
+      };
+      shortBreak: {
+        minutes: number;
+        seconds: number;
+      };
+      longBreak: {
+        minutes: number;
+        seconds: number;
+      };
+    };
+  };
 }
 
 export interface Action {
@@ -26,10 +52,11 @@ export interface Action {
 }
 
 export const ACTIONS = {
-  SET_TIMER_MODE: 'set-timer-mode',
-  SET_TIMER_RUNNING: 'set-timer-running',
-  SET_TIME_REMAINING: 'set-time-remaining',
-  SET_SETTINGS_ACTIVE: 'set-settings-active',
+  SET_MODE: 'set-mode',
+  SET_RUNNING: 'set-running',
+  SET_COUNTERS: 'set-counters',
+  SET_SETTINGS_VISIBLE: 'set-settings-visible',
+  SET_SETTINGS: 'set-settings',
 };
 
 export const MODES = {
@@ -39,39 +66,110 @@ export const MODES = {
 };
 
 const initialState: State = {
-  timerMode: MODES.POMODORO,
-  timerRunning: false,
-  timeRemaining: {
-    minutes: 25,
-    seconds: 0,
+  mode: MODES.POMODORO,
+  running: false,
+  counters: {
+    pomodoro: {
+      minutes: 25,
+      seconds: 0,
+    },
+    shortBreak: {
+      minutes: 5,
+      seconds: 0,
+    },
+    longBreak: {
+      minutes: 15,
+      seconds: 0,
+    },
   },
-  showSettings: false,
+  settingsVisible: false,
+  settings: {
+    counters: {
+      pomodoro: {
+        minutes: 25,
+        seconds: 0,
+      },
+      shortBreak: {
+        minutes: 5,
+        seconds: 0,
+      },
+      longBreak: {
+        minutes: 15,
+        seconds: 0,
+      },
+    },
+  },
 };
 
 const reducer = (state: State, { type, payload }: Action): State => {
   switch (type) {
-    case ACTIONS.SET_TIMER_MODE:
+    case ACTIONS.SET_MODE:
       return {
         ...state,
-        timerMode: payload.timerMode,
-      };
-    case ACTIONS.SET_TIMER_RUNNING:
-      return {
-        ...state,
-        timerRunning: payload.timerRunning,
-      };
-    case ACTIONS.SET_TIME_REMAINING:
-      return {
-        ...state,
-        timeRemaining: {
-          minutes: payload.timeRemaining.minutes,
-          seconds: payload.timeRemaining.seconds,
+        mode: payload.mode,
+        running: false,
+        counters: {
+          pomodoro: {
+            minutes: state.settings.counters.pomodoro.minutes,
+            seconds: state.settings.counters.pomodoro.seconds,
+          },
+          shortBreak: {
+            minutes: state.settings.counters.shortBreak.minutes,
+            seconds: state.settings.counters.shortBreak.seconds,
+          },
+          longBreak: {
+            minutes: state.settings.counters.longBreak.minutes,
+            seconds: state.settings.counters.longBreak.seconds,
+          },
         },
       };
-    case ACTIONS.SET_SETTINGS_ACTIVE:
+    case ACTIONS.SET_RUNNING:
       return {
         ...state,
-        showSettings: payload.showSettings,
+        running: payload.running,
+      };
+    case ACTIONS.SET_SETTINGS_VISIBLE:
+      return {
+        ...state,
+        settingsVisible: payload.settingsVisible,
+      };
+    case ACTIONS.SET_COUNTERS:
+      return {
+        ...state,
+        counters: {
+          pomodoro: {
+            minutes: payload.counters.pomodoro.minutes,
+            seconds: payload.counters.pomodoro.seconds,
+          },
+          shortBreak: {
+            minutes: payload.counters.shortBreak.minutes,
+            seconds: payload.counters.shortBreak.seconds,
+          },
+          longBreak: {
+            minutes: payload.counters.longBreak.minutes,
+            seconds: payload.counters.longBreak.seconds,
+          },
+        },
+      };
+    case ACTIONS.SET_SETTINGS:
+      return {
+        ...state,
+        settings: {
+          counters: {
+            pomodoro: {
+              minutes: payload.settings.counters.pomodoro.minutes,
+              seconds: payload.settings.counters.pomodoro.seconds,
+            },
+            shortBreak: {
+              minutes: payload.settings.counters.shortBreak.minutes,
+              seconds: payload.settings.counters.shortBreak.seconds,
+            },
+            longBreak: {
+              minutes: payload.settings.counters.longBreak.minutes,
+              seconds: payload.settings.counters.longBreak.seconds,
+            },
+          },
+        },
       };
     default:
       return {
@@ -83,49 +181,144 @@ const reducer = (state: State, { type, payload }: Action): State => {
 const Timer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { timerRunning, timeRemaining, showSettings } = state;
+  const { mode, running, settingsVisible } = state;
+  const { pomodoro, shortBreak, longBreak } = state.counters;
+
+  console.log(state);
 
   useEffect(() => {
-    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
+    if (
+      (pomodoro.minutes === 0 && pomodoro.seconds === 0) ||
+      (shortBreak.minutes === 0 && shortBreak.seconds === 0) ||
+      (longBreak.minutes === 0 && longBreak.seconds === 0)
+    ) {
       dispatch({
-        type: ACTIONS.SET_TIMER_RUNNING,
-        payload: { ...state, timerRunning: false },
+        type: ACTIONS.SET_RUNNING,
+        payload: { ...state, running: false },
       });
     }
 
-    const intervalId = setInterval(() => {
-      if (timeRemaining.seconds === 0) {
-        dispatch({
-          type: ACTIONS.SET_TIME_REMAINING,
-          payload: {
-            ...state,
-            timeRemaining: {
-              minutes: timeRemaining.minutes - 1,
-              seconds: 59,
+    if (mode === MODES.POMODORO) {
+      const intervalId = setInterval(() => {
+        if (pomodoro.seconds === 0) {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                pomodoro: {
+                  minutes: pomodoro.minutes - 1,
+                  seconds: 59,
+                },
+              },
             },
-          },
-        });
-      } else {
-        dispatch({
-          type: ACTIONS.SET_TIME_REMAINING,
-          payload: {
-            ...state,
-            timeRemaining: {
-              ...timeRemaining,
-              seconds: timeRemaining.seconds - 1,
+          });
+        } else {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                pomodoro: {
+                  ...state.counters.pomodoro,
+                  seconds: pomodoro.seconds - 1,
+                },
+              },
             },
-          },
-        });
+          });
+        }
+      }, 1000);
+
+      if (running === false) {
+        clearInterval(intervalId);
       }
-    }, 1000);
 
-    if (timerRunning === false) {
-      clearInterval(intervalId);
+      return () => {
+        clearInterval(intervalId);
+      };
+    } else if (mode === MODES.SHORT_BREAK) {
+      const intervalId = setInterval(() => {
+        if (shortBreak.seconds === 0) {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                shortBreak: {
+                  minutes: shortBreak.minutes - 1,
+                  seconds: 59,
+                },
+              },
+            },
+          });
+        } else {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                shortBreak: {
+                  ...state.counters.shortBreak,
+                  seconds: shortBreak.seconds - 1,
+                },
+              },
+            },
+          });
+        }
+      }, 1000);
+
+      if (running === false) {
+        clearInterval(intervalId);
+      }
+
+      return () => {
+        clearInterval(intervalId);
+      };
+    } else if (mode === MODES.LONG_BREAK) {
+      const intervalId = setInterval(() => {
+        if (longBreak.seconds === 0) {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                longBreak: {
+                  minutes: longBreak.minutes - 1,
+                  seconds: 59,
+                },
+              },
+            },
+          });
+        } else {
+          dispatch({
+            type: ACTIONS.SET_COUNTERS,
+            payload: {
+              ...state,
+              counters: {
+                ...state.counters,
+                longBreak: {
+                  ...state.counters.longBreak,
+                  seconds: longBreak.seconds - 1,
+                },
+              },
+            },
+          });
+        }
+      }, 1000);
+
+      if (running === false) {
+        clearInterval(intervalId);
+      }
+
+      return () => {
+        clearInterval(intervalId);
+      };
     }
-
-    return () => {
-      clearInterval(intervalId);
-    };
   });
 
   return (
@@ -134,7 +327,7 @@ const Timer = () => {
         <div className={classes['timer__settings-button']}>
           <ShowSettingsButton state={state} dispatch={dispatch} />
         </div>
-        {showSettings && (
+        {settingsVisible && (
           <SettingsOverlay
             state={state}
             dispatch={dispatch}
@@ -160,9 +353,21 @@ const Timer = () => {
         </div>
         <div className={classes['timer__counter']}>
           <div className={classes['timer__counter-content']}>
-            <p>{convertTime(timeRemaining.minutes)}</p>
+            {mode === MODES.POMODORO && <p>{convertTime(pomodoro.minutes)}</p>}
+            {mode === MODES.SHORT_BREAK && (
+              <p>{convertTime(shortBreak.minutes)}</p>
+            )}
+            {mode === MODES.LONG_BREAK && (
+              <p>{convertTime(longBreak.minutes)}</p>
+            )}
             <span className={classes['timer__counter-colon']}>:</span>
-            <p>{convertTime(timeRemaining.seconds)}</p>
+            {mode === MODES.POMODORO && <p>{convertTime(pomodoro.seconds)}</p>}
+            {mode === MODES.SHORT_BREAK && (
+              <p>{convertTime(shortBreak.seconds)}</p>
+            )}
+            {mode === MODES.LONG_BREAK && (
+              <p>{convertTime(longBreak.seconds)}</p>
+            )}
           </div>
         </div>
         <div className={classes['timer__start-stop-buttons']}>

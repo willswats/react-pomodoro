@@ -18,7 +18,9 @@ const SettingsForm = () => {
         <SettingsInput id="short-break" labelText="Short Break" />
         <SettingsInput id="long-break" labelText="Long Break" />
       </div>
-      <SaveSettingsButton />
+      <div className={classes['settings-form__save-settings-button']}>
+        <SaveSettingsButton />
+      </div>
     </form>
   );
 };

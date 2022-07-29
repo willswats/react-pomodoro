@@ -13,8 +13,8 @@ interface ShowSettingsButtonProps {
 const ShowSettingsButton = ({ state, dispatch }: ShowSettingsButtonProps) => {
   const clickHandler = () => {
     dispatch({
-      type: ACTIONS.SET_SETTINGS_ACTIVE,
-      payload: { ...state, showSettings: true },
+      type: ACTIONS.SET_SETTINGS_VISIBLE,
+      payload: { ...state, settingsVisible: true },
     });
   };
 
