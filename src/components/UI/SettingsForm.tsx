@@ -45,6 +45,11 @@ const SettingsForm = ({ state, dispatch }: SettingsFormProps) => {
         },
       },
     });
+
+    dispatch({
+      type: ACTIONS.SET_SETTINGS_VISIBLE,
+      payload: { ...state, settingsVisible: false },
+    });
   };
 
   return (
