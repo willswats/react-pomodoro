@@ -29,20 +29,9 @@ export interface State {
   };
   settingsVisible: boolean;
   settings: {
-    counters: {
-      pomodoro: {
-        minutes: number;
-        seconds: number;
-      };
-      shortBreak: {
-        minutes: number;
-        seconds: number;
-      };
-      longBreak: {
-        minutes: number;
-        seconds: number;
-      };
-    };
+    pomodoro: number;
+    shortBreak: number;
+    longBreak: number;
   };
 }
 
@@ -84,20 +73,9 @@ const initialState: State = {
   },
   settingsVisible: false,
   settings: {
-    counters: {
-      pomodoro: {
-        minutes: 25,
-        seconds: 0,
-      },
-      shortBreak: {
-        minutes: 5,
-        seconds: 0,
-      },
-      longBreak: {
-        minutes: 15,
-        seconds: 0,
-      },
-    },
+    pomodoro: 25,
+    shortBreak: 5,
+    longBreak: 15,
   },
 };
 
@@ -108,20 +86,6 @@ const reducer = (state: State, { type, payload }: Action): State => {
         ...state,
         mode: payload.mode,
         running: false,
-        counters: {
-          pomodoro: {
-            minutes: state.settings.counters.pomodoro.minutes,
-            seconds: state.settings.counters.pomodoro.seconds,
-          },
-          shortBreak: {
-            minutes: state.settings.counters.shortBreak.minutes,
-            seconds: state.settings.counters.shortBreak.seconds,
-          },
-          longBreak: {
-            minutes: state.settings.counters.longBreak.minutes,
-            seconds: state.settings.counters.longBreak.seconds,
-          },
-        },
       };
     case ACTIONS.SET_RUNNING:
       return {
@@ -155,20 +119,9 @@ const reducer = (state: State, { type, payload }: Action): State => {
       return {
         ...state,
         settings: {
-          counters: {
-            pomodoro: {
-              minutes: payload.settings.counters.pomodoro.minutes,
-              seconds: payload.settings.counters.pomodoro.seconds,
-            },
-            shortBreak: {
-              minutes: payload.settings.counters.shortBreak.minutes,
-              seconds: payload.settings.counters.shortBreak.seconds,
-            },
-            longBreak: {
-              minutes: payload.settings.counters.longBreak.minutes,
-              seconds: payload.settings.counters.longBreak.seconds,
-            },
-          },
+          pomodoro: payload.settings.pomodoro,
+          shortBreak: payload.settings.shortBreak,
+          longBreak: payload.settings.longBreak,
         },
       };
     default:
@@ -183,8 +136,6 @@ const Timer = () => {
 
   const { mode, running, settingsVisible } = state;
   const { pomodoro, shortBreak, longBreak } = state.counters;
-
-  console.log(state);
 
   useEffect(() => {
     if (
@@ -331,7 +282,7 @@ const Timer = () => {
           <SettingsOverlay
             state={state}
             dispatch={dispatch}
-            settingsElement={<SettingsForm />}
+            settingsElement={<SettingsForm state={state} dispatch={dispatch} />}
           />
         )}
         <div className={classes['timer__mode-buttons']}>
