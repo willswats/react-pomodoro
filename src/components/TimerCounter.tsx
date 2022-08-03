@@ -53,7 +53,7 @@ const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
     return () => {
       clearInterval(intervalId);
     };
-  });
+  }, [state, dispatch, timerRunning, timeRemaining]);
 
   return (
     <div className={classes['counter']}>

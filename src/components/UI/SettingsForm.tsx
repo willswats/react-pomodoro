@@ -13,43 +13,47 @@ interface SettingsFormProps {
 }
 
 const SettingsForm = ({ state, dispatch }: SettingsFormProps) => {
+  const { timerSettings } = state;
+
   const [inputValuePomodoro, setInputValuePomodoro] = useState(
-    state.timerSettings.pomodoro
+    `${timerSettings.pomodoro}`
   );
   const [inputValueShortBreak, setInputValueShortBreak] = useState(
-    state.timerSettings.shortBreak
+    `${timerSettings.shortBreak}`
   );
   const [inputValueLongBreak, setInputValueLongBreak] = useState(
-    state.timerSettings.longBreak
+    `${timerSettings.longBreak}`
   );
 
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
 
+    const convertedInputValuePomodoro = parseFloat(inputValuePomodoro);
+    const convertedInputValueShortBreak = parseFloat(inputValueShortBreak);
+    const convertedInputValueLongBreak = parseFloat(inputValueLongBreak);
+
     if (
-      isNaN(inputValuePomodoro) ||
-      isNaN(inputValueShortBreak) ||
-      isNaN(inputValueLongBreak)
+      !isNaN(convertedInputValuePomodoro) &&
+      !isNaN(convertedInputValueShortBreak) &&
+      !isNaN(convertedInputValueLongBreak)
     ) {
-      return;
-    }
-
-    dispatch({
-      type: ACTIONS.SET_TIMER_SETTINGS,
-      payload: {
-        ...state,
-        timerSettings: {
-          pomodoro: inputValuePomodoro,
-          shortBreak: inputValueShortBreak,
-          longBreak: inputValueLongBreak,
+      dispatch({
+        type: ACTIONS.SET_TIMER_SETTINGS,
+        payload: {
+          ...state,
+          timerSettings: {
+            pomodoro: convertedInputValuePomodoro,
+            shortBreak: convertedInputValueShortBreak,
+            longBreak: convertedInputValueLongBreak,
+          },
         },
-      },
-    });
+      });
 
-    dispatch({
-      type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
-      payload: { ...state, timerSettingsVisible: false },
-    });
+      dispatch({
+        type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
+        payload: { ...state, timerSettingsVisible: false },
+      });
+    }
   };
 
   return (

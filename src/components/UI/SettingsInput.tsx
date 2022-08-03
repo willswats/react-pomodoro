@@ -5,8 +5,8 @@ import classes from './SettingsInput.module.css';
 interface SettingsInputProps {
   id: string;
   labelText: string;
-  inputValue: number;
-  setInputValue: Dispatch<SetStateAction<number>>;
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
 const SettingsInput = ({
@@ -16,10 +16,7 @@ const SettingsInput = ({
   setInputValue,
 }: SettingsInputProps) => {
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = parseFloat(event.target.value);
-    if (isNaN(inputValue)) {
-      return;
-    }
+    const inputValue = event.target.value;
     setInputValue(inputValue);
   };
 
