@@ -14,13 +14,13 @@ interface SettingsFormProps {
 
 const SettingsForm = ({ state, dispatch }: SettingsFormProps) => {
   const [inputValuePomodoro, setInputValuePomodoro] = useState(
-    state.settings.pomodoro
+    state.timerSettings.pomodoro
   );
   const [inputValueShortBreak, setInputValueShortBreak] = useState(
-    state.settings.shortBreak
+    state.timerSettings.shortBreak
   );
   const [inputValueLongBreak, setInputValueLongBreak] = useState(
-    state.settings.longBreak
+    state.timerSettings.longBreak
   );
 
   const submitHandler = (event: FormEvent) => {
@@ -35,10 +35,10 @@ const SettingsForm = ({ state, dispatch }: SettingsFormProps) => {
     }
 
     dispatch({
-      type: ACTIONS.SET_SETTINGS,
+      type: ACTIONS.SET_TIMER_SETTINGS,
       payload: {
         ...state,
-        settings: {
+        timerSettings: {
           pomodoro: inputValuePomodoro,
           shortBreak: inputValueShortBreak,
           longBreak: inputValueLongBreak,
@@ -47,8 +47,8 @@ const SettingsForm = ({ state, dispatch }: SettingsFormProps) => {
     });
 
     dispatch({
-      type: ACTIONS.SET_SETTINGS_VISIBLE,
-      payload: { ...state, settingsVisible: false },
+      type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
+      payload: { ...state, timerSettingsVisible: false },
     });
   };
 

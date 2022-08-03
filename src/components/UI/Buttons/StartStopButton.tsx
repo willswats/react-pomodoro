@@ -9,27 +9,22 @@ interface StartStopButtonProps {
 }
 
 const StartStopButton = ({ state, dispatch }: StartStopButtonProps) => {
-  const { running } = state;
-  const { pomodoro, shortBreak, longBreak } = state.counters;
+  const { timerRunning, timeRemaining } = state;
 
   const clickHandler = () => {
-    if (
-      (pomodoro.minutes === 0 && pomodoro.seconds === 0) ||
-      (shortBreak.minutes === 0 && shortBreak.seconds === 0) ||
-      (longBreak.minutes === 0 && longBreak.seconds === 0)
-    ) {
+    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
       return;
     }
 
     dispatch({
-      type: ACTIONS.SET_RUNNING,
-      payload: { ...state, running: !running },
+      type: ACTIONS.SET_TIMER_RUNNING,
+      payload: { ...state, timerRunning: !timerRunning },
     });
   };
 
   return (
     <button className={classes['start-stop-button']} onClick={clickHandler}>
-      {running === false ? 'START' : 'STOP'}
+      {timerRunning === false ? 'START' : 'STOP'}
     </button>
   );
 };

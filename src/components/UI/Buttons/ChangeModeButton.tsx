@@ -14,23 +14,44 @@ const ChangeModeButton = ({
   dispatch,
   modeType,
 }: ChangeModeButtonProps) => {
-  const { mode } = state;
+  const { timerMode, timerSettings } = state;
 
   const clickHandler = () => {
     if (modeType === MODES.POMODORO) {
       dispatch({
-        type: ACTIONS.SET_MODE,
-        payload: { ...state, mode: MODES.POMODORO },
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.POMODORO },
+      });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.pomodoro, seconds: 0 },
+        },
       });
     } else if (modeType === MODES.SHORT_BREAK) {
       dispatch({
-        type: ACTIONS.SET_MODE,
-        payload: { ...state, mode: MODES.SHORT_BREAK },
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.SHORT_BREAK },
+      });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.shortBreak, seconds: 0 },
+        },
       });
     } else if (modeType === MODES.LONG_BREAK) {
       dispatch({
-        type: ACTIONS.SET_MODE,
-        payload: { ...state, mode: MODES.LONG_BREAK },
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.LONG_BREAK },
+      });
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.longBreak, seconds: 0 },
+        },
       });
     }
   };
@@ -39,7 +60,7 @@ const ChangeModeButton = ({
     <button
       onClick={clickHandler}
       className={`${classes['change-mode-button']} ${
-        mode === modeType ? classes['change-mode-button--active'] : ''
+        timerMode === modeType ? classes['change-mode-button--active'] : ''
       }`}
     >
       {modeType === MODES.POMODORO
