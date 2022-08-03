@@ -1,7 +1,7 @@
 import { useEffect, Dispatch } from 'react';
 import { State, Action, ACTIONS } from './Timer';
 
-import convertTime from '../helpers/convertTime';
+import convertTime from '../../helpers/convertTime';
 
 import classes from './TimerCounter.module.css';
 

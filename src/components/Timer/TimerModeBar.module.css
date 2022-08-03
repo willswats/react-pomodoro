@@ -1,0 +1,5 @@
+.timer-mode-bar {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+}
