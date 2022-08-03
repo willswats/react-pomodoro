@@ -1,8 +1,9 @@
 import { Dispatch } from 'react';
 import { Action, State, ACTIONS } from './Timer';
+
 import SettingsButton from '../UI/Buttons/SettingsButton';
 import ModalOverlay from '../UI/ModalOverlay';
-import SettingsForm from '../UI/Forms/SettingsForm';
+import TimerSettingsForm from './TimerSettingsForm';
 
 import classes from './TimerSettings.module.css';
 
@@ -28,14 +29,12 @@ const TimerSettings = ({ state, dispatch }: TimerSettingsProps) => {
     });
   };
 
-  const settingsFormSubmitHandler = () => {};
-
   return (
     <div className={classes['timer-settings']}>
       <SettingsButton clickHandler={settingsButtonClickHandler} />
       {timerSettingsVisible && (
         <ModalOverlay
-          modal={<SettingsForm submitHandler={settingsFormSubmitHandler} />}
+          modal={<TimerSettingsForm />}
           clickHandler={modalOverlayClickHandler}
         />
       )}
