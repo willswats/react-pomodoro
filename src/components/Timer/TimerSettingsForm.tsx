@@ -13,14 +13,17 @@ interface TimerSettingsFormProps {
 }
 
 const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
-  const { pomodoro, shortBreak, longBreak } = state.timerSettings;
+  const { pomodoroMinutes, shortBreakMinutes, longBreakMinutes } =
+    state.timerSettings;
 
-  const [pomodoroInputValue, setPomodoroInputValue] = useState(`${pomodoro}`);
+  const [pomodoroInputValue, setPomodoroInputValue] = useState(
+    `${pomodoroMinutes}`
+  );
   const [shortBreakInputValue, setShortBreakInputValue] = useState(
-    `${shortBreak}`
+    `${shortBreakMinutes}`
   );
   const [longBreakInputValue, setLongBreakInputValue] = useState(
-    `${longBreak}`
+    `${longBreakMinutes}`
   );
 
   const settingsFormSubmitHandler = (event: FormEvent) => {
@@ -40,11 +43,15 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
         payload: {
           ...state,
           timerSettings: {
-            pomodoro: convertedInputValuePomodoro,
-            shortBreak: convertedInputValueShortBreak,
-            longBreak: convertedInputValueLongBreak,
+            pomodoroMinutes: convertedInputValuePomodoro,
+            shortBreakMinutes: convertedInputValueShortBreak,
+            longBreakMinutes: convertedInputValueLongBreak,
           },
         },
+      });
+      dispatch({
+        type: ACTIONS.SET_TIMER_SETTINGS_CHANGED,
+        payload: { ...state, timerSettingsChanged: true },
       });
 
       dispatch({

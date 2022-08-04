@@ -13,54 +13,74 @@ interface TimerCounterProps {
 const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
   const {
     timerRunning,
-    timerStarted,
     timeRemaining,
     timerMode,
     timerSettings,
+    timerSettingsChanged,
   } = state;
 
   useEffect(() => {
-    if (
-      timerMode === MODES.POMODORO &&
-      timerRunning !== true &&
-      timerStarted !== true &&
-      timeRemaining.minutes !== timerSettings.pomodoro
-    ) {
-      dispatch({
-        type: ACTIONS.SET_TIME_REMAINING,
-        payload: {
-          ...state,
-          timeRemaining: { minutes: timerSettings.pomodoro, seconds: 0 },
-        },
-      });
-    } else if (
-      timerMode === MODES.SHORT_BREAK &&
-      timerRunning !== true &&
-      timerStarted !== true &&
-      timeRemaining.minutes !== timerSettings.shortBreak
-    ) {
-      dispatch({
-        type: ACTIONS.SET_TIME_REMAINING,
-        payload: {
-          ...state,
-          timeRemaining: { minutes: timerSettings.shortBreak, seconds: 0 },
-        },
-      });
-    } else if (
-      timerMode === MODES.LONG_BREAK &&
-      timerRunning !== true &&
-      timerStarted !== true &&
-      timeRemaining.minutes !== timerSettings.longBreak
-    ) {
-      dispatch({
-        type: ACTIONS.SET_TIME_REMAINING,
-        payload: {
-          ...state,
-          timeRemaining: { minutes: timerSettings.longBreak, seconds: 0 },
-        },
-      });
+    // Change time when settings is changed
+    if (timerRunning !== true && timerSettingsChanged === true) {
+      switch (timerMode) {
+        case MODES.POMODORO:
+          if (timeRemaining.minutes !== timerSettings.pomodoroMinutes) {
+            dispatch({
+              type: ACTIONS.SET_TIME_REMAINING,
+              payload: {
+                ...state,
+                timeRemaining: {
+                  minutes: timerSettings.pomodoroMinutes,
+                  seconds: 0,
+                },
+              },
+            });
+          }
+          dispatch({
+            type: ACTIONS.SET_TIMER_SETTINGS_CHANGED,
+            payload: { ...state, timerSettingsChanged: false },
+          });
+          break;
+        case MODES.SHORT_BREAK:
+          if (timeRemaining.minutes !== timerSettings.shortBreakMinutes) {
+            dispatch({
+              type: ACTIONS.SET_TIME_REMAINING,
+              payload: {
+                ...state,
+                timeRemaining: {
+                  minutes: timerSettings.shortBreakMinutes,
+                  seconds: 0,
+                },
+              },
+            });
+          }
+          dispatch({
+            type: ACTIONS.SET_TIMER_SETTINGS_CHANGED,
+            payload: { ...state, timerSettingsChanged: false },
+          });
+          break;
+        case MODES.LONG_BREAK:
+          if (timeRemaining.minutes !== timerSettings.longBreakMinutes) {
+            dispatch({
+              type: ACTIONS.SET_TIME_REMAINING,
+              payload: {
+                ...state,
+                timeRemaining: {
+                  minutes: timerSettings.longBreakMinutes,
+                  seconds: 0,
+                },
+              },
+            });
+          }
+          dispatch({
+            type: ACTIONS.SET_TIMER_SETTINGS_CHANGED,
+            payload: { ...state, timerSettingsChanged: false },
+          });
+          break;
+      }
     }
 
+    // Timer
     if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
       dispatch({
         type: ACTIONS.SET_TIMER_RUNNING,
@@ -100,7 +120,15 @@ const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [state, dispatch, timerRunning, timeRemaining, timerMode, timerSettings]);
+  }, [
+    state,
+    dispatch,
+    timerRunning,
+    timeRemaining,
+    timerMode,
+    timerSettings,
+    timerSettingsChanged,
+  ]);
 
   return (
     <div className={classes['counter']}>

@@ -18,12 +18,6 @@ const TimerStartStopButton = ({
     if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
       return;
     }
-
-    dispatch({
-      type: ACTIONS.SET_TIMER_STARTED,
-      payload: { ...state, timerStarted: true },
-    });
-
     dispatch({
       type: ACTIONS.SET_TIMER_RUNNING,
       payload: { ...state, timerRunning: !timerRunning },

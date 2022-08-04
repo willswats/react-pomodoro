@@ -11,12 +11,19 @@ interface TimerModeBarProps {
 }
 
 const TimerModeBar = ({ state, dispatch }: TimerModeBarProps) => {
-  const { timerMode } = state;
+  const { timerMode, timerSettings } = state;
 
   const pomodoroModeButtonClickHandler = () => {
     dispatch({
       type: ACTIONS.SET_TIMER_MODE,
       payload: { ...state, timerMode: MODES.POMODORO },
+    });
+    dispatch({
+      type: ACTIONS.SET_TIME_REMAINING,
+      payload: {
+        ...state,
+        timeRemaining: { minutes: timerSettings.pomodoroMinutes, seconds: 0 },
+      },
     });
   };
 
@@ -25,12 +32,26 @@ const TimerModeBar = ({ state, dispatch }: TimerModeBarProps) => {
       type: ACTIONS.SET_TIMER_MODE,
       payload: { ...state, timerMode: MODES.SHORT_BREAK },
     });
+    dispatch({
+      type: ACTIONS.SET_TIME_REMAINING,
+      payload: {
+        ...state,
+        timeRemaining: { minutes: timerSettings.shortBreakMinutes, seconds: 0 },
+      },
+    });
   };
 
   const longBreakModeButtonClickHandler = () => {
     dispatch({
       type: ACTIONS.SET_TIMER_MODE,
       payload: { ...state, timerMode: MODES.LONG_BREAK },
+    });
+    dispatch({
+      type: ACTIONS.SET_TIME_REMAINING,
+      payload: {
+        ...state,
+        timeRemaining: { minutes: timerSettings.longBreakMinutes, seconds: 0 },
+      },
     });
   };
 

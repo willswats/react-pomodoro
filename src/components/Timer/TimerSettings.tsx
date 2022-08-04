@@ -13,9 +13,16 @@ interface TimerSettingsProps {
 }
 
 const TimerSettings = ({ state, dispatch }: TimerSettingsProps) => {
-  const { timerSettingsVisible } = state;
+  const { timerRunning, timerSettingsVisible } = state;
 
   const settingsButtonClickHandler = () => {
+    if (timerRunning === true) {
+      dispatch({
+        type: ACTIONS.SET_TIMER_RUNNING,
+        payload: { ...state, timerRunning: false },
+      });
+    }
+
     dispatch({
       type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
       payload: { ...state, timerSettingsVisible: true },
