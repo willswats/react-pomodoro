@@ -10,6 +10,7 @@ import classes from './Timer.module.css';
 export interface State {
   timerMode: string;
   timerRunning: boolean;
+  timerStarted: boolean;
   timeRemaining: {
     minutes: number;
     seconds: number;
@@ -30,6 +31,7 @@ export interface Action {
 export enum ACTIONS {
   SET_TIMER_MODE = 'set-timer-mode',
   SET_TIMER_RUNNING = 'set-timer-running',
+  SET_TIMER_STARTED = 'set-timer-started',
   SET_TIME_REMAINING = 'set-time-remaining',
   SET_TIMER_SETTINGS_VISIBLE = 'set-timer-settings-visible',
   SET_TIMER_SETTINGS = 'set-timer-settings',
@@ -44,6 +46,7 @@ export enum MODES {
 const initialState: State = {
   timerMode: MODES.POMODORO,
   timerRunning: false,
+  timerStarted: false,
   timeRemaining: {
     minutes: 25,
     seconds: 0,
@@ -68,6 +71,11 @@ const reducer = (state: State, { type, payload }: Action): State => {
       return {
         ...state,
         timerRunning: payload.timerRunning,
+      };
+    case ACTIONS.SET_TIMER_STARTED:
+      return {
+        ...state,
+        timerStarted: payload.timerStarted,
       };
     case ACTIONS.SET_TIME_REMAINING:
       return {

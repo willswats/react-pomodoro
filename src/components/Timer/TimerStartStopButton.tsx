@@ -20,6 +20,11 @@ const TimerStartStopButton = ({
     }
 
     dispatch({
+      type: ACTIONS.SET_TIMER_STARTED,
+      payload: { ...state, timerStarted: true },
+    });
+
+    dispatch({
       type: ACTIONS.SET_TIMER_RUNNING,
       payload: { ...state, timerRunning: !timerRunning },
     });

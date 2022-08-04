@@ -11,13 +11,20 @@ interface TimerCounterProps {
 }
 
 const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
-  const { timerRunning, timeRemaining, timerMode, timerSettings } = state;
+  const {
+    timerRunning,
+    timerStarted,
+    timeRemaining,
+    timerMode,
+    timerSettings,
+  } = state;
 
   useEffect(() => {
     if (
       timerMode === MODES.POMODORO &&
-      timeRemaining.minutes !== timerSettings.pomodoro &&
-      timerRunning !== true
+      timerRunning !== true &&
+      timerStarted !== true &&
+      timeRemaining.minutes !== timerSettings.pomodoro
     ) {
       dispatch({
         type: ACTIONS.SET_TIME_REMAINING,
@@ -28,8 +35,9 @@ const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
       });
     } else if (
       timerMode === MODES.SHORT_BREAK &&
-      timeRemaining.minutes !== timerSettings.shortBreak &&
-      timerRunning !== true
+      timerRunning !== true &&
+      timerStarted !== true &&
+      timeRemaining.minutes !== timerSettings.shortBreak
     ) {
       dispatch({
         type: ACTIONS.SET_TIME_REMAINING,
@@ -40,8 +48,9 @@ const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
       });
     } else if (
       timerMode === MODES.LONG_BREAK &&
-      timeRemaining.minutes !== timerSettings.longBreak &&
-      timerRunning !== true
+      timerRunning !== true &&
+      timerStarted !== true &&
+      timeRemaining.minutes !== timerSettings.longBreak
     ) {
       dispatch({
         type: ACTIONS.SET_TIME_REMAINING,
