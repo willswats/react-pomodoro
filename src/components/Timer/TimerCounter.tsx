@@ -1,5 +1,5 @@
 import { useEffect, Dispatch } from 'react';
-import { State, Action, ACTIONS } from './Timer';
+import { State, Action, ACTIONS, MODES } from './Timer';
 
 import convertTime from '../../helpers/convertTime';
 
@@ -11,9 +11,44 @@ interface TimerCounterProps {
 }
 
 const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
-  const { timerRunning, timeRemaining } = state;
+  const { timerRunning, timeRemaining, timerMode, timerSettings } = state;
 
   useEffect(() => {
+    if (
+      timerMode === MODES.POMODORO &&
+      timeRemaining.minutes !== timerSettings.pomodoro
+    ) {
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.pomodoro, seconds: 0 },
+        },
+      });
+    } else if (
+      timerMode === MODES.SHORT_BREAK &&
+      timeRemaining.minutes !== timerSettings.shortBreak
+    ) {
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.shortBreak, seconds: 0 },
+        },
+      });
+    } else if (
+      timerMode === MODES.LONG_BREAK &&
+      timeRemaining.minutes !== timerSettings.longBreak
+    ) {
+      dispatch({
+        type: ACTIONS.SET_TIME_REMAINING,
+        payload: {
+          ...state,
+          timeRemaining: { minutes: timerSettings.longBreak, seconds: 0 },
+        },
+      });
+    }
+
     if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
       dispatch({
         type: ACTIONS.SET_TIMER_RUNNING,
@@ -53,7 +88,7 @@ const TimerCounter = ({ state, dispatch }: TimerCounterProps) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [state, dispatch, timerRunning, timeRemaining]);
+  }, [state, dispatch, timerRunning, timeRemaining, timerMode, timerSettings]);
 
   return (
     <div className={classes['counter']}>
