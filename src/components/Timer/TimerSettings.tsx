@@ -34,7 +34,7 @@ const TimerSettings = ({ state, dispatch }: TimerSettingsProps) => {
       <SettingsButton clickHandler={settingsButtonClickHandler} />
       {timerSettingsVisible && (
         <ModalOverlay
-          modal={<TimerSettingsForm />}
+          modal={<TimerSettingsForm state={state} dispatch={dispatch} />}
           clickHandler={modalOverlayClickHandler}
         />
       )}

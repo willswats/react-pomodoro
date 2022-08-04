@@ -1,22 +1,22 @@
 import { FormEvent } from 'react';
 
-import SettingsInput from '../Inputs/SettingsInput';
 import SaveSettingsButton from '../Buttons/SaveSettingsButton';
 
 import classes from './SettingsForm.module.css';
 
 interface SettingsFormProps {
+  body: JSX.Element;
   submitHandler: (event: FormEvent) => void;
 }
 
-const SettingsForm = ({ submitHandler }: SettingsFormProps) => {
+const SettingsForm = ({ body, submitHandler }: SettingsFormProps) => {
   return (
     <form onSubmit={submitHandler} className={classes['settings-form']}>
-      <p>Settings</p>
-      <SettingsInput id="pomodoro" labelText="Pomodoro" />
-      <SettingsInput id="short-break" labelText="Short Break" />
-      <SettingsInput id="long-break" labelText="Long Break" />
-      <SaveSettingsButton />
+      <h1>Settings</h1>
+      {body}
+      <div className={classes['settings-form__save-settings-button']}>
+        <SaveSettingsButton />
+      </div>
     </form>
   );
 };
