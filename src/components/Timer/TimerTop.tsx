@@ -1,18 +1,21 @@
 import { Dispatch } from 'react';
 import { Action, State, ACTIONS } from './Timer';
 
-import SettingsButton from '../UI/Buttons/SettingsButton';
+import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
 import TimerSettingsForm from './TimerSettingsForm';
 
-import classes from './TimerSettings.module.css';
+import { ReactComponent as SvgSettings } from '../../svgs/settings.svg';
+import { ReactComponent as SvgRestart } from '../../svgs/refresh-cw.svg';
 
-interface TimerSettingsProps {
+import classes from './TimerTop.module.css';
+
+interface TimerTopProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const TimerSettings = ({ state, dispatch }: TimerSettingsProps) => {
+const TimerTop = ({ state, dispatch }: TimerTopProps) => {
   const { timerSettingsVisible } = state;
 
   const settingsButtonClickHandler = () => {
@@ -29,17 +32,27 @@ const TimerSettings = ({ state, dispatch }: TimerSettingsProps) => {
     });
   };
 
+  const restartButtonClickHandler = () => {};
+
   return (
-    <div className={classes['timer-settings']}>
-      <SettingsButton clickHandler={settingsButtonClickHandler} />
+    <div className={classes['timer-top']}>
+      <SvgButton
+        svg={<SvgRestart />}
+        clickHandler={restartButtonClickHandler}
+      />
       {timerSettingsVisible && (
         <ModalOverlay
           modal={<TimerSettingsForm state={state} dispatch={dispatch} />}
           clickHandler={modalOverlayClickHandler}
         />
       )}
+
+      <SvgButton
+        svg={<SvgSettings />}
+        clickHandler={settingsButtonClickHandler}
+      />
     </div>
   );
 };
 
-export default TimerSettings;
+export default TimerTop;

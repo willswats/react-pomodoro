@@ -6,7 +6,14 @@
   border-radius: 4px;
 }
 
-.settings-form__save-settings-button {
+.settings-form__save-button-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.settings-form__save-button {
+  width: 100px;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: #44494c;
 }

@@ -4,7 +4,7 @@ interface ModeButtonProps {
   text: string;
   buttonMode: string;
   timerMode: string;
-  clickHandler: () => void;
+  clickHandler?: () => void;
 }
 
 const ModeButton = ({

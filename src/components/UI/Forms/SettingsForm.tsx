@@ -1,7 +1,5 @@
 import { FormEvent } from 'react';
 
-import SaveSettingsButton from '../Buttons/SaveSettingsButton';
-
 import classes from './SettingsForm.module.css';
 
 interface SettingsFormProps {
@@ -14,8 +12,8 @@ const SettingsForm = ({ body, submitHandler }: SettingsFormProps) => {
     <form onSubmit={submitHandler} className={classes['settings-form']}>
       <h1>Settings</h1>
       {body}
-      <div className={classes['settings-form__save-settings-button']}>
-        <SaveSettingsButton />
+      <div className={classes['settings-form__save-button-container']}>
+        <button className={classes['settings-form__save-button']}>Save</button>
       </div>
     </form>
   );

@@ -1,9 +1,9 @@
 import { useReducer } from 'react';
 
-import TimerSettings from './TimerSettings';
-import TimerModeBar from './TimerModeBar';
+import TimerTop from './TimerTop';
+import TimerModeButtons from './TimerModeButtons';
 import TimerCounter from './TimerCounter';
-import TimerStartStopButton from './TimerStartStopButton';
+import TimerBottom from './TimerBottom';
 
 import classes from './Timer.module.css';
 
@@ -190,10 +190,10 @@ const Timer = () => {
   return (
     <div className={classes['timer']}>
       <div className={classes['timer__content']}>
-        <TimerSettings state={state} dispatch={dispatch} />
-        <TimerModeBar state={state} dispatch={dispatch} />
+        <TimerTop state={state} dispatch={dispatch} />
+        <TimerModeButtons state={state} dispatch={dispatch} />
         <TimerCounter state={state} dispatch={dispatch} />
-        <TimerStartStopButton state={state} dispatch={dispatch} />
+        <TimerBottom state={state} dispatch={dispatch} />
       </div>
     </div>
   );

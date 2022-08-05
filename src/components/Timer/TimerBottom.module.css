@@ -1,0 +1,11 @@
+.timer-bottom {
+  display: flex;
+}
+
+.timer-bottom__svg-button-skip-back {
+  margin-right: 0.5rem;
+}
+
+.timer-bottom__svg-button-skip-forward {
+  margin-left: 0.5rem;
+}

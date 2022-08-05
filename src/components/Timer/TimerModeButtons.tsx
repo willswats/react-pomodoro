@@ -3,14 +3,14 @@ import { State, Action, ACTIONS, MODES } from './Timer';
 
 import ModeButton from '../UI/Buttons/ModeButton';
 
-import classes from './TimerModeBar.module.css';
+import classes from './TimerModeButtons.module.css';
 
-interface TimerModeBarProps {
+interface TimerModeButtonsProps {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const TimerModeBar = ({ state, dispatch }: TimerModeBarProps) => {
+const TimerModeButtons = ({ state, dispatch }: TimerModeButtonsProps) => {
   const { timerMode } = state;
 
   const pomodoroModeButtonClickHandler = () => {
@@ -35,7 +35,7 @@ const TimerModeBar = ({ state, dispatch }: TimerModeBarProps) => {
   };
 
   return (
-    <div className={classes['timer-mode-bar']}>
+    <div className={classes['timer-mode-buttons']}>
       <ModeButton
         text="Pomodoro"
         buttonMode={MODES.POMODORO}
@@ -58,4 +58,4 @@ const TimerModeBar = ({ state, dispatch }: TimerModeBarProps) => {
   );
 };
 
-export default TimerModeBar;
+export default TimerModeButtons;
