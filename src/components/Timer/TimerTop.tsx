@@ -4,6 +4,7 @@ import { Action, State, ACTIONS } from './Timer';
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
 import TimerSettingsForm from './TimerSettingsForm';
+import Indicator from '../UI/Indicator';
 
 import { ReactComponent as SvgSettings } from '../../svgs/settings.svg';
 import { ReactComponent as SvgRestart } from '../../svgs/refresh-cw.svg';
@@ -46,7 +47,7 @@ const TimerTop = ({ state, dispatch }: TimerTopProps) => {
           clickHandler={modalOverlayClickHandler}
         />
       )}
-
+      <Indicator />
       <SvgButton
         svg={<SvgSettings />}
         clickHandler={settingsButtonClickHandler}
