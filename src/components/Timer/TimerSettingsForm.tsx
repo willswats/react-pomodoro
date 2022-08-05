@@ -49,15 +49,6 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
           },
         },
       });
-      dispatch({
-        type: ACTIONS.SET_TIMER_SETTINGS_CHANGED,
-        payload: { ...state, timerSettingsChanged: true },
-      });
-
-      dispatch({
-        type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
-        payload: { ...state, timerSettingsVisible: false },
-      });
     }
   };
 

@@ -33,7 +33,6 @@ export enum ACTIONS {
   SET_TIMER_RUNNING = 'set-timer-running',
   SET_TIME_REMAINING = 'set-time-remaining',
   SET_TIMER_SETTINGS_VISIBLE = 'set-timer-settings-visible',
-  SET_TIMER_SETTINGS_CHANGED = 'set-timer-settings-changed',
   SET_TIMER_SETTINGS = 'set-timer-settings',
 }
 
@@ -62,17 +61,98 @@ const initialState: State = {
 const reducer = (state: State, { type, payload }: Action): State => {
   switch (type) {
     case ACTIONS.SET_TIMER_MODE:
+      switch (payload.timerMode) {
+        case MODES.POMODORO:
+          return {
+            ...state,
+            timerMode: payload.timerMode,
+            timerRunning: false,
+            timeRemaining: {
+              minutes: state.timerSettings.pomodoroMinutes,
+              seconds: 0,
+            },
+          };
+        case MODES.SHORT_BREAK:
+          return {
+            ...state,
+            timerMode: payload.timerMode,
+            timerRunning: false,
+            timeRemaining: {
+              minutes: state.timerSettings.shortBreakMinutes,
+              seconds: 0,
+            },
+          };
+        case MODES.LONG_BREAK:
+          return {
+            ...state,
+            timerMode: payload.timerMode,
+            timerRunning: false,
+            timeRemaining: {
+              minutes: state.timerSettings.longBreakMinutes,
+              seconds: 0,
+            },
+          };
+      }
       return {
         ...state,
-        timerMode: payload.timerMode,
-        timerRunning: false,
       };
     case ACTIONS.SET_TIMER_RUNNING:
+      // Prevent start if minutes and seconds are 0
+      if (
+        state.timeRemaining.minutes === 0 &&
+        state.timeRemaining.seconds === 0
+      ) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
         timerRunning: payload.timerRunning,
       };
     case ACTIONS.SET_TIME_REMAINING:
+      // Change time when settings is changed
+      if (state.timerRunning !== true && state.timerSettingsChanged === true) {
+        switch (state.timerMode) {
+          case MODES.POMODORO:
+            return {
+              ...state,
+              timerSettingsChanged: false,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+            };
+          case MODES.SHORT_BREAK:
+            return {
+              ...state,
+              timerSettingsChanged: false,
+              timeRemaining: {
+                minutes: state.timerSettings.shortBreakMinutes,
+                seconds: 0,
+              },
+            };
+          case MODES.LONG_BREAK:
+            return {
+              ...state,
+              timerSettingsChanged: false,
+              timeRemaining: {
+                minutes: state.timerSettings.longBreakMinutes,
+                seconds: 0,
+              },
+            };
+        }
+      }
+      // Stop timer when minutes and seconds are 0
+      if (
+        state.timeRemaining.minutes === 0 &&
+        state.timeRemaining.seconds === 0
+      ) {
+        return {
+          ...state,
+          timerRunning: false,
+        };
+      }
       return {
         ...state,
         timeRemaining: {
@@ -84,15 +164,13 @@ const reducer = (state: State, { type, payload }: Action): State => {
       return {
         ...state,
         timerSettingsVisible: payload.timerSettingsVisible,
-      };
-    case ACTIONS.SET_TIMER_SETTINGS_CHANGED:
-      return {
-        ...state,
-        timerSettingsChanged: payload.timerSettingsChanged,
+        timerRunning: false,
       };
     case ACTIONS.SET_TIMER_SETTINGS:
       return {
         ...state,
+        timerSettingsVisible: false,
+        timerSettingsChanged: true,
         timerSettings: {
           pomodoroMinutes: payload.timerSettings.pomodoroMinutes,
           shortBreakMinutes: payload.timerSettings.shortBreakMinutes,

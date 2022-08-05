@@ -12,12 +12,9 @@ const TimerStartStopButton = ({
   state,
   dispatch,
 }: TimerStartStopButtonProps) => {
-  const { timeRemaining, timerRunning } = state;
+  const { timerRunning } = state;
 
   const startStopButtonClickHandler = () => {
-    if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
-      return;
-    }
     dispatch({
       type: ACTIONS.SET_TIMER_RUNNING,
       payload: { ...state, timerRunning: !timerRunning },
