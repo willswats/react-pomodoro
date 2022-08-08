@@ -36,6 +36,7 @@ export enum ACTIONS {
   SET_TIMER_MODE = 'set-timer-mode',
   SET_TIMER_RUNNING = 'set-timer-running',
   SET_TIME_REMAINING = 'set-time-remaining',
+  SET_POMODORO_COUNT = 'set-pomodoro-count',
   SET_TIMER_SETTINGS_VISIBLE = 'set-timer-settings-visible',
   SET_TIMER_SETTINGS = 'set-timer-settings',
 }
@@ -104,6 +105,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
       return {
         ...state,
       };
+
     case ACTIONS.SET_TIMER_RUNNING:
       // Prevent start if minutes and seconds are 0
       if (
@@ -118,8 +120,9 @@ const reducer = (state: State, { type, payload }: Action): State => {
         ...state,
         timerRunning: payload.timerRunning,
       };
+
     case ACTIONS.SET_TIME_REMAINING:
-      // Change time when settings is changed
+      // Change time when the settings are changed
       if (state.timerRunning !== true && state.timerSettingsChanged === true) {
         switch (state.timerMode) {
           case MODES.POMODORO:
@@ -151,6 +154,23 @@ const reducer = (state: State, { type, payload }: Action): State => {
             };
         }
       }
+
+      // Add to pomodoroCount.completed when pomodoro reaches 0
+      if (
+        state.timeRemaining.minutes === 0 &&
+        state.timeRemaining.seconds === 0 &&
+        state.timerMode === MODES.POMODORO
+      ) {
+        return {
+          ...state,
+          timerRunning: false,
+          pomodoroCount: {
+            completed: state.pomodoroCount.completed + 1,
+            remaining: state.pomodoroCount.remaining,
+          },
+        };
+      }
+
       // Stop timer when minutes and seconds are 0
       if (
         state.timeRemaining.minutes === 0 &&
@@ -161,6 +181,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
           timerRunning: false,
         };
       }
+
       return {
         ...state,
         timeRemaining: {
@@ -168,12 +189,23 @@ const reducer = (state: State, { type, payload }: Action): State => {
           seconds: payload.timeRemaining.seconds,
         },
       };
+
+    case ACTIONS.SET_POMODORO_COUNT:
+      return {
+        ...state,
+        pomodoroCount: {
+          completed: payload.pomodoroCount.completed,
+          remaining: payload.pomodoroCount.remaining,
+        },
+      };
+
     case ACTIONS.SET_TIMER_SETTINGS_VISIBLE:
       return {
         ...state,
         timerSettingsVisible: payload.timerSettingsVisible,
         timerRunning: false,
       };
+
     case ACTIONS.SET_TIMER_SETTINGS:
       return {
         ...state,
@@ -185,6 +217,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
           longBreakMinutes: payload.timerSettings.longBreakMinutes,
         },
       };
+
     default:
       return {
         ...state,

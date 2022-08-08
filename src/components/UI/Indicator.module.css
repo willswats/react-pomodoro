@@ -10,3 +10,7 @@
   transition: background-color 0.1s;
   margin: 0 5px;
 }
+
+.indicator__span--completed {
+  background-color: rgba(0, 0, 0, 0.5);
+}

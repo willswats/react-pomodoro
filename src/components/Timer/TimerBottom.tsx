@@ -32,9 +32,39 @@ const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
     });
   };
 
-  const skipBackButtonClickHandler = () => {};
+  const skipBackButtonClickHandler = () => {
+    if (state.pomodoroCount.completed <= 0) {
+      return;
+    }
 
-  const skipForwardButtonClickHandler = () => {};
+    dispatch({
+      type: ACTIONS.SET_POMODORO_COUNT,
+      payload: {
+        ...state,
+        pomodoroCount: {
+          completed: state.pomodoroCount.completed - 1,
+          remaining: state.pomodoroCount.remaining,
+        },
+      },
+    });
+  };
+
+  const skipForwardButtonClickHandler = () => {
+    if (state.pomodoroCount.completed === state.pomodoroCount.remaining) {
+      return;
+    }
+
+    dispatch({
+      type: ACTIONS.SET_POMODORO_COUNT,
+      payload: {
+        ...state,
+        pomodoroCount: {
+          completed: state.pomodoroCount.completed + 1,
+          remaining: state.pomodoroCount.remaining,
+        },
+      },
+    });
+  };
 
   return (
     <div className={classes['timer-bottom']}>

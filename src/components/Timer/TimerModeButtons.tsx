@@ -14,24 +14,30 @@ const TimerModeButtons = ({ state, dispatch }: TimerModeButtonsProps) => {
   const { timerMode } = state;
 
   const pomodoroModeButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_MODE,
-      payload: { ...state, timerMode: MODES.POMODORO },
-    });
+    if (timerMode !== MODES.POMODORO) {
+      dispatch({
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.POMODORO },
+      });
+    }
   };
 
   const shortBreakModeButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_MODE,
-      payload: { ...state, timerMode: MODES.SHORT_BREAK },
-    });
+    if (timerMode !== MODES.SHORT_BREAK) {
+      dispatch({
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.SHORT_BREAK },
+      });
+    }
   };
 
   const longBreakModeButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_MODE,
-      payload: { ...state, timerMode: MODES.LONG_BREAK },
-    });
+    if (timerMode !== MODES.LONG_BREAK) {
+      dispatch({
+        type: ACTIONS.SET_TIMER_MODE,
+        payload: { ...state, timerMode: MODES.LONG_BREAK },
+      });
+    }
   };
 
   return (

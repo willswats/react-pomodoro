@@ -17,7 +17,7 @@ interface TimerTopProps {
 }
 
 const TimerTop = ({ state, dispatch }: TimerTopProps) => {
-  const { timerSettingsVisible } = state;
+  const { timerSettingsVisible, pomodoroCount } = state;
 
   const settingsButtonClickHandler = () => {
     dispatch({
@@ -47,7 +47,10 @@ const TimerTop = ({ state, dispatch }: TimerTopProps) => {
           clickHandler={modalOverlayClickHandler}
         />
       )}
-      <Indicator />
+      <Indicator
+        completed={pomodoroCount.completed}
+        remaining={pomodoroCount.remaining}
+      />
       <SvgButton
         svg={<SvgSettings />}
         clickHandler={settingsButtonClickHandler}
