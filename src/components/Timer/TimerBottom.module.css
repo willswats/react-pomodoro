@@ -2,10 +2,10 @@
   display: flex;
 }
 
-.timer-bottom__svg-button-skip-back {
+.timer-bottom__skip-back-button {
   margin-right: 0.5rem;
 }
 
-.timer-bottom__svg-button-skip-forward {
+.timer-bottom__skip-forward-button {
   margin-left: 0.5rem;
 }

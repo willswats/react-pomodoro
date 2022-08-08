@@ -14,6 +14,10 @@ export interface State {
     minutes: number;
     seconds: number;
   };
+  pomodoroCount: {
+    completed: number;
+    remaining: number;
+  };
   timerSettingsVisible: boolean;
   timerSettingsChanged: boolean;
   timerSettings: {
@@ -48,6 +52,10 @@ const initialState: State = {
   timeRemaining: {
     minutes: 25,
     seconds: 0,
+  },
+  pomodoroCount: {
+    completed: 0,
+    remaining: 5,
   },
   timerSettingsVisible: false,
   timerSettingsChanged: false,

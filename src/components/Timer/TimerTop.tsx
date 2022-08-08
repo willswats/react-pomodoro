@@ -7,7 +7,7 @@ import Indicator from '../UI/Indicator';
 import TimerSettingsForm from './TimerSettingsForm';
 
 import { ReactComponent as SvgSettings } from '../../svgs/settings.svg';
-import { ReactComponent as SvgRestart } from '../../svgs/refresh-cw.svg';
+import { ReactComponent as SvgRestart } from '../../svgs/refresh.svg';
 
 import classes from './TimerTop.module.css';
 

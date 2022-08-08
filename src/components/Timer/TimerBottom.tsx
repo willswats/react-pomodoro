@@ -40,7 +40,7 @@ const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
     <div className={classes['timer-bottom']}>
       <SvgButton
         svg={<SvgSkipBack />}
-        extraClassNames={classes['timer-bottom__svg-button-skip-back']}
+        extraButtonClassNames={classes['timer-bottom__skip-back-button']}
         clickHandler={skipBackButtonClickHandler}
       />
       {timerRunning === false ? (
@@ -50,7 +50,7 @@ const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
       )}
       <SvgButton
         svg={<SvgSkipForward />}
-        extraClassNames={classes['timer-bottom__svg-button-skip-forward']}
+        extraButtonClassNames={classes['timer-bottom__skip-forward-button']}
         clickHandler={skipForwardButtonClickHandler}
       />
     </div>
