@@ -184,6 +184,10 @@ const reducer = (state: State, { type, payload }: Action): State => {
       };
 
     case ACTIONS.SET_POMODORO_COUNT:
+      if (payload.pomodoroCount === 0) {
+        return { ...state, pomodoroCount: payload.pomodoroCount };
+      }
+
       if (
         payload.pomodoroCount === state.pomodoroCount - 1 &&
         state.pomodoroCount > 0

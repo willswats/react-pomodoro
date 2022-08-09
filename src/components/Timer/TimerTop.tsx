@@ -34,7 +34,13 @@ const TimerTop = ({ state, dispatch }: TimerTopProps) => {
     });
   };
 
-  const restartButtonClickHandler = () => {};
+  const restartButtonClickHandler = () => {
+    dispatch({
+      type: ACTIONS.SET_POMODORO_COUNT,
+      payload: { ...state, pomodoroCount: 0 },
+    });
+    dispatch({ type: ACTIONS.SET_TIMER_MODE, payload: { ...state } });
+  };
 
   return (
     <div className={classes['timer-top']}>
