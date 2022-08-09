@@ -188,36 +188,27 @@ const reducer = (state: State, { type, payload }: Action): State => {
         payload.pomodoroCount === state.pomodoroCount - 1 &&
         state.pomodoroCount > 0
       ) {
-        switch (state.timerMode) {
-          case MODES.POMODORO:
-            return {
-              ...state,
-              timerMode: MODES.SHORT_BREAK,
-              timeRemaining: {
-                minutes: state.timerSettings.shortBreakMinutes,
-                seconds: 0,
-              },
-            };
-          case MODES.SHORT_BREAK:
-            return {
-              ...state,
-              timerMode: MODES.POMODORO,
-              timeRemaining: {
-                minutes: state.timerSettings.pomodoroMinutes,
-                seconds: 0,
-              },
-              pomodoroCount: payload.pomodoroCount,
-            };
-          case MODES.LONG_BREAK:
-            return {
-              ...state,
-              timerMode: MODES.POMODORO,
-              timeRemaining: {
-                minutes: state.timerSettings.pomodoroMinutes,
-                seconds: 0,
-              },
-              pomodoroCount: payload.pomodoroCount,
-            };
+        if (state.timerMode === MODES.POMODORO) {
+          return {
+            ...state,
+            timerRunning: false,
+            timerMode: MODES.SHORT_BREAK,
+            timeRemaining: {
+              minutes: state.timerSettings.shortBreakMinutes,
+              seconds: 0,
+            },
+          };
+        } else {
+          return {
+            ...state,
+            timerRunning: false,
+            timerMode: MODES.POMODORO,
+            timeRemaining: {
+              minutes: state.timerSettings.pomodoroMinutes,
+              seconds: 0,
+            },
+            pomodoroCount: payload.pomodoroCount,
+          };
         }
       }
 
@@ -228,6 +219,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
       ) {
         return {
           ...state,
+          timerRunning: false,
           timerMode: MODES.LONG_BREAK,
           timeRemaining: {
             minutes: state.timerSettings.longBreakMinutes,
@@ -241,35 +233,27 @@ const reducer = (state: State, { type, payload }: Action): State => {
         payload.pomodoroCount === state.pomodoroCount + 1 &&
         state.pomodoroCount !== state.timerSettings.longBreakInterval
       ) {
-        switch (state.timerMode) {
-          case MODES.POMODORO:
-            return {
-              ...state,
-              timerMode: MODES.SHORT_BREAK,
-              timeRemaining: {
-                minutes: state.timerSettings.shortBreakMinutes,
-                seconds: 0,
-              },
-              pomodoroCount: payload.pomodoroCount,
-            };
-          case MODES.SHORT_BREAK:
-            return {
-              ...state,
-              timerMode: MODES.POMODORO,
-              timeRemaining: {
-                minutes: state.timerSettings.pomodoroMinutes,
-                seconds: 0,
-              },
-            };
-          case MODES.LONG_BREAK:
-            return {
-              ...state,
-              timerMode: MODES.POMODORO,
-              timeRemaining: {
-                minutes: state.timerSettings.pomodoroMinutes,
-                seconds: 0,
-              },
-            };
+        if (state.timerMode === MODES.POMODORO) {
+          return {
+            ...state,
+            timerRunning: false,
+            timerMode: MODES.SHORT_BREAK,
+            timeRemaining: {
+              minutes: state.timerSettings.shortBreakMinutes,
+              seconds: 0,
+            },
+            pomodoroCount: payload.pomodoroCount,
+          };
+        } else {
+          return {
+            ...state,
+            timerRunning: false,
+            timerMode: MODES.POMODORO,
+            timeRemaining: {
+              minutes: state.timerSettings.pomodoroMinutes,
+              seconds: 0,
+            },
+          };
         }
       }
 
