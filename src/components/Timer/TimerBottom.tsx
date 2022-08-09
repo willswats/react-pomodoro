@@ -16,7 +16,7 @@ interface TimerBottomProps {
 }
 
 const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
-  const { timerRunning } = state;
+  const { timerRunning, pomodoroCount } = state;
 
   const startButtonClickHandler = () => {
     dispatch({
@@ -33,35 +33,21 @@ const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
   };
 
   const skipBackButtonClickHandler = () => {
-    if (state.pomodoroCount.completed <= 0) {
-      return;
-    }
-
     dispatch({
       type: ACTIONS.SET_POMODORO_COUNT,
       payload: {
         ...state,
-        pomodoroCount: {
-          completed: state.pomodoroCount.completed - 1,
-          remaining: state.pomodoroCount.remaining,
-        },
+        pomodoroCount: pomodoroCount - 1,
       },
     });
   };
 
   const skipForwardButtonClickHandler = () => {
-    if (state.pomodoroCount.completed === state.pomodoroCount.remaining) {
-      return;
-    }
-
     dispatch({
       type: ACTIONS.SET_POMODORO_COUNT,
       payload: {
         ...state,
-        pomodoroCount: {
-          completed: state.pomodoroCount.completed + 1,
-          remaining: state.pomodoroCount.remaining,
-        },
+        pomodoroCount: pomodoroCount + 1,
       },
     });
   };

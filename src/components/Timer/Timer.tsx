@@ -14,16 +14,14 @@ export interface State {
     minutes: number;
     seconds: number;
   };
-  pomodoroCount: {
-    completed: number;
-    remaining: number;
-  };
+  pomodoroCount: number;
   timerSettingsVisible: boolean;
   timerSettingsChanged: boolean;
   timerSettings: {
     pomodoroMinutes: number;
     shortBreakMinutes: number;
     longBreakMinutes: number;
+    longBreakInterval: number;
   };
 }
 
@@ -54,16 +52,14 @@ const initialState: State = {
     minutes: 25,
     seconds: 0,
   },
-  pomodoroCount: {
-    completed: 0,
-    remaining: 5,
-  },
+  pomodoroCount: 0,
   timerSettingsVisible: false,
   timerSettingsChanged: false,
   timerSettings: {
     pomodoroMinutes: 25,
     shortBreakMinutes: 5,
     longBreakMinutes: 15,
+    longBreakInterval: 5,
   },
 };
 
@@ -164,10 +160,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
         return {
           ...state,
           timerRunning: false,
-          pomodoroCount: {
-            completed: state.pomodoroCount.completed + 1,
-            remaining: state.pomodoroCount.remaining,
-          },
+          pomodoroCount: state.pomodoroCount + 1,
         };
       }
 
@@ -191,12 +184,97 @@ const reducer = (state: State, { type, payload }: Action): State => {
       };
 
     case ACTIONS.SET_POMODORO_COUNT:
+      if (
+        payload.pomodoroCount === state.pomodoroCount - 1 &&
+        state.pomodoroCount > 0
+      ) {
+        switch (state.timerMode) {
+          case MODES.POMODORO:
+            return {
+              ...state,
+              timerMode: MODES.SHORT_BREAK,
+              timeRemaining: {
+                minutes: state.timerSettings.shortBreakMinutes,
+                seconds: 0,
+              },
+            };
+          case MODES.SHORT_BREAK:
+            return {
+              ...state,
+              timerMode: MODES.POMODORO,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+              pomodoroCount: payload.pomodoroCount,
+            };
+          case MODES.LONG_BREAK:
+            return {
+              ...state,
+              timerMode: MODES.POMODORO,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+              pomodoroCount: payload.pomodoroCount,
+            };
+        }
+      }
+
+      if (
+        payload.pomodoroCount === state.pomodoroCount + 1 &&
+        payload.pomodoroCount === state.timerSettings.longBreakInterval &&
+        state.timerMode === MODES.POMODORO
+      ) {
+        return {
+          ...state,
+          timerMode: MODES.LONG_BREAK,
+          timeRemaining: {
+            minutes: state.timerSettings.longBreakMinutes,
+            seconds: 0,
+          },
+          pomodoroCount: payload.pomodoroCount,
+        };
+      }
+
+      if (
+        payload.pomodoroCount === state.pomodoroCount + 1 &&
+        state.pomodoroCount !== state.timerSettings.longBreakInterval
+      ) {
+        switch (state.timerMode) {
+          case MODES.POMODORO:
+            return {
+              ...state,
+              timerMode: MODES.SHORT_BREAK,
+              timeRemaining: {
+                minutes: state.timerSettings.shortBreakMinutes,
+                seconds: 0,
+              },
+              pomodoroCount: payload.pomodoroCount,
+            };
+          case MODES.SHORT_BREAK:
+            return {
+              ...state,
+              timerMode: MODES.POMODORO,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+            };
+          case MODES.LONG_BREAK:
+            return {
+              ...state,
+              timerMode: MODES.POMODORO,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+            };
+        }
+      }
+
       return {
         ...state,
-        pomodoroCount: {
-          completed: payload.pomodoroCount.completed,
-          remaining: payload.pomodoroCount.remaining,
-        },
       };
 
     case ACTIONS.SET_TIMER_SETTINGS_VISIBLE:
@@ -215,6 +293,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
           pomodoroMinutes: payload.timerSettings.pomodoroMinutes,
           shortBreakMinutes: payload.timerSettings.shortBreakMinutes,
           longBreakMinutes: payload.timerSettings.longBreakMinutes,
+          longBreakInterval: payload.timerSettings.pomodoroMinutes,
         },
       };
 
@@ -227,6 +306,8 @@ const reducer = (state: State, { type, payload }: Action): State => {
 
 const Timer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log(state);
 
   return (
     <div className={classes['timer']}>

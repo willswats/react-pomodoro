@@ -43,6 +43,7 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
         payload: {
           ...state,
           timerSettings: {
+            ...state.timerSettings,
             pomodoroMinutes: convertedInputValuePomodoro,
             shortBreakMinutes: convertedInputValueShortBreak,
             longBreakMinutes: convertedInputValueLongBreak,

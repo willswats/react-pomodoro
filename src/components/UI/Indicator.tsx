@@ -2,12 +2,12 @@ import classes from './Indicator.module.css';
 
 interface IndicatorProps {
   completed: number;
-  remaining: number;
+  total: number;
 }
 
-const Indicator = ({ completed, remaining }: IndicatorProps) => {
+const Indicator = ({ completed, total }: IndicatorProps) => {
   const remainingIdArray = [];
-  for (let i = 0; i < remaining; i++) {
+  for (let i = 0; i < total; i++) {
     remainingIdArray.push(`el${i}`);
   }
 
