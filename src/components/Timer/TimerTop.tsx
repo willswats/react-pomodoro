@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { Action, State, ACTIONS } from './Timer';
+import { Action, State, ACTIONS, MODES } from './Timer';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
@@ -39,7 +39,10 @@ const TimerTop = ({ state, dispatch }: TimerTopProps) => {
       type: ACTIONS.SET_POMODORO_COUNT,
       payload: { ...state, pomodoroCount: 0 },
     });
-    dispatch({ type: ACTIONS.SET_TIMER_MODE, payload: { ...state } });
+    dispatch({
+      type: ACTIONS.SET_TIMER_MODE,
+      payload: { ...state, timerMode: MODES.POMODORO },
+    });
   };
 
   return (
