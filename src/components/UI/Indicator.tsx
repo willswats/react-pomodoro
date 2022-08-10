@@ -6,14 +6,14 @@ interface IndicatorProps {
 }
 
 const Indicator = ({ completed, total }: IndicatorProps) => {
-  const remainingIdArray = [];
+  const totalIdArray = [];
   for (let i = 0; i < total; i++) {
-    remainingIdArray.push(`el${i}`);
+    totalIdArray.push(`el${i}`);
   }
 
   return (
     <div className={classes['indicator']}>
-      {remainingIdArray.map((id, index) => {
+      {totalIdArray.map((id, index) => {
         return (
           <span
             key={id}

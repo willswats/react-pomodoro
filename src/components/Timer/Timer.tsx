@@ -281,7 +281,7 @@ const reducer = (state: State, { type, payload }: Action): State => {
           pomodoroMinutes: payload.timerSettings.pomodoroMinutes,
           shortBreakMinutes: payload.timerSettings.shortBreakMinutes,
           longBreakMinutes: payload.timerSettings.longBreakMinutes,
-          longBreakInterval: payload.timerSettings.pomodoroMinutes,
+          longBreakInterval: payload.timerSettings.longBreakInterval,
         },
       };
 

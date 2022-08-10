@@ -13,8 +13,12 @@ interface TimerSettingsFormProps {
 }
 
 const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
-  const { pomodoroMinutes, shortBreakMinutes, longBreakMinutes } =
-    state.timerSettings;
+  const {
+    pomodoroMinutes,
+    shortBreakMinutes,
+    longBreakMinutes,
+    longBreakInterval,
+  } = state.timerSettings;
 
   const [pomodoroInputValue, setPomodoroInputValue] = useState(
     `${pomodoroMinutes}`
@@ -26,17 +30,27 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
     `${longBreakMinutes}`
   );
 
+  const [longBreakIntervalInputValue, setLongBreakIntervalInputValue] =
+    useState(`${longBreakInterval}`);
+
   const settingsFormSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
 
-    const convertedInputValuePomodoro = parseFloat(pomodoroInputValue);
-    const convertedInputValueShortBreak = parseFloat(shortBreakInputValue);
-    const convertedInputValueLongBreak = parseFloat(longBreakInputValue);
+    const pomodoroConvertedInputValue = parseFloat(pomodoroInputValue);
+    const shortBreakConvertedInputValue = parseFloat(shortBreakInputValue);
+    const longBreakConvertedInputValue = parseFloat(longBreakInputValue);
+
+    const longBreakIntervalConvertedInputValue = parseFloat(
+      longBreakIntervalInputValue
+    );
+
+    console.log(longBreakIntervalConvertedInputValue);
 
     if (
-      !isNaN(convertedInputValuePomodoro) &&
-      !isNaN(convertedInputValueShortBreak) &&
-      !isNaN(convertedInputValueLongBreak)
+      !isNaN(pomodoroConvertedInputValue) &&
+      !isNaN(shortBreakConvertedInputValue) &&
+      !isNaN(longBreakConvertedInputValue) &&
+      !isNaN(longBreakIntervalConvertedInputValue)
     ) {
       dispatch({
         type: ACTIONS.SET_TIMER_SETTINGS,
@@ -44,9 +58,10 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
           ...state,
           timerSettings: {
             ...state.timerSettings,
-            pomodoroMinutes: convertedInputValuePomodoro,
-            shortBreakMinutes: convertedInputValueShortBreak,
-            longBreakMinutes: convertedInputValueLongBreak,
+            pomodoroMinutes: pomodoroConvertedInputValue,
+            shortBreakMinutes: shortBreakConvertedInputValue,
+            longBreakMinutes: longBreakConvertedInputValue,
+            longBreakInterval: longBreakIntervalConvertedInputValue,
           },
         },
       });
@@ -57,23 +72,31 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
     <SettingsForm
       body={
         <div className={classes['timer-settings-form-inputs']}>
+          <div className={classes['timer-settings-form-inputs__minutes']}>
+            <SettingsInput
+              id="pomodoro"
+              labelText="Pomodoro"
+              inputValue={pomodoroInputValue}
+              setInputValue={setPomodoroInputValue}
+            />
+            <SettingsInput
+              id="short-break"
+              labelText="Short Break"
+              inputValue={shortBreakInputValue}
+              setInputValue={setShortBreakInputValue}
+            />
+            <SettingsInput
+              id="long-break"
+              labelText="Long Break"
+              inputValue={longBreakInputValue}
+              setInputValue={setLongBreakInputValue}
+            />
+          </div>
           <SettingsInput
-            id="pomodoro"
-            labelText="Pomodoro"
-            inputValue={pomodoroInputValue}
-            setInputValue={setPomodoroInputValue}
-          />
-          <SettingsInput
-            id="short-break"
-            labelText="Short Break"
-            inputValue={shortBreakInputValue}
-            setInputValue={setShortBreakInputValue}
-          />
-          <SettingsInput
-            id="long-break"
-            labelText="Long Break"
-            inputValue={longBreakInputValue}
-            setInputValue={setLongBreakInputValue}
+            id="long-break-interval"
+            labelText="Long Break Interval"
+            inputValue={longBreakIntervalInputValue}
+            setInputValue={setLongBreakIntervalInputValue}
           />
         </div>
       }
