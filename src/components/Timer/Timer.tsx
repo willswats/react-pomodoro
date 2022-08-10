@@ -188,31 +188,42 @@ const reducer = (state: State, { type, payload }: Action): State => {
         return { ...state, pomodoroCount: payload.pomodoroCount };
       }
 
-      if (
-        payload.pomodoroCount === state.pomodoroCount - 1 &&
-        state.pomodoroCount > 0
-      ) {
-        // Handle subtraction for pomodoroCount
-        if (state.timerMode === MODES.POMODORO) {
+      if (payload.pomodoroCount === state.pomodoroCount - 1) {
+        if (state.pomodoroCount > 0) {
+          // Handle subtraction for pomodoroCount
+          if (state.timerMode === MODES.POMODORO) {
+            return {
+              ...state,
+              timerRunning: false,
+              timerMode: MODES.SHORT_BREAK,
+              timeRemaining: {
+                minutes: state.timerSettings.shortBreakMinutes,
+                seconds: 0,
+              },
+            };
+          } else {
+            return {
+              ...state,
+              timerRunning: false,
+              timerMode: MODES.POMODORO,
+              timeRemaining: {
+                minutes: state.timerSettings.pomodoroMinutes,
+                seconds: 0,
+              },
+              pomodoroCount: payload.pomodoroCount,
+            };
+          }
+        }
+        if (state.pomodoroCount <= 0) {
           return {
             ...state,
             timerRunning: false,
-            timerMode: MODES.SHORT_BREAK,
+            timerMode: MODES.LONG_BREAK,
             timeRemaining: {
-              minutes: state.timerSettings.shortBreakMinutes,
+              minutes: state.timerSettings.longBreakMinutes,
               seconds: 0,
             },
-          };
-        } else {
-          return {
-            ...state,
-            timerRunning: false,
-            timerMode: MODES.POMODORO,
-            timeRemaining: {
-              minutes: state.timerSettings.pomodoroMinutes,
-              seconds: 0,
-            },
-            pomodoroCount: payload.pomodoroCount,
+            pomodoroCount: 5,
           };
         }
       }
@@ -258,6 +269,21 @@ const reducer = (state: State, { type, payload }: Action): State => {
               },
             };
           }
+        }
+        if (
+          state.pomodoroCount === state.timerSettings.longBreakInterval &&
+          state.timerMode === MODES.LONG_BREAK
+        ) {
+          return {
+            ...state,
+            timerRunning: false,
+            timerMode: MODES.POMODORO,
+            timeRemaining: {
+              minutes: state.timerSettings.pomodoroMinutes,
+              seconds: 0,
+            },
+            pomodoroCount: 0,
+          };
         }
       }
 
