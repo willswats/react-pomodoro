@@ -1,6 +1,10 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import { setRunning } from '../../store/timerSlice';
+import {
+  setRunning,
+  setPomodoroCountForward,
+  setPomodoroCountBack,
+} from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 
@@ -24,9 +28,13 @@ const TimerBottom = () => {
     dispatch(setRunning(false));
   };
 
-  const skipBackButtonClickHandler = () => {};
+  const skipBackButtonClickHandler = () => {
+    dispatch(setPomodoroCountBack());
+  };
 
-  const skipForwardButtonClickHandler = () => {};
+  const skipForwardButtonClickHandler = () => {
+    dispatch(setPomodoroCountForward());
+  };
 
   return (
     <div className={classes['timer-bottom']}>

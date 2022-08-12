@@ -118,7 +118,62 @@ const timerSlice = createSlice({
       state.running = false;
       state.settingsChanged = false;
     },
-    setPomodoroCount(state, { payload }: PayloadAction<number>) {},
+    setPomodoroCountBack(state) {
+      if (state.pomodoroCount > 0) {
+        if (state.mode === TIMER_MODES.POMODORO) {
+          state.mode = TIMER_MODES.SHORT_BREAK;
+          state.timeRemaining = {
+            minutes: state.settings.minutes.shortBreak,
+            seconds: 0,
+          };
+        } else {
+          state.mode = TIMER_MODES.POMODORO;
+          state.timeRemaining = {
+            minutes: state.settings.minutes.pomodoro,
+            seconds: 0,
+          };
+          state.pomodoroCount -= 1;
+        }
+        state.running = false;
+      }
+    },
+    setPomodoroCountForward(state) {
+      // Long break condition
+      if (
+        state.pomodoroCount + 1 === state.settings.longBreakInterval &&
+        state.mode === TIMER_MODES.POMODORO
+      ) {
+        state.mode = TIMER_MODES.LONG_BREAK;
+        state.timeRemaining = {
+          minutes: state.settings.minutes.longBreak,
+          seconds: 0,
+        };
+        state.pomodoroCount += 1;
+        state.running = false;
+      }
+
+      if (state.pomodoroCount !== state.settings.longBreakInterval) {
+        if (state.mode === TIMER_MODES.POMODORO) {
+          state.mode = TIMER_MODES.SHORT_BREAK;
+          state.timeRemaining = {
+            minutes: state.settings.minutes.shortBreak,
+            seconds: 0,
+          };
+          state.pomodoroCount += 1;
+        } else {
+          state.mode = TIMER_MODES.POMODORO;
+          state.timeRemaining = {
+            minutes: state.settings.minutes.pomodoro,
+            seconds: 0,
+          };
+        }
+        state.running = false;
+      }
+    },
+    setPomodoroCount(state, { payload }: PayloadAction<number>) {
+      state.pomodoroCount = payload;
+      state.running = false;
+    },
     setSettingsVisible(state, { payload }: PayloadAction<boolean>) {
       state.running = false;
       state.settingsVisible = payload;
@@ -141,6 +196,8 @@ export const {
   setMode,
   setRunning,
   setTimeRemaining,
+  setPomodoroCountBack,
+  setPomodoroCountForward,
   setPomodoroCount,
   setTimeRemainingToSettings,
   setSettingsVisible,

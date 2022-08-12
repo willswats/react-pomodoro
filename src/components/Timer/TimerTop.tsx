@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import {
   setSettingsVisible,
+  setPomodoroCount,
   setTimeRemainingToSettings,
 } from '../../store/timerSlice';
 
@@ -35,6 +36,7 @@ const TimerTop = () => {
   };
 
   const restartButtonClickHandler = () => {
+    dispatch(setPomodoroCount(0));
     dispatch(setTimeRemainingToSettings());
   };
 
