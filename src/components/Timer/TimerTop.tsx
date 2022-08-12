@@ -1,5 +1,6 @@
-import { Dispatch } from 'react';
-import { Action, State, ACTIONS, MODES } from './Timer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
+import { setSettingsVisible } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
@@ -11,39 +12,26 @@ import { ReactComponent as SvgRestart } from '../../svgs/refresh.svg';
 
 import classes from './TimerTop.module.css';
 
-interface TimerTopProps {
-  state: State;
-  dispatch: Dispatch<Action>;
-}
+const TimerTop = () => {
+  const dispatch = useAppDispatch();
 
-const TimerTop = ({ state, dispatch }: TimerTopProps) => {
-  const { timerSettingsVisible, pomodoroCount } = state;
-  const { longBreakInterval } = state.timerSettings;
+  const settingsVisible = useAppSelector(
+    (state) => state.timer.settingsVisible
+  );
+  const pomodoroCount = useAppSelector((state) => state.timer.pomodoroCount);
+  const longBreakInterval = useAppSelector(
+    (state) => state.timer.settings.longBreakInterval
+  );
 
   const settingsButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
-      payload: { ...state, timerSettingsVisible: true },
-    });
+    dispatch(setSettingsVisible(true));
   };
 
   const modalOverlayClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_SETTINGS_VISIBLE,
-      payload: { ...state, timerSettingsVisible: false },
-    });
+    dispatch(setSettingsVisible(false));
   };
 
-  const restartButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_POMODORO_COUNT,
-      payload: { ...state, pomodoroCount: 0 },
-    });
-    dispatch({
-      type: ACTIONS.SET_TIMER_MODE,
-      payload: { ...state, timerMode: MODES.POMODORO },
-    });
-  };
+  const restartButtonClickHandler = () => {};
 
   return (
     <div className={classes['timer-top']}>
@@ -51,9 +39,9 @@ const TimerTop = ({ state, dispatch }: TimerTopProps) => {
         svg={<SvgRestart />}
         clickHandler={restartButtonClickHandler}
       />
-      {timerSettingsVisible && (
+      {settingsVisible && (
         <ModalOverlay
-          modal={<TimerSettingsForm state={state} dispatch={dispatch} />}
+          modal={<TimerSettingsForm />}
           clickHandler={modalOverlayClickHandler}
         />
       )}

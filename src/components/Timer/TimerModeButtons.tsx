@@ -1,43 +1,26 @@
-import { Dispatch } from 'react';
-import { State, Action, ACTIONS, MODES } from './Timer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
+import { MODES } from '../../store/timerSlice';
 import ModeButton from '../UI/Buttons/ModeButton';
 
 import classes from './TimerModeButtons.module.css';
 
-interface TimerModeButtonsProps {
-  state: State;
-  dispatch: Dispatch<Action>;
-}
+import { setMode } from '../../store/timerSlice';
 
-const TimerModeButtons = ({ state, dispatch }: TimerModeButtonsProps) => {
-  const { timerMode } = state;
+const TimerModeButtons = () => {
+  const dispatch = useAppDispatch();
+  const mode = useAppSelector((state) => state.timer.mode);
 
   const pomodoroModeButtonClickHandler = () => {
-    if (timerMode !== MODES.POMODORO) {
-      dispatch({
-        type: ACTIONS.SET_TIMER_MODE,
-        payload: { ...state, timerMode: MODES.POMODORO },
-      });
-    }
+    dispatch(setMode(MODES.POMODORO));
   };
 
   const shortBreakModeButtonClickHandler = () => {
-    if (timerMode !== MODES.SHORT_BREAK) {
-      dispatch({
-        type: ACTIONS.SET_TIMER_MODE,
-        payload: { ...state, timerMode: MODES.SHORT_BREAK },
-      });
-    }
+    dispatch(setMode(MODES.SHORT_BREAK));
   };
 
   const longBreakModeButtonClickHandler = () => {
-    if (timerMode !== MODES.LONG_BREAK) {
-      dispatch({
-        type: ACTIONS.SET_TIMER_MODE,
-        payload: { ...state, timerMode: MODES.LONG_BREAK },
-      });
-    }
+    dispatch(setMode(MODES.LONG_BREAK));
   };
 
   return (
@@ -45,19 +28,19 @@ const TimerModeButtons = ({ state, dispatch }: TimerModeButtonsProps) => {
       <ModeButton
         text="Pomodoro"
         buttonMode={MODES.POMODORO}
-        timerMode={timerMode}
+        timerMode={mode}
         clickHandler={pomodoroModeButtonClickHandler}
       />
       <ModeButton
         text="Short Break"
         buttonMode={MODES.SHORT_BREAK}
-        timerMode={timerMode}
+        timerMode={mode}
         clickHandler={shortBreakModeButtonClickHandler}
       />
       <ModeButton
         text="Long Break"
         buttonMode={MODES.LONG_BREAK}
-        timerMode={timerMode}
+        timerMode={mode}
         clickHandler={longBreakModeButtonClickHandler}
       />
     </div>

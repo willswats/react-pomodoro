@@ -1,5 +1,6 @@
-import { Dispatch } from 'react';
-import { State, Action, ACTIONS } from './Timer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
+import { setRunning } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 
@@ -10,47 +11,22 @@ import { ReactComponent as SvgPause } from '../../svgs/pause.svg';
 
 import classes from './TimerBottom.module.css';
 
-interface TimerBottomProps {
-  state: State;
-  dispatch: Dispatch<Action>;
-}
+const TimerBottom = () => {
+  const dispatch = useAppDispatch();
 
-const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
-  const { timerRunning, pomodoroCount } = state;
+  const running = useAppSelector((state) => state.timer.running);
 
   const startButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_RUNNING,
-      payload: { ...state, timerRunning: true },
-    });
+    dispatch(setRunning(true));
   };
 
   const stopButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_TIMER_RUNNING,
-      payload: { ...state, timerRunning: false },
-    });
+    dispatch(setRunning(false));
   };
 
-  const skipBackButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_POMODORO_COUNT,
-      payload: {
-        ...state,
-        pomodoroCount: pomodoroCount - 1,
-      },
-    });
-  };
+  const skipBackButtonClickHandler = () => {};
 
-  const skipForwardButtonClickHandler = () => {
-    dispatch({
-      type: ACTIONS.SET_POMODORO_COUNT,
-      payload: {
-        ...state,
-        pomodoroCount: pomodoroCount + 1,
-      },
-    });
-  };
+  const skipForwardButtonClickHandler = () => {};
 
   return (
     <div className={classes['timer-bottom']}>
@@ -59,7 +35,7 @@ const TimerBottom = ({ state, dispatch }: TimerBottomProps) => {
         extraButtonClassNames={classes['timer-bottom__skip-back-button']}
         clickHandler={skipBackButtonClickHandler}
       />
-      {timerRunning === false ? (
+      {running === false ? (
         <SvgButton svg={<SvgPlay />} clickHandler={startButtonClickHandler} />
       ) : (
         <SvgButton svg={<SvgPause />} clickHandler={stopButtonClickHandler} />

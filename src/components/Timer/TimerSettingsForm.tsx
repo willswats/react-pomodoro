@@ -1,24 +1,29 @@
-import { useState, FormEvent, Dispatch } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import { Action, State, ACTIONS } from './Timer';
+import { setSettings } from '../../store/timerSlice';
+
+import { useState, FormEvent } from 'react';
 
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
 
 import classes from './TimerSettingsForm.module.css';
 
-interface TimerSettingsFormProps {
-  state: State;
-  dispatch: Dispatch<Action>;
-}
+const TimerSettingsForm = () => {
+  const dispatch = useAppDispatch();
 
-const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
-  const {
-    pomodoroMinutes,
-    shortBreakMinutes,
-    longBreakMinutes,
-    longBreakInterval,
-  } = state.timerSettings;
+  const pomodoroMinutes = useAppSelector(
+    (state) => state.timer.settings.minutes.pomodoro
+  );
+  const shortBreakMinutes = useAppSelector(
+    (state) => state.timer.settings.minutes.shortBreak
+  );
+  const longBreakMinutes = useAppSelector(
+    (state) => state.timer.settings.minutes.longBreak
+  );
+  const longBreakInterval = useAppSelector(
+    (state) => state.timer.settings.longBreakInterval
+  );
 
   const [pomodoroInputValue, setPomodoroInputValue] = useState(
     `${pomodoroMinutes}`
@@ -44,27 +49,22 @@ const TimerSettingsForm = ({ state, dispatch }: TimerSettingsFormProps) => {
       longBreakIntervalInputValue
     );
 
-    console.log(longBreakIntervalConvertedInputValue);
-
     if (
       !isNaN(pomodoroConvertedInputValue) &&
       !isNaN(shortBreakConvertedInputValue) &&
       !isNaN(longBreakConvertedInputValue) &&
       !isNaN(longBreakIntervalConvertedInputValue)
     ) {
-      dispatch({
-        type: ACTIONS.SET_TIMER_SETTINGS,
-        payload: {
-          ...state,
-          timerSettings: {
-            ...state.timerSettings,
-            pomodoroMinutes: pomodoroConvertedInputValue,
-            shortBreakMinutes: shortBreakConvertedInputValue,
-            longBreakMinutes: longBreakConvertedInputValue,
-            longBreakInterval: longBreakIntervalConvertedInputValue,
+      dispatch(
+        setSettings({
+          minutes: {
+            pomodoro: pomodoroConvertedInputValue,
+            shortBreak: shortBreakConvertedInputValue,
+            longBreak: longBreakConvertedInputValue,
           },
-        },
-      });
+          longBreakInterval: longBreakIntervalConvertedInputValue,
+        })
+      );
     }
   };
 
