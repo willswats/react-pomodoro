@@ -13,6 +13,7 @@ import classes from './TimerCounter.module.css';
 const TimerCounter = () => {
   const dispatch = useAppDispatch();
 
+  const mode = useAppSelector((state) => state.timer.mode);
   const running = useAppSelector((state) => state.timer.running);
   const minutes = useAppSelector((state) => state.timer.timeRemaining.minutes);
   const seconds = useAppSelector((state) => state.timer.timeRemaining.seconds);
@@ -42,7 +43,7 @@ const TimerCounter = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [minutes, seconds, running, settingsChanged, dispatch]);
+  }, [dispatch, minutes, seconds, mode, running, settingsChanged]);
 
   return (
     <div className={classes['counter']}>

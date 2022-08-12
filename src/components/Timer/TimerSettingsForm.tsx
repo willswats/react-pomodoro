@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import { setSettings } from '../../store/timerSlice';
+import { setSettings, setSettingsVisible } from '../../store/timerSlice';
 
 import { useState, FormEvent } from 'react';
 
@@ -65,6 +65,7 @@ const TimerSettingsForm = () => {
           longBreakInterval: longBreakIntervalConvertedInputValue,
         })
       );
+      dispatch(setSettingsVisible(false));
     }
   };
 

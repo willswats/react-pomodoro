@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import { MODES } from '../../store/timerSlice';
+import { TIMER_MODES } from '../../store/timerSlice';
 import ModeButton from '../UI/Buttons/ModeButton';
 
 import classes from './TimerModeButtons.module.css';
@@ -12,34 +12,34 @@ const TimerModeButtons = () => {
   const mode = useAppSelector((state) => state.timer.mode);
 
   const pomodoroModeButtonClickHandler = () => {
-    dispatch(setMode(MODES.POMODORO));
+    dispatch(setMode(TIMER_MODES.POMODORO));
   };
 
   const shortBreakModeButtonClickHandler = () => {
-    dispatch(setMode(MODES.SHORT_BREAK));
+    dispatch(setMode(TIMER_MODES.SHORT_BREAK));
   };
 
   const longBreakModeButtonClickHandler = () => {
-    dispatch(setMode(MODES.LONG_BREAK));
+    dispatch(setMode(TIMER_MODES.LONG_BREAK));
   };
 
   return (
     <div className={classes['timer-mode-buttons']}>
       <ModeButton
         text="Pomodoro"
-        buttonMode={MODES.POMODORO}
+        buttonMode={TIMER_MODES.POMODORO}
         timerMode={mode}
         clickHandler={pomodoroModeButtonClickHandler}
       />
       <ModeButton
         text="Short Break"
-        buttonMode={MODES.SHORT_BREAK}
+        buttonMode={TIMER_MODES.SHORT_BREAK}
         timerMode={mode}
         clickHandler={shortBreakModeButtonClickHandler}
       />
       <ModeButton
         text="Long Break"
-        buttonMode={MODES.LONG_BREAK}
+        buttonMode={TIMER_MODES.LONG_BREAK}
         timerMode={mode}
         clickHandler={longBreakModeButtonClickHandler}
       />
