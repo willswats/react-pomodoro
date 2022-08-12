@@ -1,6 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import { setSettingsVisible } from '../../store/timerSlice';
+import {
+  setSettingsVisible,
+  setTimeRemainingToSettings,
+} from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
@@ -31,7 +34,9 @@ const TimerTop = () => {
     dispatch(setSettingsVisible(false));
   };
 
-  const restartButtonClickHandler = () => {};
+  const restartButtonClickHandler = () => {
+    dispatch(setTimeRemainingToSettings());
+  };
 
   return (
     <div className={classes['timer-top']}>

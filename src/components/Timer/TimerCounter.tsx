@@ -22,8 +22,8 @@ const TimerCounter = () => {
   );
 
   useEffect(() => {
-    // Change time when settings is changed
-    if (running !== true && settingsChanged === true) {
+    // Change time when the settings are changed
+    if (settingsChanged === true) {
       dispatch(setTimeRemainingToSettings());
     }
 

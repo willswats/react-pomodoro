@@ -96,28 +96,27 @@ const timerSlice = createSlice({
       };
     },
     setTimeRemainingToSettings(state) {
-      if (state.running !== true && state.settingsChanged === true) {
-        switch (state.mode) {
-          case TIMER_MODES.POMODORO:
-            state.timeRemaining = {
-              minutes: state.settings.minutes.pomodoro,
-              seconds: 0,
-            };
-            break;
-          case TIMER_MODES.SHORT_BREAK:
-            state.timeRemaining = {
-              minutes: state.settings.minutes.shortBreak,
-              seconds: 0,
-            };
-            break;
-          case TIMER_MODES.LONG_BREAK:
-            state.timeRemaining = {
-              minutes: state.settings.minutes.longBreak,
-              seconds: 0,
-            };
-        }
-        state.settingsChanged = false;
+      switch (state.mode) {
+        case TIMER_MODES.POMODORO:
+          state.timeRemaining = {
+            minutes: state.settings.minutes.pomodoro,
+            seconds: 0,
+          };
+          break;
+        case TIMER_MODES.SHORT_BREAK:
+          state.timeRemaining = {
+            minutes: state.settings.minutes.shortBreak,
+            seconds: 0,
+          };
+          break;
+        case TIMER_MODES.LONG_BREAK:
+          state.timeRemaining = {
+            minutes: state.settings.minutes.longBreak,
+            seconds: 0,
+          };
       }
+      state.running = false;
+      state.settingsChanged = false;
     },
     setPomodoroCount(state, { payload }: PayloadAction<number>) {},
     setSettingsVisible(state, { payload }: PayloadAction<boolean>) {
