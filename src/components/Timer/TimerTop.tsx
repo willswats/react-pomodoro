@@ -3,7 +3,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   setSettingsVisible,
   setPomodoroCount,
-  setTimeRemainingToSettings,
+  setMode,
+  TIMER_MODES,
 } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
@@ -37,7 +38,7 @@ const TimerTop = () => {
 
   const restartButtonClickHandler = () => {
     dispatch(setPomodoroCount(0));
-    dispatch(setTimeRemainingToSettings());
+    dispatch(setMode(TIMER_MODES.POMODORO));
   };
 
   return (
