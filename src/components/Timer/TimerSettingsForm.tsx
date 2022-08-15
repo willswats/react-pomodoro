@@ -69,8 +69,8 @@ const TimerSettingsForm = () => {
   return (
     <SettingsForm
       body={
-        <div className={classes['timer-settings-form-inputs']}>
-          <div className={classes['timer-settings-form-inputs__minutes']}>
+        <>
+          <div className={classes['timer-settings-form-row']}>
             <SettingsInput
               id="pomodoro"
               labelText="Pomodoro"
@@ -96,7 +96,7 @@ const TimerSettingsForm = () => {
             inputValue={longBreakIntervalInputValue}
             setInputValue={setLongBreakIntervalInputValue}
           />
-        </div>
+        </>
       }
       submitHandler={settingsFormSubmitHandler}
     />

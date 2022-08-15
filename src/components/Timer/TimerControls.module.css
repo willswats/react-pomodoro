@@ -1,3 +1,4 @@
 .timer-controls {
   display: flex;
+  justify-content: center;
 }

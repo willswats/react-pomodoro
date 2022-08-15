@@ -1,10 +1,5 @@
-.timer-settings-form-inputs {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
-}
-
-.timer-settings-form-inputs__minutes {
+.timer-settings-form-row {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
 }

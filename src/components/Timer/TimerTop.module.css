@@ -1,5 +1,5 @@
 .timer-top {
   display: flex;
   justify-content: space-between;
-  width: 95%;
+  margin-bottom: 0.5rem;
 }
