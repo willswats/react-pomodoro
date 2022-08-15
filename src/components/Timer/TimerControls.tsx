@@ -13,11 +13,10 @@ import { ReactComponent as SvgSkipForward } from '../../svgs/skip-forward.svg';
 import { ReactComponent as SvgPlay } from '../../svgs/play.svg';
 import { ReactComponent as SvgPause } from '../../svgs/pause.svg';
 
-import classes from './TimerBottom.module.css';
+import classes from './TimerControls.module.css';
 
-const TimerBottom = () => {
+const TimerControls = () => {
   const dispatch = useAppDispatch();
-
   const running = useAppSelector((state) => state.timer.running);
 
   const startButtonClickHandler = () => {
@@ -37,10 +36,9 @@ const TimerBottom = () => {
   };
 
   return (
-    <div className={classes['timer-bottom']}>
+    <div className={classes['timer-controls']}>
       <SvgButton
         svg={<SvgSkipBack />}
-        extraButtonClassNames={classes['timer-bottom__skip-back-button']}
         clickHandler={skipBackButtonClickHandler}
       />
       {running === false ? (
@@ -50,11 +48,10 @@ const TimerBottom = () => {
       )}
       <SvgButton
         svg={<SvgSkipForward />}
-        extraButtonClassNames={classes['timer-bottom__skip-forward-button']}
         clickHandler={skipForwardButtonClickHandler}
       />
     </div>
   );
 };
 
-export default TimerBottom;
+export default TimerControls;

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import {
@@ -12,7 +13,6 @@ import classes from './TimerCounter.module.css';
 
 const TimerCounter = () => {
   const dispatch = useAppDispatch();
-
   const mode = useAppSelector((state) => state.timer.mode);
   const running = useAppSelector((state) => state.timer.running);
   const minutes = useAppSelector((state) => state.timer.timeRemaining.minutes);

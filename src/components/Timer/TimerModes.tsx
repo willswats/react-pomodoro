@@ -1,13 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { TIMER_MODES, setMode } from '../../store/timerSlice';
 
-import { TIMER_MODES } from '../../store/timerSlice';
 import ModeButton from '../UI/Buttons/ModeButton';
 
-import classes from './TimerModeButtons.module.css';
+import classes from './TimerModes.module.css';
 
-import { setMode } from '../../store/timerSlice';
-
-const TimerModeButtons = () => {
+const TimerModes = () => {
   const dispatch = useAppDispatch();
   const mode = useAppSelector((state) => state.timer.mode);
 
@@ -24,7 +22,7 @@ const TimerModeButtons = () => {
   };
 
   return (
-    <div className={classes['timer-mode-buttons']}>
+    <div className={classes['timer-modes']}>
       <ModeButton
         text="Pomodoro"
         buttonMode={TIMER_MODES.POMODORO}
@@ -47,4 +45,4 @@ const TimerModeButtons = () => {
   );
 };
 
-export default TimerModeButtons;
+export default TimerModes;

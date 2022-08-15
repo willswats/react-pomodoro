@@ -1,8 +1,7 @@
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-
-import { setSettings, setSettingsVisible } from '../../store/timerSlice';
-
 import { useState, FormEvent } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setSettings, setSettingsVisible } from '../../store/timerSlice';
 
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
@@ -11,7 +10,6 @@ import classes from './TimerSettingsForm.module.css';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
-
   const pomodoroMinutes = useAppSelector(
     (state) => state.timer.settings.minutes.pomodoro
   );
@@ -34,7 +32,6 @@ const TimerSettingsForm = () => {
   const [longBreakInputValue, setLongBreakInputValue] = useState(
     `${longBreakMinutes}`
   );
-
   const [longBreakIntervalInputValue, setLongBreakIntervalInputValue] =
     useState(`${longBreakInterval}`);
 
