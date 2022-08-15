@@ -150,9 +150,8 @@ const timerSlice = createSlice({
         };
         state.pomodoroCount += 1;
         state.running = false;
-      }
-
-      if (state.pomodoroCount !== state.settings.longBreakInterval) {
+        // Add condition
+      } else if (state.pomodoroCount !== state.settings.longBreakInterval) {
         if (state.mode === TIMER_MODES.POMODORO) {
           state.mode = TIMER_MODES.SHORT_BREAK;
           state.timeRemaining = {
@@ -168,6 +167,17 @@ const timerSlice = createSlice({
           };
         }
         state.running = false;
+        // Reset condition
+      } else if (state.pomodoroCount === state.settings.longBreakInterval) {
+        if (state.mode === TIMER_MODES.LONG_BREAK) {
+          state.mode = TIMER_MODES.POMODORO;
+          state.timeRemaining = {
+            minutes: state.settings.minutes.pomodoro,
+            seconds: 0,
+          };
+          state.pomodoroCount = 0;
+          state.running = false;
+        }
       }
     },
     setPomodoroCount(state, { payload }: PayloadAction<number>) {
