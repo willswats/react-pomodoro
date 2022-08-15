@@ -2,8 +2,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import {
   setRunning,
-  setPomodoroCountForward,
-  setPomodoroCountBack,
+  skipBackwards,
+  skipForwards,
 } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
@@ -28,11 +28,11 @@ const TimerControls = () => {
   };
 
   const skipBackButtonClickHandler = () => {
-    dispatch(setPomodoroCountBack());
+    dispatch(skipBackwards());
   };
 
   const skipForwardButtonClickHandler = () => {
-    dispatch(setPomodoroCountForward());
+    dispatch(skipForwards());
   };
 
   return (

@@ -1,10 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  setSettingsVisible,
-  setPomodoroCount,
-  setMode,
-  TIMER_MODES,
-} from '../../store/timerSlice';
+import { setSettingsVisible, resetToSettings } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
@@ -35,8 +30,7 @@ const TimerTop = () => {
   };
 
   const resetButtonClickHandler = () => {
-    dispatch(setPomodoroCount(0));
-    dispatch(setMode(TIMER_MODES.POMODORO));
+    dispatch(resetToSettings());
   };
 
   return (
