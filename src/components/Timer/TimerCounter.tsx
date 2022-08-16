@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import {
+  setRunning,
   setTimeRemaining,
   setTimeRemainingToSettings,
   skipForwards,
 } from '../../store/timerSlice';
+
+import CounterInput from '../UI/Inputs/CounterInput';
 
 import convertTime from '../../helpers/convertTime';
 
@@ -22,7 +25,44 @@ const TimerCounter = () => {
     (state) => state.timer.settingsChanged
   );
 
+  const [minutesCounterInputValue, setMinutesCounterInputValue] = useState(
+    `${minutes}`
+  );
+  const [secondsCounterInputValue, setSecondsCounterInputValue] = useState(
+    `${seconds}`
+  );
+
+  const minutesCounterInputBlurHandler = () => {
+    const value = parseFloat(minutesCounterInputValue);
+    if (!isNaN(value)) {
+      dispatch(setTimeRemaining({ minutes: value, seconds: seconds }));
+    }
+  };
+  const secondsCounterInputBlurHandler = () => {
+    const value = parseFloat(secondsCounterInputValue);
+    if (!isNaN(value)) {
+      dispatch(setTimeRemaining({ minutes: minutes, seconds: value }));
+    }
+  };
+
+  const minutesCounterInputChangeHandler = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch(setRunning(false));
+    setMinutesCounterInputValue(event.target.value);
+  };
+
+  const secondsCounterInputChangeHandler = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch(setRunning(false));
+    setSecondsCounterInputValue(event.target.value);
+  };
+
   useEffect(() => {
+    // Update input values to reflect state
+    setMinutesCounterInputValue(convertTime(minutes));
+    setSecondsCounterInputValue(convertTime(seconds));
     // Change time when the settings are changed
     if (settingsChanged === true) {
       dispatch(setTimeRemainingToSettings());
@@ -51,9 +91,17 @@ const TimerCounter = () => {
   return (
     <div className={classes['counter']}>
       <div className={classes['counter__content']}>
-        <p>{convertTime(minutes)}</p>
+        <CounterInput
+          inputValue={minutesCounterInputValue}
+          changeHandler={minutesCounterInputChangeHandler}
+          blurHandler={minutesCounterInputBlurHandler}
+        />
         <span className={classes['counter__colon']}>:</span>
-        <p>{convertTime(seconds)}</p>
+        <CounterInput
+          inputValue={secondsCounterInputValue}
+          changeHandler={secondsCounterInputChangeHandler}
+          blurHandler={secondsCounterInputBlurHandler}
+        />
       </div>
     </div>
   );
