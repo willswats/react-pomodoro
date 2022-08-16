@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   setTimeRemaining,
   setTimeRemainingToSettings,
+  skipForwards,
 } from '../../store/timerSlice';
 
 import convertTime from '../../helpers/convertTime';
@@ -29,7 +30,9 @@ const TimerCounter = () => {
 
     // Timer logic
     const intervalId = setInterval(() => {
-      if (seconds === 0) {
+      if (minutes === 0 && seconds === 0) {
+        dispatch(skipForwards());
+      } else if (seconds === 0) {
         dispatch(setTimeRemaining({ minutes: minutes - 1, seconds: 59 }));
       } else {
         dispatch(setTimeRemaining({ minutes: minutes, seconds: seconds - 1 }));

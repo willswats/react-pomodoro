@@ -85,17 +85,13 @@ const timerSlice = createSlice({
         state.timeRemaining.minutes === 0 &&
         state.timeRemaining.seconds === 0
       ) {
-        // Add to pomodoroCount
-        if (state.mode === TIMER_MODES.POMODORO) {
-          state.pomodoroCount += 1;
-        }
         state.running = false;
+      } else {
+        state.timeRemaining = {
+          minutes: payload.minutes,
+          seconds: payload.seconds,
+        };
       }
-
-      state.timeRemaining = {
-        minutes: payload.minutes,
-        seconds: payload.seconds,
-      };
     },
     setTimeRemainingToSettings(state) {
       switch (state.mode) {
@@ -205,6 +201,7 @@ const timerSlice = createSlice({
       };
       state.mode = TIMER_MODES.POMODORO;
       state.pomodoroCount = 0;
+      state.running = false;
     },
   },
 });
