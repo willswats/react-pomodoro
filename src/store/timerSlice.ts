@@ -174,7 +174,10 @@ const timerSlice = createSlice({
         }
       }
     },
-
+    setPomodoroCount(state, { payload }: PayloadAction<number>) {
+      state.running = false;
+      state.pomodoroCount = payload;
+    },
     setSettingsVisible(state, { payload }: PayloadAction<boolean>) {
       state.running = false;
       state.settingsVisible = payload;
@@ -206,6 +209,7 @@ export const {
   setTimeRemaining,
   skipBackwards,
   skipForwards,
+  setPomodoroCount,
   setTimeRemainingToSettings,
   setSettingsVisible,
   setSettings,

@@ -1,31 +1,24 @@
+import { MouseEvent } from 'react';
 import classes from './Indicator.module.css';
 
 interface IndicatorProps {
+  id: string;
+  index: number;
   completed: number;
-  total: number;
+  clickHandler: (event: MouseEvent) => void;
 }
 
-const Indicator = ({ completed, total }: IndicatorProps) => {
-  const totalIdArray = [];
-  for (let i = 0; i < total; i++) {
-    totalIdArray.push(`el${i}`);
-  }
-
+const Indicator = ({ id, index, completed, clickHandler }: IndicatorProps) => {
   return (
-    <div className={classes['indicator']}>
-      {totalIdArray.map((id, index) => {
-        return (
-          <span
-            key={id}
-            className={`${classes['indicator__span']} ${
-              index + 1 === completed || index < completed
-                ? classes['indicator__span--completed']
-                : ''
-            }`}
-          />
-        );
-      })}
-    </div>
+    <span
+      onClick={clickHandler}
+      key={id}
+      className={`${classes['indicator']} ${
+        index + 1 === completed || index < completed
+          ? classes['indicator--completed']
+          : ''
+      }`}
+    />
   );
 };
 
