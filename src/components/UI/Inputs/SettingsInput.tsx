@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent } from 'react';
 
 import classes from './SettingsInput.module.css';
 
@@ -6,19 +6,15 @@ interface SettingsInputProps {
   id: string;
   labelText: string;
   inputValue: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
+  changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SettingsInput = ({
   id,
   labelText,
   inputValue,
-  setInputValue,
+  changeHandler,
 }: SettingsInputProps) => {
-  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
   return (
     <div className={classes['settings-input']}>
       <label htmlFor={id}>{labelText}</label>

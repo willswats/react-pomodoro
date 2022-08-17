@@ -20,48 +20,68 @@ const TimerCounter = () => {
   const timer = useAppSelector((state) => state.timer);
   const timeRemaining = useAppSelector((state) => state.timer.timeRemaining);
 
-  const [minutesCounterInputValue, setMinutesCounterInputValue] = useState(
-    `${timeRemaining.minutes}`
-  );
-  const [secondsCounterInputValue, setSecondsCounterInputValue] = useState(
-    `${timeRemaining.seconds}`
-  );
+  const [counterInputValues, setCounterInputValues] = useState({
+    minutes: `${timeRemaining.minutes}`,
+    seconds: `${timeRemaining.seconds}`,
+  });
 
-  const minutesCounterInputBlurHandler = () => {
-    const value = parseFloat(minutesCounterInputValue);
-    if (!isNaN(value)) {
-      dispatch(
-        setTimeRemaining({ minutes: value, seconds: timeRemaining.seconds })
-      );
+  const counterInputBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const id = event.target.id;
+
+    switch (id) {
+      case 'minutes':
+        const convertedMinutes = parseFloat(counterInputValues.minutes);
+        if (!isNaN(convertedMinutes)) {
+          dispatch(
+            setTimeRemaining({
+              minutes: convertedMinutes,
+              seconds: timeRemaining.seconds,
+            })
+          );
+        }
+        break;
+      case 'seconds':
+        const convertedSeconds = parseFloat(counterInputValues.seconds);
+        if (!isNaN(convertedSeconds)) {
+          dispatch(
+            setTimeRemaining({
+              minutes: timeRemaining.minutes,
+              seconds: convertedSeconds,
+            })
+          );
+        }
     }
   };
-  const secondsCounterInputBlurHandler = () => {
-    const value = parseFloat(secondsCounterInputValue);
-    if (!isNaN(value)) {
-      dispatch(
-        setTimeRemaining({ minutes: timeRemaining.minutes, seconds: value })
-      );
+
+  const counterInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const id = event.target.id;
+    dispatch(setRunning(false));
+
+    switch (id) {
+      case 'minutes':
+        setCounterInputValues((state) => {
+          return {
+            ...state,
+            minutes: event.target.value,
+          };
+        });
+        break;
+      case 'seconds':
+        setCounterInputValues((state) => {
+          return {
+            ...state,
+            seconds: event.target.value,
+          };
+        });
     }
-  };
-
-  const minutesCounterInputChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    dispatch(setRunning(false));
-    setMinutesCounterInputValue(event.target.value);
-  };
-
-  const secondsCounterInputChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    dispatch(setRunning(false));
-    setSecondsCounterInputValue(event.target.value);
   };
 
   useEffect(() => {
     // Update input values to reflect state
-    setMinutesCounterInputValue(convertTime(timeRemaining.minutes));
-    setSecondsCounterInputValue(convertTime(timeRemaining.seconds));
+    setCounterInputValues({
+      minutes: convertTime(timeRemaining.minutes),
+      seconds: convertTime(timeRemaining.seconds),
+    });
     // Change time when the settings are changed
     if (timer.settingsChanged === true) {
       dispatch(setTimeRemainingToSettings());
@@ -105,15 +125,17 @@ const TimerCounter = () => {
     <div className={classes['counter']}>
       <div className={classes['counter__content']}>
         <CounterInput
-          inputValue={minutesCounterInputValue}
-          changeHandler={minutesCounterInputChangeHandler}
-          blurHandler={minutesCounterInputBlurHandler}
+          id="minutes"
+          inputValue={counterInputValues.minutes}
+          changeHandler={counterInputChangeHandler}
+          blurHandler={counterInputBlurHandler}
         />
         <span className={classes['counter__colon']}>:</span>
         <CounterInput
-          inputValue={secondsCounterInputValue}
-          changeHandler={secondsCounterInputChangeHandler}
-          blurHandler={secondsCounterInputBlurHandler}
+          id="seconds"
+          inputValue={counterInputValues.seconds}
+          changeHandler={counterInputChangeHandler}
+          blurHandler={counterInputBlurHandler}
         />
       </div>
     </div>
