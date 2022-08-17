@@ -27,7 +27,6 @@ const TimerCounter = () => {
 
   const counterInputBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
-
     switch (id) {
       case 'minutes':
         const convertedMinutes = parseFloat(counterInputValues.minutes);
@@ -56,7 +55,6 @@ const TimerCounter = () => {
   const counterInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     dispatch(setRunning(false));
-
     switch (id) {
       case 'minutes':
         setCounterInputValues((state) => {

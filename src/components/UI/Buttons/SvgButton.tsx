@@ -2,7 +2,6 @@ import classes from './SvgButton.module.css';
 
 interface SvgButtonProps {
   svg: JSX.Element;
-  extraSvgClassNames?: string;
   clickHandler?: () => void;
 }
 
