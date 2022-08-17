@@ -7,11 +7,9 @@ export enum TIMER_MODES {
 }
 
 interface TimerSettingsState {
-  minutes: {
-    pomodoro: number;
-    shortBreak: number;
-    longBreak: number;
-  };
+  pomodoroMinutes: number;
+  shortBreakMinutes: number;
+  longBreakMinutes: number;
   longBreakInterval: number;
 }
 
@@ -36,11 +34,9 @@ const initialTimerState: TimerState = {
   settingsVisible: false,
   settingsChanged: false,
   settings: {
-    minutes: {
-      pomodoro: 25,
-      shortBreak: 5,
-      longBreak: 15,
-    },
+    pomodoroMinutes: 25,
+    shortBreakMinutes: 5,
+    longBreakMinutes: 15,
     longBreakInterval: 5,
   },
 };
@@ -53,13 +49,13 @@ const timerSlice = createSlice({
       if (state.mode !== payload) {
         switch (payload) {
           case TIMER_MODES.POMODORO:
-            state.timeRemaining.minutes = state.settings.minutes.pomodoro;
+            state.timeRemaining.minutes = state.settings.pomodoroMinutes;
             break;
           case TIMER_MODES.SHORT_BREAK:
-            state.timeRemaining.minutes = state.settings.minutes.shortBreak;
+            state.timeRemaining.minutes = state.settings.shortBreakMinutes;
             break;
           case TIMER_MODES.LONG_BREAK:
-            state.timeRemaining.minutes = state.settings.minutes.longBreak;
+            state.timeRemaining.minutes = state.settings.longBreakMinutes;
             break;
         }
         state.timeRemaining.seconds = 0;
@@ -97,19 +93,19 @@ const timerSlice = createSlice({
       switch (state.mode) {
         case TIMER_MODES.POMODORO:
           state.timeRemaining = {
-            minutes: state.settings.minutes.pomodoro,
+            minutes: state.settings.pomodoroMinutes,
             seconds: 0,
           };
           break;
         case TIMER_MODES.SHORT_BREAK:
           state.timeRemaining = {
-            minutes: state.settings.minutes.shortBreak,
+            minutes: state.settings.shortBreakMinutes,
             seconds: 0,
           };
           break;
         case TIMER_MODES.LONG_BREAK:
           state.timeRemaining = {
-            minutes: state.settings.minutes.longBreak,
+            minutes: state.settings.longBreakMinutes,
             seconds: 0,
           };
       }
@@ -121,13 +117,13 @@ const timerSlice = createSlice({
         if (state.mode === TIMER_MODES.POMODORO) {
           state.mode = TIMER_MODES.SHORT_BREAK;
           state.timeRemaining = {
-            minutes: state.settings.minutes.shortBreak,
+            minutes: state.settings.shortBreakMinutes,
             seconds: 0,
           };
         } else {
           state.mode = TIMER_MODES.POMODORO;
           state.timeRemaining = {
-            minutes: state.settings.minutes.pomodoro,
+            minutes: state.settings.pomodoroMinutes,
             seconds: 0,
           };
           state.pomodoroCount -= 1;
@@ -143,7 +139,7 @@ const timerSlice = createSlice({
       ) {
         state.mode = TIMER_MODES.LONG_BREAK;
         state.timeRemaining = {
-          minutes: state.settings.minutes.longBreak,
+          minutes: state.settings.longBreakMinutes,
           seconds: 0,
         };
         state.pomodoroCount += 1;
@@ -153,14 +149,14 @@ const timerSlice = createSlice({
         if (state.mode === TIMER_MODES.POMODORO) {
           state.mode = TIMER_MODES.SHORT_BREAK;
           state.timeRemaining = {
-            minutes: state.settings.minutes.shortBreak,
+            minutes: state.settings.shortBreakMinutes,
             seconds: 0,
           };
           state.pomodoroCount += 1;
         } else {
           state.mode = TIMER_MODES.POMODORO;
           state.timeRemaining = {
-            minutes: state.settings.minutes.pomodoro,
+            minutes: state.settings.pomodoroMinutes,
             seconds: 0,
           };
         }
@@ -170,7 +166,7 @@ const timerSlice = createSlice({
         if (state.mode === TIMER_MODES.LONG_BREAK) {
           state.mode = TIMER_MODES.POMODORO;
           state.timeRemaining = {
-            minutes: state.settings.minutes.pomodoro,
+            minutes: state.settings.pomodoroMinutes,
             seconds: 0,
           };
           state.pomodoroCount = 0;
@@ -186,17 +182,15 @@ const timerSlice = createSlice({
     setSettings(state, { payload }: PayloadAction<TimerSettingsState>) {
       state.settingsChanged = true;
       state.settings = {
-        minutes: {
-          pomodoro: payload.minutes.pomodoro,
-          shortBreak: payload.minutes.shortBreak,
-          longBreak: payload.minutes.longBreak,
-        },
+        pomodoroMinutes: payload.pomodoroMinutes,
+        shortBreakMinutes: payload.shortBreakMinutes,
+        longBreakMinutes: payload.longBreakMinutes,
         longBreakInterval: payload.longBreakInterval,
       };
     },
     resetToSettings(state) {
       state.timeRemaining = {
-        minutes: state.settings.minutes.pomodoro,
+        minutes: state.settings.pomodoroMinutes,
         seconds: 0,
       };
       state.mode = TIMER_MODES.POMODORO;

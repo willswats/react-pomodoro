@@ -13,13 +13,8 @@ import classes from './TimerTop.module.css';
 
 const TimerTop = () => {
   const dispatch = useAppDispatch();
-  const settingsVisible = useAppSelector(
-    (state) => state.timer.settingsVisible
-  );
-  const pomodoroCount = useAppSelector((state) => state.timer.pomodoroCount);
-  const longBreakInterval = useAppSelector(
-    (state) => state.timer.settings.longBreakInterval
-  );
+  const timer = useAppSelector((state) => state.timer);
+  const settings = useAppSelector((state) => state.timer.settings);
 
   const settingsButtonClickHandler = () => {
     dispatch(setSettingsVisible(true));
@@ -36,13 +31,16 @@ const TimerTop = () => {
   return (
     <div className={classes['timer-top']}>
       <SvgButton svg={<SvgReset />} clickHandler={resetButtonClickHandler} />
-      {settingsVisible && (
+      {timer.settingsVisible && (
         <ModalOverlay
           modal={<TimerSettingsForm />}
           clickHandler={modalOverlayClickHandler}
         />
       )}
-      <Indicator completed={pomodoroCount} total={longBreakInterval} />
+      <Indicator
+        completed={timer.pomodoroCount}
+        total={settings.longBreakInterval}
+      />
       <SvgButton
         svg={<SvgSettings />}
         clickHandler={settingsButtonClickHandler}

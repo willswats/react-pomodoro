@@ -7,7 +7,7 @@ import classes from './TimerModes.module.css';
 
 const TimerModes = () => {
   const dispatch = useAppDispatch();
-  const mode = useAppSelector((state) => state.timer.mode);
+  const timer = useAppSelector((state) => state.timer);
 
   const pomodoroModeButtonClickHandler = () => {
     dispatch(setMode(TIMER_MODES.POMODORO));
@@ -26,19 +26,19 @@ const TimerModes = () => {
       <ModeButton
         text="Pomodoro"
         buttonMode={TIMER_MODES.POMODORO}
-        timerMode={mode}
+        timerMode={timer.mode}
         clickHandler={pomodoroModeButtonClickHandler}
       />
       <ModeButton
         text="Short Break"
         buttonMode={TIMER_MODES.SHORT_BREAK}
-        timerMode={mode}
+        timerMode={timer.mode}
         clickHandler={shortBreakModeButtonClickHandler}
       />
       <ModeButton
         text="Long Break"
         buttonMode={TIMER_MODES.LONG_BREAK}
-        timerMode={mode}
+        timerMode={timer.mode}
         clickHandler={longBreakModeButtonClickHandler}
       />
     </div>

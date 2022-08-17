@@ -17,31 +17,30 @@ import classes from './TimerCounter.module.css';
 
 const TimerCounter = () => {
   const dispatch = useAppDispatch();
-  const mode = useAppSelector((state) => state.timer.mode);
-  const running = useAppSelector((state) => state.timer.running);
-  const minutes = useAppSelector((state) => state.timer.timeRemaining.minutes);
-  const seconds = useAppSelector((state) => state.timer.timeRemaining.seconds);
-  const settingsChanged = useAppSelector(
-    (state) => state.timer.settingsChanged
-  );
+  const timer = useAppSelector((state) => state.timer);
+  const timeRemaining = useAppSelector((state) => state.timer.timeRemaining);
 
   const [minutesCounterInputValue, setMinutesCounterInputValue] = useState(
-    `${minutes}`
+    `${timeRemaining.minutes}`
   );
   const [secondsCounterInputValue, setSecondsCounterInputValue] = useState(
-    `${seconds}`
+    `${timeRemaining.seconds}`
   );
 
   const minutesCounterInputBlurHandler = () => {
     const value = parseFloat(minutesCounterInputValue);
     if (!isNaN(value)) {
-      dispatch(setTimeRemaining({ minutes: value, seconds: seconds }));
+      dispatch(
+        setTimeRemaining({ minutes: value, seconds: timeRemaining.seconds })
+      );
     }
   };
   const secondsCounterInputBlurHandler = () => {
     const value = parseFloat(secondsCounterInputValue);
     if (!isNaN(value)) {
-      dispatch(setTimeRemaining({ minutes: minutes, seconds: value }));
+      dispatch(
+        setTimeRemaining({ minutes: timeRemaining.minutes, seconds: value })
+      );
     }
   };
 
@@ -61,32 +60,46 @@ const TimerCounter = () => {
 
   useEffect(() => {
     // Update input values to reflect state
-    setMinutesCounterInputValue(convertTime(minutes));
-    setSecondsCounterInputValue(convertTime(seconds));
+    setMinutesCounterInputValue(convertTime(timeRemaining.minutes));
+    setSecondsCounterInputValue(convertTime(timeRemaining.seconds));
     // Change time when the settings are changed
-    if (settingsChanged === true) {
+    if (timer.settingsChanged === true) {
       dispatch(setTimeRemainingToSettings());
     }
 
     // Timer logic
     const intervalId = setInterval(() => {
-      if (minutes === 0 && seconds === 0) {
+      if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
         dispatch(skipForwards());
-      } else if (seconds === 0) {
-        dispatch(setTimeRemaining({ minutes: minutes - 1, seconds: 59 }));
+      } else if (timeRemaining.seconds === 0) {
+        dispatch(
+          setTimeRemaining({ minutes: timeRemaining.minutes - 1, seconds: 59 })
+        );
       } else {
-        dispatch(setTimeRemaining({ minutes: minutes, seconds: seconds - 1 }));
+        dispatch(
+          setTimeRemaining({
+            minutes: timeRemaining.minutes,
+            seconds: timeRemaining.seconds - 1,
+          })
+        );
       }
     }, 1000);
 
-    if (running === false) {
+    if (timer.running === false) {
       clearInterval(intervalId);
     }
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch, minutes, seconds, mode, running, settingsChanged]);
+  }, [
+    dispatch,
+    timeRemaining.minutes,
+    timeRemaining.seconds,
+    timer.mode,
+    timer.running,
+    timer.settingsChanged,
+  ]);
 
   return (
     <div className={classes['counter']}>

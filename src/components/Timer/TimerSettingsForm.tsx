@@ -10,30 +10,19 @@ import classes from './TimerSettingsForm.module.css';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
-  const pomodoroMinutes = useAppSelector(
-    (state) => state.timer.settings.minutes.pomodoro
-  );
-  const shortBreakMinutes = useAppSelector(
-    (state) => state.timer.settings.minutes.shortBreak
-  );
-  const longBreakMinutes = useAppSelector(
-    (state) => state.timer.settings.minutes.longBreak
-  );
-  const longBreakInterval = useAppSelector(
-    (state) => state.timer.settings.longBreakInterval
-  );
+  const settings = useAppSelector((state) => state.timer.settings);
 
   const [pomodoroInputValue, setPomodoroInputValue] = useState(
-    `${pomodoroMinutes}`
+    `${settings.pomodoroMinutes}`
   );
   const [shortBreakInputValue, setShortBreakInputValue] = useState(
-    `${shortBreakMinutes}`
+    `${settings.shortBreakMinutes}`
   );
   const [longBreakInputValue, setLongBreakInputValue] = useState(
-    `${longBreakMinutes}`
+    `${settings.longBreakMinutes}`
   );
   const [longBreakIntervalInputValue, setLongBreakIntervalInputValue] =
-    useState(`${longBreakInterval}`);
+    useState(`${settings.longBreakInterval}`);
 
   const settingsFormSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
@@ -54,11 +43,9 @@ const TimerSettingsForm = () => {
     ) {
       dispatch(
         setSettings({
-          minutes: {
-            pomodoro: pomodoroConvertedInputValue,
-            shortBreak: shortBreakConvertedInputValue,
-            longBreak: longBreakConvertedInputValue,
-          },
+          pomodoroMinutes: pomodoroConvertedInputValue,
+          shortBreakMinutes: shortBreakConvertedInputValue,
+          longBreakMinutes: longBreakConvertedInputValue,
           longBreakInterval: longBreakIntervalConvertedInputValue,
         })
       );

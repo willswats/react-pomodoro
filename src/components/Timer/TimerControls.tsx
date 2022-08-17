@@ -17,7 +17,7 @@ import classes from './TimerControls.module.css';
 
 const TimerControls = () => {
   const dispatch = useAppDispatch();
-  const running = useAppSelector((state) => state.timer.running);
+  const timer = useAppSelector((state) => state.timer);
 
   const startButtonClickHandler = () => {
     dispatch(setRunning(true));
@@ -41,7 +41,7 @@ const TimerControls = () => {
         svg={<SvgSkipBack />}
         clickHandler={skipBackButtonClickHandler}
       />
-      {running === false ? (
+      {timer.running === false ? (
         <SvgButton svg={<SvgPlay />} clickHandler={startButtonClickHandler} />
       ) : (
         <SvgButton svg={<SvgPause />} clickHandler={stopButtonClickHandler} />
