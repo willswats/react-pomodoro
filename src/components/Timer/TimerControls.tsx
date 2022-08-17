@@ -23,7 +23,7 @@ const TimerControls = () => {
     dispatch(setRunning(true));
   };
 
-  const stopButtonClickHandler = () => {
+  const pauseButtonClickHandler = () => {
     dispatch(setRunning(false));
   };
 
@@ -40,15 +40,17 @@ const TimerControls = () => {
       <SvgButton
         svg={<SvgSkipBack />}
         clickHandler={skipBackButtonClickHandler}
+        extraButtonClassNames={classes['timer-controls__skip-backwards-button']}
       />
       {timer.running === false ? (
         <SvgButton svg={<SvgPlay />} clickHandler={startButtonClickHandler} />
       ) : (
-        <SvgButton svg={<SvgPause />} clickHandler={stopButtonClickHandler} />
+        <SvgButton svg={<SvgPause />} clickHandler={pauseButtonClickHandler} />
       )}
       <SvgButton
         svg={<SvgSkipForward />}
         clickHandler={skipForwardButtonClickHandler}
+        extraButtonClassNames={classes['timer-controls__skip-forwards-button']}
       />
     </div>
   );

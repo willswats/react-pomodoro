@@ -1,9 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  setPomodoroCount,
-  setSettingsVisible,
-  setTimeRemainingToSettings,
-} from '../../store/timerSlice';
+import { setPomodoroCount, setSettingsVisible } from '../../store/timerSlice';
 
 import SvgButton from '../UI/Buttons/SvgButton';
 import ModalOverlay from '../UI/ModalOverlay';
@@ -11,7 +7,7 @@ import TimerSettingsForm from './TimerSettingsForm';
 import TimerIndicators from './TimerIndicators';
 
 import { ReactComponent as SvgSettings } from '../../svgs/settings.svg';
-import { ReactComponent as SvgReset } from '../../svgs/refresh-cw.svg';
+import { ReactComponent as SvgRestart } from '../../svgs/refresh-cw.svg';
 
 import classes from './TimerTop.module.css';
 
@@ -27,14 +23,16 @@ const TimerTop = () => {
     dispatch(setSettingsVisible(false));
   };
 
-  const resetButtonClickHandler = () => {
+  const restartButtonClickHandler = () => {
     dispatch(setPomodoroCount(0));
-    dispatch(setTimeRemainingToSettings());
   };
 
   return (
     <div className={classes['timer-top']}>
-      <SvgButton svg={<SvgReset />} clickHandler={resetButtonClickHandler} />
+      <SvgButton
+        svg={<SvgRestart />}
+        clickHandler={restartButtonClickHandler}
+      />
       {timer.settingsVisible && (
         <ModalOverlay
           modal={<TimerSettingsForm />}

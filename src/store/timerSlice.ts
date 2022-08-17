@@ -157,15 +157,13 @@ const timerSlice = createSlice({
         state.running = false;
         // Reset condition
       } else if (state.pomodoroCount === state.settings.longBreakInterval) {
-        if (state.mode === TIMER_MODES.LONG_BREAK) {
-          state.mode = TIMER_MODES.POMODORO;
-          state.timeRemaining = {
-            minutes: state.settings.pomodoroMinutes,
-            seconds: 0,
-          };
-          state.pomodoroCount = 0;
-          state.running = false;
-        }
+        state.mode = TIMER_MODES.POMODORO;
+        state.timeRemaining = {
+          minutes: state.settings.pomodoroMinutes,
+          seconds: 0,
+        };
+        state.pomodoroCount = 0;
+        state.running = false;
       }
     },
     setPomodoroCount(state, { payload }: PayloadAction<number>) {

@@ -2,3 +2,11 @@
   display: flex;
   justify-content: center;
 }
+
+.timer-controls__skip-backwards-button {
+  margin-right: 0.5rem;
+}
+
+.timer-controls__skip-forwards-button {
+  margin-left: 0.5rem;
+}
