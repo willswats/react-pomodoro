@@ -29,21 +29,27 @@ const TimerTop = () => {
 
   return (
     <div className={classes['timer-top']}>
-      <SvgButton
-        svg={<SvgRestart />}
-        clickHandler={restartButtonClickHandler}
-      />
-      {timer.settingsVisible && (
-        <ModalOverlay
-          modal={<TimerSettingsForm />}
-          clickHandler={modalOverlayClickHandler}
+      <div className={classes['timer-top__middle']}>
+        <SvgButton
+          svg={<SvgRestart />}
+          clickHandler={restartButtonClickHandler}
+          extraButtonClassNames={classes['timer-top__restart-button']}
+          extraSvgClassNames={classes['timer-top__restart-button-svg']}
         />
-      )}
-      <TimerIndicators />
-      <SvgButton
-        svg={<SvgSettings />}
-        clickHandler={settingsButtonClickHandler}
-      />
+        <TimerIndicators />
+      </div>
+      <div className={classes['timer-top__end']}>
+        <SvgButton
+          svg={<SvgSettings />}
+          clickHandler={settingsButtonClickHandler}
+        />
+        {timer.settingsVisible && (
+          <ModalOverlay
+            modal={<TimerSettingsForm />}
+            clickHandler={modalOverlayClickHandler}
+          />
+        )}
+      </div>
     </div>
   );
 };
