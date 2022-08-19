@@ -5,3 +5,10 @@
   background-color: transparent;
   outline: none;
 }
+
+@media screen and (max-width: 768px) {
+  .counter-input {
+    font-size: 4rem;
+    width: 80px;
+  }
+}

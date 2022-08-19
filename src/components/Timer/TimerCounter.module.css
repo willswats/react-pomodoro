@@ -17,3 +17,14 @@
   font-weight: bold;
   margin: 0 2rem;
 }
+
+@media screen and (max-width: 768px) {
+  .counter__colon {
+    font-size: 4rem;
+    margin: 0 1rem;
+  }
+
+  .counter__content {
+    padding: 1rem 2rem;
+  }
+}
