@@ -1,14 +1,7 @@
 .counter-input {
   text-align: center;
-  width: 150px;
+  width: 8rem;
   font-size: 6rem;
   background-color: transparent;
   outline: none;
-}
-
-@media screen and (max-width: 768px) {
-  .counter-input {
-    font-size: 4rem;
-    width: 80px;
-  }
 }
