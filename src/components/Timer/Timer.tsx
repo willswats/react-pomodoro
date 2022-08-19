@@ -10,16 +10,18 @@ import classes from './Timer.module.css';
 const Timer = () => {
   return (
     <div className={classes['timer']}>
-      <div className={classes['timer__top']}>
-        <TimerRestartButton />
-        <TimerIndicators />
-        <TimerSettings />
+      <div className={classes['timer__content']}>
+        <div className={classes['timer__top']}>
+          <TimerRestartButton />
+          <TimerIndicators />
+          <TimerSettings />
+        </div>
+        <div className={classes['timer__middle']}>
+          <TimerModes />
+          <TimerCounter />
+        </div>
+        <TimerControls />
       </div>
-      <div className={classes['timer__middle']}>
-        <TimerModes />
-        <TimerCounter />
-      </div>
-      <TimerControls />
     </div>
   );
 };

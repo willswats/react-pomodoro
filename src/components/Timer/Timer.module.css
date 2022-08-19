@@ -1,8 +1,18 @@
 .timer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
+}
+
+.timer__content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 2rem;
   margin: 2rem;
+  transition: 1s;
 }
 
 .timer__top {
@@ -15,4 +25,12 @@
   justify-content: center;
   flex-direction: column;
   flex-grow: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .timer__content {
+    flex-grow: 1;
+    padding: 0;
+    background-color: transparent;
+  }
 }
