@@ -1,6 +1,10 @@
 .timer-modes {
   display: flex;
   justify-content: center;
+}
+
+.timer-modes__content {
+  display: flex;
   border-radius: 4px;
   overflow: hidden;
 }

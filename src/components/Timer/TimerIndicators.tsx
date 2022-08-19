@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setPomodoroCount } from '../../store/timerSlice';
 
 import Indicator from '../UI/Indicator';
-
 import classes from './TimerIndicators.module.css';
 
 const TimerIndicators = () => {

@@ -10,9 +10,6 @@ import {
 } from '../../store/timerSlice';
 
 import CounterInput from '../UI/Inputs/CounterInput';
-import SvgButton from '../UI/Buttons/SvgButton';
-
-import { ReactComponent as SvgRestart } from '../../svgs/refresh-cw.svg';
 
 import convertTime from '../../helpers/convertTime';
 
@@ -77,10 +74,6 @@ const TimerCounter = () => {
     }
   };
 
-  const restartButtonClickHandler = () => {
-    dispatch(setTimeRemainingToSettings());
-  };
-
   useEffect(() => {
     // Update input values to reflect state
     setCounterInputValues({
@@ -128,12 +121,6 @@ const TimerCounter = () => {
 
   return (
     <div className={classes['counter']}>
-      <SvgButton
-        svg={<SvgRestart />}
-        clickHandler={restartButtonClickHandler}
-        extraButtonClassNames={classes['counter__restart-button']}
-        extraSvgClassNames={classes['counter__restart-button-svg']}
-      />
       <div className={classes['counter__content']}>
         <CounterInput
           id="minutes"

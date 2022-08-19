@@ -23,24 +23,26 @@ const TimerModes = () => {
 
   return (
     <div className={classes['timer-modes']}>
-      <ModeButton
-        text="Pomodoro"
-        buttonMode={TIMER_MODES.POMODORO}
-        timerMode={timer.mode}
-        clickHandler={pomodoroModeButtonClickHandler}
-      />
-      <ModeButton
-        text="Short Break"
-        buttonMode={TIMER_MODES.SHORT_BREAK}
-        timerMode={timer.mode}
-        clickHandler={shortBreakModeButtonClickHandler}
-      />
-      <ModeButton
-        text="Long Break"
-        buttonMode={TIMER_MODES.LONG_BREAK}
-        timerMode={timer.mode}
-        clickHandler={longBreakModeButtonClickHandler}
-      />
+      <div className={classes['timer-modes__content']}>
+        <ModeButton
+          text="Pomodoro"
+          buttonMode={TIMER_MODES.POMODORO}
+          timerMode={timer.mode}
+          clickHandler={pomodoroModeButtonClickHandler}
+        />
+        <ModeButton
+          text="Short Break"
+          buttonMode={TIMER_MODES.SHORT_BREAK}
+          timerMode={timer.mode}
+          clickHandler={shortBreakModeButtonClickHandler}
+        />
+        <ModeButton
+          text="Long Break"
+          buttonMode={TIMER_MODES.LONG_BREAK}
+          timerMode={timer.mode}
+          clickHandler={longBreakModeButtonClickHandler}
+        />
+      </div>
     </div>
   );
 };
