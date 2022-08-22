@@ -5,8 +5,7 @@ import { setSettings, setSettingsVisible } from '../../store/timerSlice';
 
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
-
-import classes from './TimerSettingsForm.module.css';
+import TimerCrossButton from './Buttons/TimerCrossButton';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -87,28 +86,27 @@ const TimerSettingsForm = () => {
 
   return (
     <SettingsForm
+      crossButton={<TimerCrossButton />}
       body={
         <>
-          <div className={classes['timer-settings-form-row']}>
-            <SettingsInput
-              id="pomodoro"
-              labelText="Pomodoro"
-              inputValue={inputValues.pomodoro}
-              changeHandler={inputValueChangeHandler}
-            />
-            <SettingsInput
-              id="short-break"
-              labelText="Short Break"
-              inputValue={inputValues.shortBreak}
-              changeHandler={inputValueChangeHandler}
-            />
-            <SettingsInput
-              id="long-break"
-              labelText="Long Break"
-              inputValue={inputValues.longBreak}
-              changeHandler={inputValueChangeHandler}
-            />
-          </div>
+          <SettingsInput
+            id="pomodoro"
+            labelText="Pomodoro"
+            inputValue={inputValues.pomodoro}
+            changeHandler={inputValueChangeHandler}
+          />
+          <SettingsInput
+            id="short-break"
+            labelText="Short Break"
+            inputValue={inputValues.shortBreak}
+            changeHandler={inputValueChangeHandler}
+          />
+          <SettingsInput
+            id="long-break"
+            labelText="Long Break"
+            inputValue={inputValues.longBreak}
+            changeHandler={inputValueChangeHandler}
+          />
           <SettingsInput
             id="long-break-interval"
             labelText="Long Break Interval"

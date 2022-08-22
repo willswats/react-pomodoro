@@ -12,7 +12,7 @@ const modalRoot = document.getElementById('modal-root') as HTMLElement;
 const ModalOverlay = ({ modal, clickHandler }: SettingsOverlayProps) => {
   return createPortal(
     <>
-      <div onClick={clickHandler} className={classes['modal-overlay']} />
+      <div onClick={clickHandler} className={classes['modal-overlay']}></div>
       <div className={classes['modal-container']}>{modal}</div>
     </>,
     modalRoot

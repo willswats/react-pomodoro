@@ -1,19 +1,29 @@
 .settings-form {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #932420;
   padding: 2rem;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-form__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-form__title {
+  font-size: 4rem;
+}
+
+.settings-form__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .settings-form__bottom {
   display: flex;
   justify-content: flex-end;
-}
-
-.settings-form__save-button {
-  width: 100px;
-  padding: 0.5rem;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
 }

@@ -17,7 +17,9 @@ const SettingsInput = ({
 }: SettingsInputProps) => {
   return (
     <div className={classes['settings-input']}>
-      <label htmlFor={id}>{labelText}</label>
+      <label className={classes['settings-input__label']} htmlFor={id}>
+        {labelText}
+      </label>
       <input
         className={classes['settings-input__input']}
         id={id}
