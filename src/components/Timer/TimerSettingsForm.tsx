@@ -5,7 +5,9 @@ import { setSettings, setSettingsVisible } from '../../store/timerSlice';
 
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
-import TimerCrossButton from './Buttons/TimerCrossButton';
+import TimerCrossButton from './Buttons/TimerSettingsCrossButton';
+import SettingsTextButton from '../UI/Buttons/SettingsTextButton';
+import TimerSettingsResetButton from './Buttons/TimerSettingsResetButton';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -86,7 +88,9 @@ const TimerSettingsForm = () => {
 
   return (
     <SettingsForm
-      crossButton={<TimerCrossButton />}
+      saveButton={<SettingsTextButton text="Save" />}
+      resetButton={<TimerSettingsResetButton />}
+      exitButton={<TimerCrossButton />}
       body={
         <>
           <SettingsInput

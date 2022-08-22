@@ -4,16 +4,19 @@ import { setSettingsVisible } from '../../../store/timerSlice';
 import SvgButton from '../../UI/Buttons/SvgButton';
 import { ReactComponent as SvgCross } from '../../../svgs/x.svg';
 
-const TimerCrossButton = () => {
+const TimerSettingsCrossButton = () => {
   const dispatch = useAppDispatch();
 
-  const timerCrossButtonClickHandler = () => {
+  const timerSettingsCrossButtonClickHandler = () => {
     dispatch(setSettingsVisible(false));
   };
 
   return (
-    <SvgButton svg={<SvgCross />} clickHandler={timerCrossButtonClickHandler} />
+    <SvgButton
+      svg={<SvgCross />}
+      clickHandler={timerSettingsCrossButtonClickHandler}
+    />
   );
 };
 
-export default TimerCrossButton;
+export default TimerSettingsCrossButton;
