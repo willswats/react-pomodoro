@@ -1,22 +1,23 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+import { useState, FormEvent, MouseEvent, ChangeEvent } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setSettings, setSettingsVisible } from '../../store/timerSlice';
+import {
+  initialTimerState,
+  setSettings,
+  setSettingsVisible,
+} from '../../store/timerSlice';
 
 import { ReactComponent as SvgCheck } from '../../svgs/check.svg';
+import { ReactComponent as SvgRefresh } from '../../svgs/refresh-cw.svg';
 
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
 import SvgButton from '../UI/Buttons/SvgButton';
 import TimerCrossButton from './Buttons/TimerSettingsCrossButton';
-import TimerSettingsResetButton from './Buttons/TimerSettingsResetButton';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.timer.settings);
-  const settingsChanged = useAppSelector(
-    (state) => state.timer.settingsChanged
-  );
 
   const [inputValues, setInputValues] = useState({
     pomodoro: `${settings.pomodoroMinutes}`,
@@ -91,28 +92,28 @@ const TimerSettingsForm = () => {
     }
   };
 
-  useEffect(() => {
+  const resetButtonClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
     setInputValues(() => {
       return {
-        pomodoro: `${settings.pomodoroMinutes}`,
-        shortBreak: `${settings.shortBreakMinutes}`,
-        longBreak: `${settings.longBreakMinutes}`,
-        longBreakInterval: `${settings.longBreakInterval}`,
+        pomodoro: `${initialTimerState.settings.pomodoroMinutes}`,
+        shortBreak: `${initialTimerState.settings.shortBreakMinutes}`,
+        longBreak: `${initialTimerState.settings.longBreakMinutes}`,
+        longBreakInterval: `${initialTimerState.settings.longBreakInterval}`,
       };
     });
-  }, [
-    settings.pomodoroMinutes,
-    settings.shortBreakMinutes,
-    settings.longBreakMinutes,
-    settings.longBreakInterval,
-    settingsChanged,
-  ]);
+  };
 
   return (
     <SettingsForm
-      saveButton={<SvgButton svg={<SvgCheck />} />}
-      resetButton={<TimerSettingsResetButton />}
       exitButton={<TimerCrossButton />}
+      resetButton={
+        <SvgButton
+          svg={<SvgRefresh />}
+          clickHandler={resetButtonClickHandler}
+        />
+      }
+      saveButton={<SvgButton svg={<SvgCheck />} />}
       body={
         <>
           <SettingsInput
