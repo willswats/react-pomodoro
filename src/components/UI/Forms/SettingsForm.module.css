@@ -11,16 +11,22 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .settings-form__title {
   font-size: 4rem;
 }
 
-.settings-form__content {
+.settings-form__middle {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.settings-form__middle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .settings-form__bottom {

@@ -23,7 +23,9 @@ const SettingsForm = ({
         <h1 className={classes['settings-form__title']}>Settings</h1>
         {exitButton}
       </div>
-      <div className={classes['settings-form__content']}>{body}</div>
+      <div className={classes['settings-form__middle']}>
+        <div className={classes['settings-form__middle-grid']}>{body}</div>
+      </div>
       <div className={classes['settings-form__bottom']}>
         {resetButton}
         {saveButton}
