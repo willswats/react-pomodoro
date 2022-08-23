@@ -1,10 +1,12 @@
 .settings-form {
   display: flex;
   flex-direction: column;
-  background-color: #932420;
+  background-color: #84201d;
+  border-radius: 4px;
   padding: 2rem;
   width: 100%;
   height: 100%;
+  transition: 1s;
 }
 
 .settings-form__top {
@@ -36,4 +38,10 @@
 
 .settings-form__bottom button {
   margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .settings-form {
+    background-color: #932420;
+  }
 }
