@@ -1,17 +1,22 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setSettings, setSettingsVisible } from '../../store/timerSlice';
 
+import { ReactComponent as SvgCheck } from '../../svgs/check.svg';
+
 import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
+import SvgButton from '../UI/Buttons/SvgButton';
 import TimerCrossButton from './Buttons/TimerSettingsCrossButton';
-import SettingsTextButton from '../UI/Buttons/SettingsTextButton';
 import TimerSettingsResetButton from './Buttons/TimerSettingsResetButton';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.timer.settings);
+  const settingsChanged = useAppSelector(
+    (state) => state.timer.settingsChanged
+  );
 
   const [inputValues, setInputValues] = useState({
     pomodoro: `${settings.pomodoroMinutes}`,
@@ -86,9 +91,26 @@ const TimerSettingsForm = () => {
     }
   };
 
+  useEffect(() => {
+    setInputValues(() => {
+      return {
+        pomodoro: `${settings.pomodoroMinutes}`,
+        shortBreak: `${settings.shortBreakMinutes}`,
+        longBreak: `${settings.longBreakMinutes}`,
+        longBreakInterval: `${settings.longBreakInterval}`,
+      };
+    });
+  }, [
+    settings.pomodoroMinutes,
+    settings.shortBreakMinutes,
+    settings.longBreakMinutes,
+    settings.longBreakInterval,
+    settingsChanged,
+  ]);
+
   return (
     <SettingsForm
-      saveButton={<SettingsTextButton text="Save" />}
+      saveButton={<SvgButton svg={<SvgCheck />} />}
       resetButton={<TimerSettingsResetButton />}
       exitButton={<TimerCrossButton />}
       body={

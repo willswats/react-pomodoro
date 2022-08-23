@@ -1,20 +1,26 @@
-import { FormEvent } from 'react';
+import { MouseEvent } from 'react';
 
 import { useAppDispatch } from '../../../store/hooks';
+import { resetSettings } from '../../../store/timerSlice';
 
-import SettingsTextButton from '../../UI/Buttons/SettingsTextButton';
+import { ReactComponent as SvgRefresh } from '../../../svgs/refresh-cw.svg';
+import SvgButton from '../../UI/Buttons/SvgButton';
+
+import classes from './TimerSettingsResetButton.module.css';
 
 const TimerSettingsResetButton = () => {
   const dispatch = useAppDispatch();
 
-  const timerSettingsResetButtonClickHandler = (event: FormEvent) => {
+  const timerSettingsResetButtonClickHandler = (event: MouseEvent) => {
     event.preventDefault();
+    dispatch(resetSettings());
   };
 
   return (
-    <SettingsTextButton
-      text="Reset"
+    <SvgButton
+      svg={<SvgRefresh />}
       clickHandler={timerSettingsResetButtonClickHandler}
+      extraButtonClassNames={classes['timer-settings-reset-button']}
     />
   );
 };

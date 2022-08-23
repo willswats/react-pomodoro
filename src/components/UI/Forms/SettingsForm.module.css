@@ -10,7 +10,7 @@
 .settings-form__top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .settings-form__title {

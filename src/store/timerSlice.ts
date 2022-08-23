@@ -183,6 +183,12 @@ const timerSlice = createSlice({
         longBreakInterval: payload.longBreakInterval,
       };
     },
+    resetSettings(state) {
+      state.settingsChanged = true;
+      state.settings = {
+        ...initialTimerState.settings,
+      };
+    },
   },
 });
 
@@ -196,6 +202,7 @@ export const {
   setPomodoroCount,
   setSettingsVisible,
   setSettings,
+  resetSettings,
 } = timerSlice.actions;
 
 export default timerSlice.reducer;
