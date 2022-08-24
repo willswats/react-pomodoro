@@ -1,47 +1,46 @@
-.settings-form {
+.timer-settings-form {
   display: flex;
   flex-direction: column;
   background-color: #84201d;
   border-radius: 4px;
-  padding: 2rem;
   width: 100%;
   height: 100%;
   transition: 1s;
 }
 
-.settings-form__top {
+.timer-settings-form__top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 0.5rem;
 }
 
-.settings-form__title {
+.timer-settings-form__title {
   font-size: 4rem;
 }
 
-.settings-form__middle {
+.timer-settings-form__middle {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.settings-form__middle-grid {
+.timer-settings-form__middle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
-.settings-form__bottom {
+.timer-settings-form__bottom {
   display: flex;
   justify-content: flex-end;
 }
 
-.settings-form__bottom button {
+.timer-settings-form__bottom button {
   margin-left: 0.5rem;
 }
 
 @media screen and (max-width: 768px) {
-  .settings-form {
+  .timer-settings-form {
     background-color: #932420;
   }
 }

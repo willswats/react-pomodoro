@@ -1,26 +1,27 @@
-import TimerRestartButton from './Buttons/TimerRestartButton';
-import TimerIndicators from './TimerIndicators';
-import TimerSettings from './TimerSettings';
-import TimerModes from './TimerModes';
-import TimerCounter from './TimerCounter';
-import TimerControls from './TimerControls';
+import TimerTop from './TimerTop';
+import TimerMiddle from './TimerMiddle';
+import TimerBottom from './TimerBottom';
+import TimerSettingsForm from './TimerSettingsForm';
+
+import { useAppSelector } from '../../store/hooks';
 
 import classes from './Timer.module.css';
 
 const Timer = () => {
+  const timer = useAppSelector((state) => state.timer);
+
   return (
     <div className={classes['timer']}>
       <div className={classes['timer__content']}>
-        <div className={classes['timer__top']}>
-          <TimerRestartButton />
-          <TimerIndicators />
-          <TimerSettings />
-        </div>
-        <div className={classes['timer__middle']}>
-          <TimerModes />
-          <TimerCounter />
-        </div>
-        <TimerControls />
+        {!timer.settingsVisible ? (
+          <>
+            <TimerTop />
+            <TimerMiddle />
+            <TimerBottom />
+          </>
+        ) : (
+          <TimerSettingsForm />
+        )}
       </div>
     </div>
   );

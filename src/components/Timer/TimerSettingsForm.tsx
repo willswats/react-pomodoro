@@ -10,10 +10,11 @@ import {
 import { ReactComponent as SvgCheck } from '../../svgs/check.svg';
 import { ReactComponent as SvgRefresh } from '../../svgs/refresh-cw.svg';
 
-import SettingsForm from '../UI/Forms/SettingsForm';
 import SettingsInput from '../UI/Inputs/SettingsInput';
 import SvgButton from '../UI/Buttons/SvgButton';
 import TimerCrossButton from './Buttons/TimerSettingsCrossButton';
+
+import classes from './TimerSettingsForm.module.css';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -105,17 +106,16 @@ const TimerSettingsForm = () => {
   };
 
   return (
-    <SettingsForm
-      exitButton={<TimerCrossButton />}
-      resetButton={
-        <SvgButton
-          svg={<SvgRefresh />}
-          clickHandler={resetButtonClickHandler}
-        />
-      }
-      saveButton={<SvgButton svg={<SvgCheck />} />}
-      body={
-        <>
+    <form
+      onSubmit={settingsFormSubmitHandler}
+      className={classes['timer-settings-form']}
+    >
+      <div className={classes['timer-settings-form__top']}>
+        <h1 className={classes['timer-settings-form__title']}>Settings</h1>
+        <TimerCrossButton />
+      </div>
+      <div className={classes['timer-settings-form__middle']}>
+        <div className={classes['timer-settings-form__middle-grid']}>
           <SettingsInput
             id="pomodoro"
             labelText="Pomodoro"
@@ -140,10 +140,16 @@ const TimerSettingsForm = () => {
             inputValue={inputValues.longBreakInterval}
             changeHandler={inputValueChangeHandler}
           />
-        </>
-      }
-      submitHandler={settingsFormSubmitHandler}
-    />
+        </div>
+      </div>
+      <div className={classes['timer-settings-form__bottom']}>
+        <SvgButton
+          svg={<SvgRefresh />}
+          clickHandler={resetButtonClickHandler}
+        />
+        <SvgButton svg={<SvgCheck />} />
+      </div>
+    </form>
   );
 };
 

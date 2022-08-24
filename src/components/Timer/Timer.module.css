@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   flex-grow: 1;
 }
 
@@ -10,27 +11,16 @@
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  width: 750px;
+  height: 450px;
   padding: 2rem;
-  margin: 2rem;
   transition: 1s;
-}
-
-.timer__top {
-  display: flex;
-  justify-content: space-between;
-}
-
-.timer__middle {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex-grow: 1;
 }
 
 @media screen and (max-width: 768px) {
   .timer__content {
-    flex-grow: 1;
-    padding: 0;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
   }
 }

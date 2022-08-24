@@ -5,13 +5,13 @@ import TimerPlayButton from './Buttons/TimerPlayButton';
 import TimerPauseButton from './Buttons/TimerPauseButton';
 import TimerSkipForwardsButton from './Buttons/TimerSkipForwardsButton';
 
-import classes from './TimerControls.module.css';
+import classes from './TimerBottom.module.css';
 
-const TimerControls = () => {
+const TimerBottom = () => {
   const timer = useAppSelector((state) => state.timer);
 
   return (
-    <div className={classes['timer-controls']}>
+    <div className={classes['timer-bottom']}>
       <TimerSkipBackwardsButton />
       {timer.running === false ? <TimerPlayButton /> : <TimerPauseButton />}
       <TimerSkipForwardsButton />
@@ -19,4 +19,4 @@ const TimerControls = () => {
   );
 };
 
-export default TimerControls;
+export default TimerBottom;
