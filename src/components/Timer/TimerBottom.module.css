@@ -3,10 +3,6 @@
   justify-content: center;
 }
 
-.timer-bottom__skip-backwards-button {
-  margin-right: 0.5rem;
-}
-
-.timer-bottom__skip-forwards-button {
-  margin-left: 0.5rem;
+.timer-bottom button {
+  margin: 0 0.25rem;
 }
