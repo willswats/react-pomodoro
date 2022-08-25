@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import classes from './SettingsInput.module.css';
+import styles from './styles.module.css';
 
 interface SettingsInputProps {
   id: string;
@@ -16,12 +16,12 @@ const SettingsInput = ({
   changeHandler,
 }: SettingsInputProps) => {
   return (
-    <div className={classes['settings-input']}>
-      <label className={classes['settings-input__label']} htmlFor={id}>
+    <div className={styles['settings-input']}>
+      <label className={styles['settings-input__label']} htmlFor={id}>
         {labelText}
       </label>
       <input
-        className={classes['settings-input__input']}
+        className={styles['settings-input__input']}
         id={id}
         type="number"
         value={inputValue}

@@ -1,8 +1,8 @@
-import { useAppDispatch } from '../../../store/hooks';
-import { setRunning } from '../../../store/timerSlice';
+import { useAppDispatch } from 'store/hooks';
+import { setRunning } from 'store/timerSlice';
 
-import SvgButton from '../../UI/Buttons/SvgButton';
-import { ReactComponent as SvgPlay } from '../../../svgs/play.svg';
+import SvgButton from 'components/common/SvgButton';
+import { ReactComponent as SvgPlay } from 'assets/svgs/play.svg';
 
 const TimerPlayButton = () => {
   const dispatch = useAppDispatch();

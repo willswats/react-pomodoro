@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import classes from './Indicator.module.css';
+import styles from './styles.module.css';
 
 interface IndicatorProps {
   id: string;
@@ -13,9 +13,9 @@ const Indicator = ({ id, index, completed, clickHandler }: IndicatorProps) => {
     <span
       onClick={clickHandler}
       key={id}
-      className={`${classes['indicator']} ${
+      className={`${styles['indicator']} ${
         index + 1 === completed || index < completed
-          ? classes['indicator--completed']
+          ? styles['indicator--completed']
           : ''
       }`}
     />

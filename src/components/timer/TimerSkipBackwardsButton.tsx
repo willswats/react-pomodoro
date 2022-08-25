@@ -1,8 +1,8 @@
-import { useAppDispatch } from '../../../store/hooks';
-import { skipBackwards } from '../../../store/timerSlice';
+import { useAppDispatch } from 'store/hooks';
+import { skipBackwards } from 'store/timerSlice';
 
-import SvgButton from '../../UI/Buttons/SvgButton';
-import { ReactComponent as SvgSkipBackwards } from '../../../svgs/skip-back.svg';
+import SvgButton from 'components/common/SvgButton';
+import { ReactComponent as SvgSkipBackwards } from 'assets/svgs/skip-back.svg';
 
 const TimerSkipBackwardsButton = () => {
   const dispatch = useAppDispatch();

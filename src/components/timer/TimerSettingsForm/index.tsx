@@ -1,20 +1,20 @@
 import { useState, FormEvent, MouseEvent, ChangeEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import {
   initialTimerState,
   setSettings,
   setSettingsVisible,
-} from '../../store/timerSlice';
+} from 'store/timerSlice';
 
-import { ReactComponent as SvgCheck } from '../../svgs/check.svg';
-import { ReactComponent as SvgRefresh } from '../../svgs/refresh-cw.svg';
+import { ReactComponent as SvgCheck } from 'assets/svgs/check.svg';
+import { ReactComponent as SvgRefresh } from 'assets/svgs/refresh-cw.svg';
 
-import SettingsInput from '../UI/Inputs/SettingsInput';
-import SvgButton from '../UI/Buttons/SvgButton';
-import TimerCrossButton from './Buttons/TimerSettingsCrossButton';
+import SettingsInput from 'components/common/SettingsInput';
+import SvgButton from 'components/common/SvgButton';
+import TimerCrossButton from 'components/timer/TimerSettingsCrossButton';
 
-import classes from './TimerSettingsForm.module.css';
+import styles from './styles.module.css';
 
 const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -108,14 +108,14 @@ const TimerSettingsForm = () => {
   return (
     <form
       onSubmit={settingsFormSubmitHandler}
-      className={classes['timer-settings-form']}
+      className={styles['timer-settings-form']}
     >
-      <div className={classes['timer-settings-form__top']}>
-        <h1 className={classes['timer-settings-form__title']}>Settings</h1>
+      <div className={styles['timer-settings-form__top']}>
+        <h1 className={styles['timer-settings-form__title']}>Settings</h1>
         <TimerCrossButton />
       </div>
-      <div className={classes['timer-settings-form__middle']}>
-        <div className={classes['timer-settings-form__middle-grid']}>
+      <div className={styles['timer-settings-form__middle']}>
+        <div className={styles['timer-settings-form__middle-grid']}>
           <SettingsInput
             id="pomodoro"
             labelText="Pomodoro"
@@ -142,7 +142,7 @@ const TimerSettingsForm = () => {
           />
         </div>
       </div>
-      <div className={classes['timer-settings-form__bottom']}>
+      <div className={styles['timer-settings-form__bottom']}>
         <SvgButton
           svg={<SvgRefresh />}
           clickHandler={resetButtonClickHandler}

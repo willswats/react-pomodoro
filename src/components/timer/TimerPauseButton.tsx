@@ -1,8 +1,8 @@
-import { useAppDispatch } from '../../../store/hooks';
-import { setRunning } from '../../../store/timerSlice';
+import { useAppDispatch } from 'store/hooks';
+import { setRunning } from 'store/timerSlice';
 
-import SvgButton from '../../UI/Buttons/SvgButton';
-import { ReactComponent as SvgPause } from '../../../svgs/pause.svg';
+import SvgButton from 'components/common/SvgButton';
+import { ReactComponent as SvgPause } from 'assets/svgs/pause.svg';
 
 const TimerPauseButton = () => {
   const dispatch = useAppDispatch();

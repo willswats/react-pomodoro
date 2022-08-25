@@ -1,6 +1,6 @@
 import { FocusEvent, ChangeEvent } from 'react';
 
-import classes from './CounterInput.module.css';
+import styles from './styles.module.css';
 
 interface CounterInputProps {
   id: string;
@@ -18,7 +18,7 @@ const CounterInput = ({
   return (
     <input
       id={id}
-      className={classes['counter-input']}
+      className={styles['counter-input']}
       value={inputValue}
       onChange={changeHandler}
       onBlur={blurHandler}

@@ -1,19 +1,19 @@
 import { useEffect, useState, ChangeEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import {
   setRunning,
   setTimeRemaining,
   setTimeRemainingToSettings,
   skipForwards,
-} from '../../store/timerSlice';
+} from 'store/timerSlice';
 
-import CounterInput from '../UI/Inputs/CounterInput';
+import CounterInput from 'components/common/CounterInput';
 
-import convertTime from '../../helpers/convertTime';
+import convertTime from 'utils/convertTime';
 
-import classes from './TimerCounter.module.css';
+import styles from './styles.module.css';
 
 const TimerCounter = () => {
   const dispatch = useAppDispatch();
@@ -120,15 +120,15 @@ const TimerCounter = () => {
   ]);
 
   return (
-    <div className={classes['counter']}>
-      <div className={classes['counter__content']}>
+    <div className={styles['counter']}>
+      <div className={styles['counter__content']}>
         <CounterInput
           id="minutes"
           inputValue={counterInputValues.minutes}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}
         />
-        <span className={classes['counter__colon']}>:</span>
+        <span className={styles['counter__colon']}>:</span>
         <CounterInput
           id="seconds"
           inputValue={counterInputValues.seconds}

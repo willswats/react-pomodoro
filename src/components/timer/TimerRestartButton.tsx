@@ -1,13 +1,13 @@
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch } from 'store/hooks';
 import {
   setMode,
   setPomodoroCount,
   setTimeRemainingToSettings,
   TIMER_MODES,
-} from '../../../store/timerSlice';
+} from 'store/timerSlice';
 
-import SvgButton from '../../UI/Buttons/SvgButton';
-import { ReactComponent as SvgRestart } from '../../../svgs/refresh-cw.svg';
+import SvgButton from 'components/common/SvgButton';
+import { ReactComponent as SvgRestart } from 'assets/svgs/refresh-cw.svg';
 
 const RestartButton = () => {
   const dispatch = useAppDispatch();

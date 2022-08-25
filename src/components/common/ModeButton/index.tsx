@@ -1,4 +1,4 @@
-import classes from './ModeButton.module.css';
+import styles from './styles.module.css';
 
 interface ModeButtonProps {
   text: string;
@@ -16,8 +16,8 @@ const ModeButton = ({
   return (
     <button
       onClick={clickHandler}
-      className={`${classes['mode-button']} ${
-        timerMode === buttonMode ? classes['mode-button--active'] : ''
+      className={`${styles['mode-button']} ${
+        timerMode === buttonMode ? styles['mode-button--active'] : ''
       }`}
     >
       {text}

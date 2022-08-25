@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setPomodoroCount } from 'store/timerSlice';
 
-import { setPomodoroCount } from '../../store/timerSlice';
+import Indicator from 'components/common/Indicator';
 
-import Indicator from '../UI/Indicator';
-import classes from './TimerIndicators.module.css';
+import styles from './styles.module.css';
 
 const TimerIndicators = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ const TimerIndicators = () => {
   }
 
   return (
-    <div className={classes['timer-indicators']}>
+    <div className={styles['timer-indicators']}>
       {longBreakIntervalIds.map((id, index) => {
         const indicatorClickHandler = () => {
           dispatch(setPomodoroCount(index + 1));
