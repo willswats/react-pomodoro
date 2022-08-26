@@ -12,7 +12,7 @@ import TimerSkipForwardsButton from 'components/timer/TimerSkipForwardsButton';
 
 import TimerSettingsForm from 'components/timer/TimerSettingsForm';
 
-import { useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'hooks';
 
 import styles from './styles.module.css';
 

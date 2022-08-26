@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { TIMER_MODES, setMode } from 'store/timerSlice';
 
 import ModeButton from 'components/ui/ModeButton';

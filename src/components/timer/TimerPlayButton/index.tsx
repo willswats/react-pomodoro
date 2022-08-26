@@ -1,4 +1,4 @@
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch } from 'hooks';
 import { setRunning } from 'store/timerSlice';
 
 import SvgButton from 'components/ui/SvgButton';

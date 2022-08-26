@@ -1,6 +1,6 @@
 import { useState, FormEvent, MouseEvent, ChangeEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import {
   initialTimerState,
   setSettings,

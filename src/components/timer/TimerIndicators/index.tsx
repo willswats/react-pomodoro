@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { setPomodoroCount } from 'store/timerSlice';
 
 import Indicator from 'components/ui/Indicator';

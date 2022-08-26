@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
 import {
   setRunning,
