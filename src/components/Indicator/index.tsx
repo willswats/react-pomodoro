@@ -15,7 +15,7 @@ export const Indicator = ({
   clickHandler,
 }: IndicatorProps) => {
   return (
-    <span
+    <button
       onClick={clickHandler}
       key={id}
       className={`${styles['indicator']} ${
