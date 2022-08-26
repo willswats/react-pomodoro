@@ -2,7 +2,7 @@ import { useAppDispatch } from 'hooks';
 
 import { setSettingsVisible } from 'features/timer';
 
-import SvgButton from 'components/SvgButton';
+import { SvgButton } from 'components';
 import { ReactComponent as SvgCross } from 'assets/x.svg';
 
 export const TimerSettingsCrossButton = () => {

@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 
 import { TIMER_MODES, setMode } from 'features/timer';
 
-import ModeButton from 'components/ModeButton';
+import { ModeButton } from 'components';
 
 import styles from './styles.module.css';
 

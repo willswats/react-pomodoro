@@ -7,7 +7,7 @@ import {
   TIMER_MODES,
 } from 'features/timer';
 
-import SvgButton from 'components/SvgButton';
+import { SvgButton } from 'components';
 import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
 
 export const TimerRestartButton = () => {

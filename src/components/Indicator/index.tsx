@@ -8,7 +8,12 @@ interface IndicatorProps {
   clickHandler: (event: MouseEvent) => void;
 }
 
-const Indicator = ({ id, index, completed, clickHandler }: IndicatorProps) => {
+export const Indicator = ({
+  id,
+  index,
+  completed,
+  clickHandler,
+}: IndicatorProps) => {
   return (
     <span
       onClick={clickHandler}
@@ -21,5 +26,3 @@ const Indicator = ({ id, index, completed, clickHandler }: IndicatorProps) => {
     />
   );
 };
-
-export default Indicator;

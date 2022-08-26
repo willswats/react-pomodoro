@@ -2,7 +2,7 @@ import { useAppDispatch } from 'hooks';
 
 import { setRunning } from 'features/timer';
 
-import SvgButton from 'components/SvgButton';
+import { SvgButton } from 'components';
 import { ReactComponent as SvgPlay } from 'assets/play.svg';
 
 export const TimerPlayButton = () => {

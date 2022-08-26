@@ -2,7 +2,7 @@ import { useAppDispatch } from 'hooks';
 
 import { setPomodoroCountBackwards } from 'features/timer';
 
-import SvgButton from 'components/SvgButton';
+import { SvgButton } from 'components';
 import { ReactComponent as SvgSkipBackwards } from 'assets/skip-back.svg';
 
 export const TimerSkipBackwardsButton = () => {

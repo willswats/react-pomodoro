@@ -11,8 +11,7 @@ import {
 import { ReactComponent as SvgCheck } from 'assets/check.svg';
 import { ReactComponent as SvgRefresh } from 'assets/refresh-cw.svg';
 
-import SettingsInput from 'components/SettingsInput';
-import SvgButton from 'components/SvgButton';
+import { SettingsInput, SvgButton } from 'components';
 
 import { TimerSettingsCrossButton } from 'features/timer';
 

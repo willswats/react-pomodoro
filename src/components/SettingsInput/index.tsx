@@ -9,7 +9,7 @@ interface SettingsInputProps {
   changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SettingsInput = ({
+export const SettingsInput = ({
   id,
   labelText,
   inputValue,
@@ -30,5 +30,3 @@ const SettingsInput = ({
     </div>
   );
 };
-
-export default SettingsInput;

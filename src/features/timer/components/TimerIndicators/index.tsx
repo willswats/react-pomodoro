@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 
 import { setPomodoroCount } from 'features/timer';
 
-import Indicator from 'components/Indicator';
+import { Indicator } from 'components';
 
 import styles from './styles.module.css';
 

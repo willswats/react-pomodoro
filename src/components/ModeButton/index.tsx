@@ -7,7 +7,7 @@ interface ModeButtonProps {
   clickHandler: () => void;
 }
 
-const ModeButton = ({
+export const ModeButton = ({
   text,
   buttonMode,
   timerMode,
@@ -24,5 +24,3 @@ const ModeButton = ({
     </button>
   );
 };
-
-export default ModeButton;

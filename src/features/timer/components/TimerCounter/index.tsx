@@ -11,7 +11,7 @@ import {
 
 import { convertTime } from 'features/timer';
 
-import CounterInput from 'components/CounterInput';
+import { CounterInput } from 'components';
 
 import styles from './styles.module.css';
 

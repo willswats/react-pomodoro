@@ -9,7 +9,7 @@ interface CounterInputProps {
   blurHandler: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
-const CounterInput = ({
+export const CounterInput = ({
   id,
   inputValue,
   changeHandler,
@@ -25,5 +25,3 @@ const CounterInput = ({
     />
   );
 };
-
-export default CounterInput;
