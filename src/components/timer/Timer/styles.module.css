@@ -17,6 +17,27 @@
   transition: 1s;
 }
 
+.timer__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer__middle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.timer__bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.timer__bottom button {
+  margin: 0 0.25rem;
+}
+
 @media screen and (max-width: 768px) {
   .timer__content {
     width: 100%;

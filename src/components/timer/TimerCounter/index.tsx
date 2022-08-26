@@ -9,7 +9,7 @@ import {
   skipForwards,
 } from 'store/timerSlice';
 
-import CounterInput from 'components/common/CounterInput';
+import CounterInput from 'components/ui/CounterInput';
 
 import convertTime from 'utils/convertTime';
 

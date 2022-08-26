@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setPomodoroCount } from 'store/timerSlice';
 
-import Indicator from 'components/common/Indicator';
+import Indicator from 'components/ui/Indicator';
 
 import styles from './styles.module.css';
 

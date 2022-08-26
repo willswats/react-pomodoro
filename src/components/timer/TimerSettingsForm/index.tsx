@@ -10,8 +10,8 @@ import {
 import { ReactComponent as SvgCheck } from 'assets/svgs/check.svg';
 import { ReactComponent as SvgRefresh } from 'assets/svgs/refresh-cw.svg';
 
-import SettingsInput from 'components/common/SettingsInput';
-import SvgButton from 'components/common/SvgButton';
+import SettingsInput from 'components/ui/SettingsInput';
+import SvgButton from 'components/ui/SvgButton';
 import TimerCrossButton from 'components/timer/TimerSettingsCrossButton';
 
 import styles from './styles.module.css';

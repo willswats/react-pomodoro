@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'store/hooks';
 import { skipBackwards } from 'store/timerSlice';
 
-import SvgButton from 'components/common/SvgButton';
+import SvgButton from 'components/ui/SvgButton';
 import { ReactComponent as SvgSkipBackwards } from 'assets/svgs/skip-back.svg';
 
 const TimerSkipBackwardsButton = () => {

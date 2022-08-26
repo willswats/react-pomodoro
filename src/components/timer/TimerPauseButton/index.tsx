@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'store/hooks';
 import { setRunning } from 'store/timerSlice';
 
-import SvgButton from 'components/common/SvgButton';
+import SvgButton from 'components/ui/SvgButton';
 import { ReactComponent as SvgPause } from 'assets/svgs/pause.svg';
 
 const TimerPauseButton = () => {
