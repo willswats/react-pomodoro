@@ -1,22 +1,24 @@
 import { useState, FormEvent, MouseEvent, ChangeEvent } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
+
 import {
   initialTimerState,
   setSettings,
   setSettingsVisible,
-} from 'store/timerSlice';
+} from 'features/timer';
 
-import { ReactComponent as SvgCheck } from 'assets/svgs/check.svg';
-import { ReactComponent as SvgRefresh } from 'assets/svgs/refresh-cw.svg';
+import { ReactComponent as SvgCheck } from 'assets/check.svg';
+import { ReactComponent as SvgRefresh } from 'assets/refresh-cw.svg';
 
-import SettingsInput from 'components/ui/SettingsInput';
-import SvgButton from 'components/ui/SvgButton';
-import TimerCrossButton from 'components/timer/TimerSettingsCrossButton';
+import SettingsInput from 'components/SettingsInput';
+import SvgButton from 'components/SvgButton';
+
+import { TimerSettingsCrossButton } from 'features/timer';
 
 import styles from './styles.module.css';
 
-const TimerSettingsForm = () => {
+export const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.timer.settings);
 
@@ -112,7 +114,7 @@ const TimerSettingsForm = () => {
     >
       <div className={styles['timer-settings-form__top']}>
         <h1 className={styles['timer-settings-form__title']}>Settings</h1>
-        <TimerCrossButton />
+        <TimerSettingsCrossButton />
       </div>
       <div className={styles['timer-settings-form__middle']}>
         <div className={styles['timer-settings-form__middle-grid']}>
@@ -152,5 +154,3 @@ const TimerSettingsForm = () => {
     </form>
   );
 };
-
-export default TimerSettingsForm;

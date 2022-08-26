@@ -1,10 +1,11 @@
 import { useAppDispatch } from 'hooks';
-import { setRunning } from 'store/timerSlice';
 
-import SvgButton from 'components/ui/SvgButton';
-import { ReactComponent as SvgPause } from 'assets/svgs/pause.svg';
+import { setRunning } from 'features/timer';
 
-const TimerPauseButton = () => {
+import SvgButton from 'components/SvgButton';
+import { ReactComponent as SvgPause } from 'assets/pause.svg';
+
+export const TimerPauseButton = () => {
   const dispatch = useAppDispatch();
 
   const timerPauseButtonClickHandler = () => {
@@ -15,5 +16,3 @@ const TimerPauseButton = () => {
     <SvgButton svg={<SvgPause />} clickHandler={timerPauseButtonClickHandler} />
   );
 };
-
-export default TimerPauseButton;

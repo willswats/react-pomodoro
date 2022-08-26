@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { TIMER_MODES, setMode } from 'store/timerSlice';
 
-import ModeButton from 'components/ui/ModeButton';
+import { TIMER_MODES, setMode } from 'features/timer';
+
+import ModeButton from 'components/ModeButton';
 
 import styles from './styles.module.css';
 
-const TimerModes = () => {
+export const TimerModes = () => {
   const dispatch = useAppDispatch();
   const timer = useAppSelector((state) => state.timer);
 
@@ -46,5 +47,3 @@ const TimerModes = () => {
     </div>
   );
 };
-
-export default TimerModes;

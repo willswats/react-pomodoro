@@ -1,15 +1,16 @@
 import { useAppDispatch } from 'hooks';
+
 import {
   setMode,
   setPomodoroCount,
   setTimeRemainingToSettings,
   TIMER_MODES,
-} from 'store/timerSlice';
+} from 'features/timer';
 
-import SvgButton from 'components/ui/SvgButton';
-import { ReactComponent as SvgRestart } from 'assets/svgs/refresh-cw.svg';
+import SvgButton from 'components/SvgButton';
+import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
 
-const RestartButton = () => {
+export const TimerRestartButton = () => {
   const dispatch = useAppDispatch();
 
   const restartButtonClickHandler = () => {
@@ -22,5 +23,3 @@ const RestartButton = () => {
     <SvgButton svg={<SvgRestart />} clickHandler={restartButtonClickHandler} />
   );
 };
-
-export default RestartButton;

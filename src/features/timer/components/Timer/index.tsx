@@ -1,22 +1,21 @@
-import TimerRestartButton from 'components/timer/TimerRestartButton';
-import TimerIndicators from 'components/timer/TimerIndicators';
-import TimerSettingsButton from 'components/timer/TimerSettingsButton';
-
-import TimerModes from '../TimerModes';
-import TimerCounter from '../TimerCounter';
-
-import TimerSkipBackwardsButton from 'components/timer/TimerSkipBackwardsButton';
-import TimerPlayButton from 'components/timer/TimerPlayButton';
-import TimerPauseButton from 'components/timer/TimerPauseButton';
-import TimerSkipForwardsButton from 'components/timer/TimerSkipForwardsButton';
-
-import TimerSettingsForm from 'components/timer/TimerSettingsForm';
+import {
+  TimerRestartButton,
+  TimerIndicators,
+  TimerSettingsButton,
+  TimerModes,
+  TimerCounter,
+  TimerSkipBackwardsButton,
+  TimerPlayButton,
+  TimerPauseButton,
+  TimerSkipForwardsButton,
+  TimerSettingsForm,
+} from 'features/timer';
 
 import { useAppSelector } from 'hooks';
 
 import styles from './styles.module.css';
 
-const Timer = () => {
+export const Timer = () => {
   const timer = useAppSelector((state) => state.timer);
 
   return (
@@ -50,5 +49,3 @@ const Timer = () => {
     </div>
   );
 };
-
-export default Timer;

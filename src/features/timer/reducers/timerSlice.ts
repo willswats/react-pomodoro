@@ -106,7 +106,7 @@ const timerSlice = createSlice({
       state.running = false;
       state.settingsChanged = false;
     },
-    skipBackwards(state) {
+    setPomodoroCountBackwards(state) {
       if (state.pomodoroCount > 0) {
         if (state.mode === TIMER_MODES.POMODORO) {
           state.mode = TIMER_MODES.SHORT_BREAK;
@@ -125,7 +125,7 @@ const timerSlice = createSlice({
         state.running = false;
       }
     },
-    skipForwards(state) {
+    setPomodoroCountForwards(state) {
       // Long break condition
       if (
         state.pomodoroCount + 1 === state.settings.longBreakInterval &&
@@ -191,11 +191,11 @@ export const {
   setRunning,
   setTimeRemaining,
   setTimeRemainingToSettings,
-  skipBackwards,
-  skipForwards,
+  setPomodoroCountBackwards,
+  setPomodoroCountForwards,
   setPomodoroCount,
   setSettingsVisible,
   setSettings,
 } = timerSlice.actions;
 
-export default timerSlice.reducer;
+export const timerReducer = timerSlice.reducer;

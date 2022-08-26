@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { setPomodoroCount } from 'store/timerSlice';
 
-import Indicator from 'components/ui/Indicator';
+import { setPomodoroCount } from 'features/timer';
+
+import Indicator from 'components/Indicator';
 
 import styles from './styles.module.css';
 
-const TimerIndicators = () => {
+export const TimerIndicators = () => {
   const dispatch = useAppDispatch();
 
   const timer = useAppSelector((state) => state.timer);
@@ -36,5 +37,3 @@ const TimerIndicators = () => {
     </div>
   );
 };
-
-export default TimerIndicators;

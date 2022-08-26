@@ -6,16 +6,16 @@ import {
   setRunning,
   setTimeRemaining,
   setTimeRemainingToSettings,
-  skipForwards,
-} from 'store/timerSlice';
+  setPomodoroCountForwards,
+} from 'features/timer';
 
-import CounterInput from 'components/ui/CounterInput';
+import { convertTime } from 'features/timer';
 
-import convertTime from 'utils/convertTime';
+import CounterInput from 'components/CounterInput';
 
 import styles from './styles.module.css';
 
-const TimerCounter = () => {
+export const TimerCounter = () => {
   const dispatch = useAppDispatch();
   const timer = useAppSelector((state) => state.timer);
   const timeRemaining = useAppSelector((state) => state.timer.timeRemaining);
@@ -88,7 +88,7 @@ const TimerCounter = () => {
     // Timer logic
     const intervalId = setInterval(() => {
       if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
-        dispatch(skipForwards());
+        dispatch(setPomodoroCountForwards());
       } else if (timeRemaining.seconds === 0) {
         dispatch(
           setTimeRemaining({ minutes: timeRemaining.minutes - 1, seconds: 59 })
@@ -139,5 +139,3 @@ const TimerCounter = () => {
     </div>
   );
 };
-
-export default TimerCounter;

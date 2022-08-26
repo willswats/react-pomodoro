@@ -1,13 +1,13 @@
-import Timer from 'components/timer/Timer';
+import { Timer } from 'features/timer';
 
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <Timer />
     </div>
   );
-}
+};
 
 export default App;

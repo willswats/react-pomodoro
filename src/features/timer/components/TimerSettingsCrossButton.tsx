@@ -1,10 +1,11 @@
 import { useAppDispatch } from 'hooks';
-import { setSettingsVisible } from 'store/timerSlice';
 
-import SvgButton from 'components/ui/SvgButton';
-import { ReactComponent as SvgCross } from 'assets/svgs/x.svg';
+import { setSettingsVisible } from 'features/timer';
 
-const TimerSettingsCrossButton = () => {
+import SvgButton from 'components/SvgButton';
+import { ReactComponent as SvgCross } from 'assets/x.svg';
+
+export const TimerSettingsCrossButton = () => {
   const dispatch = useAppDispatch();
 
   const timerSettingsCrossButtonClickHandler = () => {
@@ -18,5 +19,3 @@ const TimerSettingsCrossButton = () => {
     />
   );
 };
-
-export default TimerSettingsCrossButton;

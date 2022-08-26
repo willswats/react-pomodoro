@@ -1,10 +1,11 @@
 import { useAppDispatch } from 'hooks';
-import { setRunning } from 'store/timerSlice';
 
-import SvgButton from 'components/ui/SvgButton';
-import { ReactComponent as SvgPlay } from 'assets/svgs/play.svg';
+import { setRunning } from 'features/timer';
 
-const TimerPlayButton = () => {
+import SvgButton from 'components/SvgButton';
+import { ReactComponent as SvgPlay } from 'assets/play.svg';
+
+export const TimerPlayButton = () => {
   const dispatch = useAppDispatch();
 
   const timerPlayButtonClickHandler = () => {
@@ -15,5 +16,3 @@ const TimerPlayButton = () => {
     <SvgButton svg={<SvgPlay />} clickHandler={timerPlayButtonClickHandler} />
   );
 };
-
-export default TimerPlayButton;

@@ -1,10 +1,11 @@
 import { useAppDispatch } from 'hooks';
-import { setSettingsVisible } from 'store/timerSlice';
 
-import SvgButton from 'components/ui/SvgButton';
-import { ReactComponent as SvgSettings } from 'assets/svgs/settings.svg';
+import { setSettingsVisible } from 'features/timer';
 
-const TimerSettingsButton = () => {
+import SvgButton from 'components/SvgButton';
+import { ReactComponent as SvgSettings } from 'assets/settings.svg';
+
+export const TimerSettingsButton = () => {
   const dispatch = useAppDispatch();
 
   const settingsButtonClickHandler = () => {
@@ -18,5 +19,3 @@ const TimerSettingsButton = () => {
     />
   );
 };
-
-export default TimerSettingsButton;
