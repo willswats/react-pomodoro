@@ -22,9 +22,9 @@ export const TimerSettingsForm = () => {
   const settings = useAppSelector((state) => state.timer.settings);
 
   const [inputValues, setInputValues] = useState({
-    pomodoro: `${settings.pomodoroMinutes}`,
-    shortBreak: `${settings.shortBreakMinutes}`,
-    longBreak: `${settings.longBreakMinutes}`,
+    pomodoro: `${settings.pomodoro}`,
+    shortBreak: `${settings.shortBreak}`,
+    longBreak: `${settings.longBreak}`,
     longBreakInterval: `${settings.longBreakInterval}`,
   });
 
@@ -46,9 +46,9 @@ export const TimerSettingsForm = () => {
     ) {
       dispatch(
         setSettings({
-          pomodoroMinutes: convertedInputValues.pomodoro,
-          shortBreakMinutes: convertedInputValues.shortBreak,
-          longBreakMinutes: convertedInputValues.longBreak,
+          pomodoro: convertedInputValues.pomodoro,
+          shortBreak: convertedInputValues.shortBreak,
+          longBreak: convertedInputValues.longBreak,
           longBreakInterval: convertedInputValues.longBreakInterval,
         })
       );
@@ -99,9 +99,9 @@ export const TimerSettingsForm = () => {
     event.preventDefault();
     setInputValues(() => {
       return {
-        pomodoro: `${initialTimerState.settings.pomodoroMinutes}`,
-        shortBreak: `${initialTimerState.settings.shortBreakMinutes}`,
-        longBreak: `${initialTimerState.settings.longBreakMinutes}`,
+        pomodoro: `${initialTimerState.settings.pomodoro}`,
+        shortBreak: `${initialTimerState.settings.shortBreak}`,
+        longBreak: `${initialTimerState.settings.longBreak}`,
         longBreakInterval: `${initialTimerState.settings.longBreakInterval}`,
       };
     });
