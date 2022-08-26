@@ -41,8 +41,7 @@ export const TimerSettingsForm = () => {
       !isNaN(convertedInputValues.pomodoro) &&
       !isNaN(convertedInputValues.shortBreak) &&
       !isNaN(convertedInputValues.longBreak) &&
-      !isNaN(convertedInputValues.longBreakInterval) &&
-      convertedInputValues.longBreakInterval <= 10
+      !isNaN(convertedInputValues.longBreakInterval)
     ) {
       dispatch(
         setSettings({

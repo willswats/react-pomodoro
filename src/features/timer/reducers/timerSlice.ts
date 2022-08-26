@@ -19,8 +19,12 @@ interface TimerState {
   timeRemaining: { minutes: number; seconds: number };
   pomodoroCount: number;
   settingsVisible: boolean;
-  settingsChanged: boolean;
   settings: TimerSettingsState;
+  settingsChanged: {
+    pomodoro: boolean;
+    shortBreak: boolean;
+    longBreak: boolean;
+  };
 }
 
 export const initialTimerState: TimerState = {
@@ -32,12 +36,16 @@ export const initialTimerState: TimerState = {
   },
   pomodoroCount: 0,
   settingsVisible: false,
-  settingsChanged: false,
   settings: {
     pomodoro: 25,
     shortBreak: 5,
     longBreak: 15,
     longBreakInterval: 5,
+  },
+  settingsChanged: {
+    pomodoro: false,
+    shortBreak: false,
+    longBreak: false,
   },
 };
 
@@ -84,27 +92,40 @@ const timerSlice = createSlice({
       }
     },
     setTimeRemainingToSettings(state) {
-      switch (state.mode) {
-        case TIMER_MODES.POMODORO:
-          state.timeRemaining = {
-            minutes: state.settings.pomodoro,
-            seconds: 0,
-          };
-          break;
-        case TIMER_MODES.SHORT_BREAK:
-          state.timeRemaining = {
-            minutes: state.settings.shortBreak,
-            seconds: 0,
-          };
-          break;
-        case TIMER_MODES.LONG_BREAK:
-          state.timeRemaining = {
-            minutes: state.settings.longBreak,
-            seconds: 0,
-          };
+      if (
+        state.mode === TIMER_MODES.POMODORO &&
+        state.settingsChanged.pomodoro === true
+      ) {
+        state.timeRemaining = {
+          minutes: state.settings.pomodoro,
+          seconds: 0,
+        };
+        state.settingsChanged.pomodoro = true;
+      } else if (
+        state.mode === TIMER_MODES.SHORT_BREAK &&
+        state.settingsChanged.shortBreak === true
+      ) {
+        state.timeRemaining = {
+          minutes: state.settings.shortBreak,
+          seconds: 0,
+        };
+        state.settingsChanged.shortBreak = true;
+      } else if (
+        state.mode === TIMER_MODES.LONG_BREAK &&
+        state.settingsChanged.longBreak === true
+      ) {
+        state.timeRemaining = {
+          minutes: state.settings.longBreak,
+          seconds: 0,
+        };
+        state.settingsChanged.longBreak = true;
+      } else {
+        state.settingsChanged = {
+          pomodoro: false,
+          shortBreak: false,
+          longBreak: false,
+        };
       }
-      state.running = false;
-      state.settingsChanged = false;
     },
     setPomodoroCountBackwards(state) {
       if (state.pomodoroCount > 0) {
@@ -175,7 +196,18 @@ const timerSlice = createSlice({
       state.settingsVisible = payload;
     },
     setSettings(state, { payload }: PayloadAction<TimerSettingsState>) {
-      state.settingsChanged = true;
+      if (state.settings.pomodoro !== payload.pomodoro) {
+        state.settingsChanged.pomodoro = true;
+      }
+
+      if (state.settings.shortBreak !== payload.shortBreak) {
+        state.settingsChanged.shortBreak = true;
+      }
+
+      if (state.settings.longBreak !== payload.longBreak) {
+        state.settingsChanged.longBreak = true;
+      }
+
       state.settings = {
         pomodoro: payload.pomodoro,
         shortBreak: payload.shortBreak,

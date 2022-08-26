@@ -81,7 +81,11 @@ export const TimerCounter = () => {
       seconds: convertTime(timeRemaining.seconds),
     });
     // Change time when the settings are changed
-    if (timer.settingsChanged === true) {
+    if (
+      timer.settingsChanged.pomodoro === true ||
+      timer.settingsChanged.shortBreak === true ||
+      timer.settingsChanged.longBreak === true
+    ) {
       dispatch(setTimeRemainingToSettings());
     }
 
