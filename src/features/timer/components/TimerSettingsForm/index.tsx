@@ -8,12 +8,11 @@ import {
   setSettingsVisible,
 } from 'features/timer';
 
+import { ReactComponent as SvgCross } from 'assets/x.svg';
 import { ReactComponent as SvgCheck } from 'assets/check.svg';
-import { ReactComponent as SvgRefresh } from 'assets/refresh-cw.svg';
+import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
 
 import { SettingsInput, SvgButton } from 'components';
-
-import { TimerSettingsCrossButton } from 'features/timer';
 
 import styles from './styles.module.css';
 
@@ -113,7 +112,10 @@ export const TimerSettingsForm = () => {
     >
       <div className={styles['timer-settings-form__top']}>
         <h1 className={styles['timer-settings-form__title']}>Settings</h1>
-        <TimerSettingsCrossButton />
+        <SvgButton
+          svg={<SvgCross />}
+          clickHandler={() => dispatch(setSettingsVisible(false))}
+        />
       </div>
       <div className={styles['timer-settings-form__middle']}>
         <div className={styles['timer-settings-form__middle-grid']}>
@@ -145,7 +147,7 @@ export const TimerSettingsForm = () => {
       </div>
       <div className={styles['timer-settings-form__bottom']}>
         <SvgButton
-          svg={<SvgRefresh />}
+          svg={<SvgRestart />}
           clickHandler={resetButtonClickHandler}
         />
         <SvgButton svg={<SvgCheck />} />
