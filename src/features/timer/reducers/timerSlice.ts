@@ -54,6 +54,10 @@ const timerSlice = createSlice({
   initialState: initialTimerState,
   reducers: {
     setMode(state, { payload }: PayloadAction<string>) {
+      state.mode = payload;
+      state.running = false;
+      state.timeRemaining.seconds = 0;
+
       if (state.mode !== payload) {
         switch (payload) {
           case TIMER_MODES.POMODORO:
@@ -66,9 +70,6 @@ const timerSlice = createSlice({
             state.timeRemaining.minutes = state.settings.longBreak;
             break;
         }
-        state.timeRemaining.seconds = 0;
-        state.running = false;
-        state.mode = payload;
       }
     },
     setRunning(state, { payload }: PayloadAction<boolean>) {
@@ -78,10 +79,10 @@ const timerSlice = createSlice({
       state,
       { payload }: PayloadAction<{ minutes: number; seconds: number }>
     ) {
-      // Stop timer when minutes and seconds are 0
+      // Stop running when minutes and seconds are less than or equal to 0
       if (
-        state.timeRemaining.minutes === 0 &&
-        state.timeRemaining.seconds === 0
+        state.timeRemaining.minutes <= 0 &&
+        state.timeRemaining.seconds <= 0
       ) {
         state.running = false;
       } else {
@@ -213,7 +214,7 @@ const timerSlice = createSlice({
         longBreakInterval: payload.longBreakInterval,
       };
     },
-    restartToSettings(state) {
+    resetToSettings(state) {
       state.running = false;
       state.pomodoroCount = 0;
       state.mode = TIMER_MODES.POMODORO;
@@ -235,7 +236,7 @@ export const {
   setPomodoroCount,
   setSettingsVisible,
   setSettings,
-  restartToSettings,
+  resetToSettings,
 } = timerSlice.actions;
 
 export const timerReducer = timerSlice.reducer;

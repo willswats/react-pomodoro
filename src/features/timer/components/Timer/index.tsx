@@ -3,7 +3,7 @@ import {
   TimerModes,
   TimerCounter,
   TimerSettingsForm,
-  restartToSettings,
+  resetToSettings,
   setSettingsVisible,
   setPomodoroCountBackwards,
   setPomodoroCountForwards,
@@ -35,7 +35,7 @@ export const Timer = () => {
             <div className={styles['timer__top']}>
               <SvgButton
                 svg={<SvgRestart />}
-                clickHandler={() => dispatch(restartToSettings())}
+                clickHandler={() => dispatch(resetToSettings())}
               />
               <TimerIndicators />
               <SvgButton

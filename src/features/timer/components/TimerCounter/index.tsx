@@ -7,9 +7,8 @@ import {
   setTimeRemaining,
   setTimeRemainingToSettings,
   setPomodoroCountForwards,
+  convertTime,
 } from 'features/timer';
-
-import { convertTime } from 'features/timer';
 
 import { CounterInput } from 'components';
 
@@ -25,7 +24,9 @@ export const TimerCounter = () => {
     seconds: `${timeRemaining.seconds}`,
   });
 
+  // Update the timeRemaining with the input values on blur
   const counterInputBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    // Get id of the input
     const id = event.target.id;
     switch (id) {
       case 'minutes':
@@ -52,9 +53,15 @@ export const TimerCounter = () => {
     }
   };
 
+  // Update the input values
   const counterInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    // Get id of the input
     const id = event.target.id;
-    dispatch(setRunning(false));
+
+    if (timer.running === true) {
+      dispatch(setRunning(false));
+    }
+
     switch (id) {
       case 'minutes':
         setCounterInputValues((state) => {
@@ -91,13 +98,24 @@ export const TimerCounter = () => {
 
     // Timer logic
     const intervalId = setInterval(() => {
-      if (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) {
+      if (
+        (timeRemaining.minutes === 0 && timeRemaining.seconds === 0) ||
+        timeRemaining.minutes < 0 ||
+        timeRemaining.seconds < 0
+      ) {
+        // Skip forwards if minutes and seconds are 0
+        // Skip forwards if minutes or seconds are less than 0 (user could input negative numbers)
         dispatch(setPomodoroCountForwards());
       } else if (timeRemaining.seconds === 0) {
+        // Subtract minute if seconds === 0
         dispatch(
-          setTimeRemaining({ minutes: timeRemaining.minutes - 1, seconds: 59 })
+          setTimeRemaining({
+            minutes: timeRemaining.minutes - 1,
+            seconds: 59,
+          })
         );
       } else {
+        // Subtract second
         dispatch(
           setTimeRemaining({
             minutes: timeRemaining.minutes,
