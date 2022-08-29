@@ -54,10 +54,6 @@ const timerSlice = createSlice({
   initialState: initialTimerState,
   reducers: {
     setMode(state, { payload }: PayloadAction<string>) {
-      state.mode = payload;
-      state.running = false;
-      state.timeRemaining.seconds = 0;
-
       if (state.mode !== payload) {
         switch (payload) {
           case TIMER_MODES.POMODORO:
@@ -71,6 +67,10 @@ const timerSlice = createSlice({
             break;
         }
       }
+
+      state.mode = payload;
+      state.running = false;
+      state.timeRemaining.seconds = 0;
     },
     setRunning(state, { payload }: PayloadAction<boolean>) {
       state.running = payload;

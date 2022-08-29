@@ -23,7 +23,6 @@ export const SettingsInput = ({
       <input
         className={styles['settings-input__input']}
         id={id}
-        type="number"
         value={inputValue}
         onChange={changeHandler}
       />

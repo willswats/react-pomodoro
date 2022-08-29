@@ -57,11 +57,13 @@ export const TimerCounter = () => {
   const counterInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     // Get id of the input
     const id = event.target.id;
+    const value = event.target.value;
 
     if (timer.running === true) {
       dispatch(setRunning(false));
     }
-    if (event.target.value.length <= 2) {
+
+    if (value.length <= 2) {
       switch (id) {
         case 'minutes':
           setCounterInputValues((state) => {

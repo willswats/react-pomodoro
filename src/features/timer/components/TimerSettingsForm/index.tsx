@@ -58,39 +58,42 @@ export const TimerSettingsForm = () => {
     // Get id of input and set value of selected input
     const id = event.target.id;
     const value = event.target.value;
-    switch (id) {
-      case 'pomodoro':
-        setInputValues((state) => {
-          return {
-            ...state,
-            pomodoro: value,
-          };
-        });
-        break;
-      case 'short-break':
-        setInputValues((state) => {
-          return {
-            ...state,
-            shortBreak: value,
-          };
-        });
-        break;
-      case 'long-break':
-        setInputValues((state) => {
-          return {
-            ...state,
-            longBreak: value,
-          };
-        });
-        break;
-      case 'long-break-interval':
-        setInputValues((state) => {
-          return {
-            ...state,
-            longBreakInterval: value,
-          };
-        });
-        break;
+
+    if (value.length <= 2) {
+      switch (id) {
+        case 'pomodoro':
+          setInputValues((state) => {
+            return {
+              ...state,
+              pomodoro: value,
+            };
+          });
+          break;
+        case 'short-break':
+          setInputValues((state) => {
+            return {
+              ...state,
+              shortBreak: value,
+            };
+          });
+          break;
+        case 'long-break':
+          setInputValues((state) => {
+            return {
+              ...state,
+              longBreak: value,
+            };
+          });
+          break;
+        case 'long-break-interval':
+          setInputValues((state) => {
+            return {
+              ...state,
+              longBreakInterval: value,
+            };
+          });
+          break;
+      }
     }
   };
 
