@@ -61,23 +61,24 @@ export const TimerCounter = () => {
     if (timer.running === true) {
       dispatch(setRunning(false));
     }
-
-    switch (id) {
-      case 'minutes':
-        setCounterInputValues((state) => {
-          return {
-            ...state,
-            minutes: event.target.value,
-          };
-        });
-        break;
-      case 'seconds':
-        setCounterInputValues((state) => {
-          return {
-            ...state,
-            seconds: event.target.value,
-          };
-        });
+    if (event.target.value.length <= 2) {
+      switch (id) {
+        case 'minutes':
+          setCounterInputValues((state) => {
+            return {
+              ...state,
+              minutes: event.target.value,
+            };
+          });
+          break;
+        case 'seconds':
+          setCounterInputValues((state) => {
+            return {
+              ...state,
+              seconds: event.target.value,
+            };
+          });
+      }
     }
   };
 

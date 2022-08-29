@@ -55,6 +55,7 @@ export const TimerSettingsForm = () => {
   };
 
   const inputValueChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    // Get id of input and set value of selected input
     const id = event.target.id;
     const value = event.target.value;
     switch (id) {
