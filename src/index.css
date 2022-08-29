@@ -20,6 +20,7 @@ button {
 input {
   color: #fff;
   border: none;
+  outline: none;
 }
 
 /* Chrome, Safari, Edge, Opera */
