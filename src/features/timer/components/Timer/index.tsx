@@ -37,13 +37,13 @@ export const Timer = () => {
                 svg={<SvgRestart />}
                 clickHandler={() => dispatch(resetToSettings())}
               />
-              <TimerIndicators />
               <SvgButton
                 svg={<SvgSettings />}
                 clickHandler={() => dispatch(setSettingsVisible(true))}
               />
             </div>
             <div className={styles['timer__middle']}>
+              <TimerIndicators />
               <TimerModes />
               <TimerCounter />
             </div>
