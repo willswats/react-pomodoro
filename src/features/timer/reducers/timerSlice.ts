@@ -96,29 +96,29 @@ const timerSlice = createSlice({
         state.mode === TIMER_MODES.POMODORO &&
         state.settingsChanged.pomodoro === true
       ) {
+        state.settingsChanged.pomodoro = false;
         state.timeRemaining = {
           minutes: state.settings.pomodoro,
           seconds: 0,
         };
-        state.settingsChanged.pomodoro = true;
       } else if (
         state.mode === TIMER_MODES.SHORT_BREAK &&
         state.settingsChanged.shortBreak === true
       ) {
+        state.settingsChanged.shortBreak = false;
         state.timeRemaining = {
           minutes: state.settings.shortBreak,
           seconds: 0,
         };
-        state.settingsChanged.shortBreak = true;
       } else if (
         state.mode === TIMER_MODES.LONG_BREAK &&
         state.settingsChanged.longBreak === true
       ) {
+        state.settingsChanged.longBreak = false;
         state.timeRemaining = {
           minutes: state.settings.longBreak,
           seconds: 0,
         };
-        state.settingsChanged.longBreak = true;
       } else {
         state.settingsChanged = {
           pomodoro: false,
@@ -199,11 +199,9 @@ const timerSlice = createSlice({
       if (state.settings.pomodoro !== payload.pomodoro) {
         state.settingsChanged.pomodoro = true;
       }
-
       if (state.settings.shortBreak !== payload.shortBreak) {
         state.settingsChanged.shortBreak = true;
       }
-
       if (state.settings.longBreak !== payload.longBreak) {
         state.settingsChanged.longBreak = true;
       }
@@ -213,6 +211,15 @@ const timerSlice = createSlice({
         shortBreak: payload.shortBreak,
         longBreak: payload.longBreak,
         longBreakInterval: payload.longBreakInterval,
+      };
+    },
+    restartToSettings(state) {
+      state.running = false;
+      state.pomodoroCount = 0;
+      state.mode = TIMER_MODES.POMODORO;
+      state.timeRemaining = {
+        minutes: state.settings.pomodoro,
+        seconds: 0,
       };
     },
   },
@@ -228,6 +235,7 @@ export const {
   setPomodoroCount,
   setSettingsVisible,
   setSettings,
+  restartToSettings,
 } = timerSlice.actions;
 
 export const timerReducer = timerSlice.reducer;
