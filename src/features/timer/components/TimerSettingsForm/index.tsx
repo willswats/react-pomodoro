@@ -199,7 +199,6 @@ export const TimerSettingsForm = () => {
       className={styles['timer-settings-form']}
     >
       <div className={styles['timer-settings-form__top']}>
-        <h1 className={styles['timer-settings-form__title']}>Settings</h1>
         <SvgButton
           svg={<SvgCross />}
           clickHandler={() => dispatch(setSettingsVisible(false))}

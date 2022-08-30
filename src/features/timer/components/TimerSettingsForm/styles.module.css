@@ -8,13 +8,7 @@
 
 .timer-settings-form__top {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.timer-settings-form__title {
-  font-size: 4rem;
+  justify-content: flex-end;
 }
 
 .timer-settings-form__middle {
@@ -26,6 +20,7 @@
 .timer-settings-form__middle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
 }
 
 .timer-settings-form__bottom {
