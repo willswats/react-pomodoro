@@ -27,6 +27,13 @@ export const TimerSettingsForm = () => {
     longBreakInterval: `${settings.longBreakInterval}`,
   });
 
+  const [formErrors, setFormErrors] = useState({
+    pomodoro: '',
+    shortBreak: '',
+    longBreak: '',
+    longBreakInterval: '',
+  });
+
   const settingsFormSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
 
@@ -36,11 +43,88 @@ export const TimerSettingsForm = () => {
       longBreak: parseFloat(inputValues.longBreak),
       longBreakInterval: parseFloat(inputValues.longBreakInterval),
     };
+
+    if (isNaN(convertedInputValues.pomodoro)) {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          pomodoro: 'This must be a number',
+        };
+      });
+    } else {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          pomodoro: '',
+        };
+      });
+    }
+
+    if (isNaN(convertedInputValues.shortBreak)) {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          shortBreak: 'This must be a number',
+        };
+      });
+    } else {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          shortBreak: '',
+        };
+      });
+    }
+
+    if (isNaN(convertedInputValues.longBreak)) {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          longBreak: 'This must be a number',
+        };
+      });
+    } else {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          longBreak: '',
+        };
+      });
+    }
+
+    if (isNaN(convertedInputValues.longBreakInterval)) {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          longBreakInterval: 'This must be a number',
+        };
+      });
+    } else if (
+      convertedInputValues.longBreakInterval <= 0 ||
+      convertedInputValues.longBreakInterval >= 11
+    ) {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          longBreakInterval: 'This must be between 1 & 10',
+        };
+      });
+    } else {
+      setFormErrors((prevState) => {
+        return {
+          ...prevState,
+          longBreakInterval: '',
+        };
+      });
+    }
+
     if (
       !isNaN(convertedInputValues.pomodoro) &&
       !isNaN(convertedInputValues.shortBreak) &&
       !isNaN(convertedInputValues.longBreak) &&
-      !isNaN(convertedInputValues.longBreakInterval)
+      !isNaN(convertedInputValues.longBreakInterval) &&
+      !(convertedInputValues.longBreakInterval >= 11) &&
+      !(convertedInputValues.longBreakInterval <= 0)
     ) {
       dispatch(
         setSettings({
@@ -128,24 +212,28 @@ export const TimerSettingsForm = () => {
             labelText="Pomodoro"
             inputValue={inputValues.pomodoro}
             changeHandler={inputValueChangeHandler}
+            errorText={formErrors.pomodoro}
           />
           <SettingsInput
             id="short-break"
             labelText="Short Break"
             inputValue={inputValues.shortBreak}
             changeHandler={inputValueChangeHandler}
+            errorText={formErrors.shortBreak}
           />
           <SettingsInput
             id="long-break"
             labelText="Long Break"
             inputValue={inputValues.longBreak}
             changeHandler={inputValueChangeHandler}
+            errorText={formErrors.longBreak}
           />
           <SettingsInput
             id="long-break-interval"
             labelText="Long Break Interval"
             inputValue={inputValues.longBreakInterval}
             changeHandler={inputValueChangeHandler}
+            errorText={formErrors.longBreakInterval}
           />
         </div>
       </div>

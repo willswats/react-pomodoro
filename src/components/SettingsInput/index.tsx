@@ -7,6 +7,7 @@ interface SettingsInputProps {
   labelText: string;
   inputValue: string;
   changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
+  errorText: string;
 }
 
 export const SettingsInput = ({
@@ -14,6 +15,7 @@ export const SettingsInput = ({
   labelText,
   inputValue,
   changeHandler,
+  errorText,
 }: SettingsInputProps) => {
   return (
     <div className={styles['settings-input']}>
@@ -21,11 +23,14 @@ export const SettingsInput = ({
         {labelText}
       </label>
       <input
-        className={styles['settings-input__input']}
+        className={`${styles['settings-input__input']} ${
+          errorText.length > 0 ? styles['settings-input__input-error'] : ''
+        }`}
         id={id}
         value={inputValue}
         onChange={changeHandler}
       />
+      <p className={styles['settings-input__error-text']}>{errorText}</p>
     </div>
   );
 };

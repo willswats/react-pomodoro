@@ -1,6 +1,7 @@
 .settings-input {
   display: flex;
   flex-direction: column;
+  height: 8rem;
 }
 
 .settings-input__label {
@@ -14,4 +15,13 @@
   border-radius: 4px;
   margin-bottom: 0.5rem;
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.settings-input__input-error {
+  border: 1px solid #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.settings-input__error-text {
+  color: #ff0019;
 }
