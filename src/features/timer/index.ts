@@ -7,5 +7,4 @@ export * from './components/TimerSettingsForm';
 export * from './reducers/timerSlice';
 
 export * from './utils/convertTime';
-export * from './utils/checkIsBetweenValues';
 export * from './utils/getInputErrorMessage';

@@ -1,5 +1,3 @@
-import { checkIsBetweenValues } from './checkIsBetweenValues';
-
 export const getInputErrorMessage = (inputType: string, value: number) => {
   if (
     inputType === 'pomodoro' ||
@@ -16,12 +14,12 @@ export const getInputErrorMessage = (inputType: string, value: number) => {
   if (inputType === 'long-break-interval') {
     if (isNaN(value)) {
       return 'This must be a number';
-    } else if (!checkIsBetweenValues(value, 1, 10)) {
+    } else if (value < 1 || value > 10) {
       return 'This must be between 1 and 10';
     } else {
       return '';
     }
   }
 
-  return '';
+  return 'Error';
 };

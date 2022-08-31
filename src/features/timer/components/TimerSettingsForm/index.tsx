@@ -6,7 +6,6 @@ import {
   initialTimerState,
   setSettings,
   setSettingsVisible,
-  checkIsBetweenValues,
   getInputErrorMessage,
 } from 'features/timer';
 
@@ -46,33 +45,27 @@ export const TimerSettingsForm = () => {
       longBreakInterval: parseFloat(inputValues.longBreakInterval),
     };
 
-    setFormErrors(() => {
-      return {
-        pomodoro: getInputErrorMessage(
-          'pomodoro',
-          convertedInputValues.pomodoro
-        ),
-        shortBreak: getInputErrorMessage(
-          'short-break',
-          convertedInputValues.shortBreak
-        ),
-        longBreak: getInputErrorMessage(
-          'long-break',
-          convertedInputValues.longBreak
-        ),
-        longBreakInterval: getInputErrorMessage(
-          'long-break-interval',
-          convertedInputValues.longBreakInterval
-        ),
-      };
-    });
+    const errorMessages = {
+      pomodoro: getInputErrorMessage('pomodoro', convertedInputValues.pomodoro),
+      shortBreak: getInputErrorMessage(
+        'short-break',
+        convertedInputValues.shortBreak
+      ),
+      longBreak: getInputErrorMessage(
+        'long-break',
+        convertedInputValues.longBreak
+      ),
+      longBreakInterval: getInputErrorMessage(
+        'long-break-interval',
+        convertedInputValues.longBreakInterval
+      ),
+    };
 
     if (
-      !isNaN(convertedInputValues.pomodoro) &&
-      !isNaN(convertedInputValues.shortBreak) &&
-      !isNaN(convertedInputValues.longBreak) &&
-      !isNaN(convertedInputValues.longBreakInterval) &&
-      checkIsBetweenValues(convertedInputValues.longBreakInterval, 1, 10)
+      errorMessages.pomodoro === '' &&
+      errorMessages.shortBreak === '' &&
+      errorMessages.longBreak === '' &&
+      errorMessages.longBreakInterval === ''
     ) {
       dispatch(
         setSettings({
@@ -83,6 +76,15 @@ export const TimerSettingsForm = () => {
         })
       );
       dispatch(setSettingsVisible(false));
+    } else {
+      setFormErrors(() => {
+        return {
+          pomodoro: errorMessages.pomodoro,
+          shortBreak: errorMessages.shortBreak,
+          longBreak: errorMessages.longBreak,
+          longBreakInterval: errorMessages.longBreakInterval,
+        };
+      });
     }
   };
 
