@@ -6,6 +6,8 @@ import {
   initialTimerState,
   setSettings,
   setSettingsVisible,
+  checkIsBetweenValues,
+  getInputErrorMessage,
 } from 'features/timer';
 
 import { ReactComponent as SvgCross } from 'assets/x.svg';
@@ -44,87 +46,33 @@ export const TimerSettingsForm = () => {
       longBreakInterval: parseFloat(inputValues.longBreakInterval),
     };
 
-    if (isNaN(convertedInputValues.pomodoro)) {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          pomodoro: 'This must be a number',
-        };
-      });
-    } else {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          pomodoro: '',
-        };
-      });
-    }
-
-    if (isNaN(convertedInputValues.shortBreak)) {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          shortBreak: 'This must be a number',
-        };
-      });
-    } else {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          shortBreak: '',
-        };
-      });
-    }
-
-    if (isNaN(convertedInputValues.longBreak)) {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          longBreak: 'This must be a number',
-        };
-      });
-    } else {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          longBreak: '',
-        };
-      });
-    }
-
-    if (isNaN(convertedInputValues.longBreakInterval)) {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          longBreakInterval: 'This must be a number',
-        };
-      });
-    } else if (
-      convertedInputValues.longBreakInterval <= 0 ||
-      convertedInputValues.longBreakInterval >= 11
-    ) {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          longBreakInterval: 'This must be between 1 & 10',
-        };
-      });
-    } else {
-      setFormErrors((prevState) => {
-        return {
-          ...prevState,
-          longBreakInterval: '',
-        };
-      });
-    }
+    setFormErrors(() => {
+      return {
+        pomodoro: getInputErrorMessage(
+          'pomodoro',
+          convertedInputValues.pomodoro
+        ),
+        shortBreak: getInputErrorMessage(
+          'short-break',
+          convertedInputValues.shortBreak
+        ),
+        longBreak: getInputErrorMessage(
+          'long-break',
+          convertedInputValues.longBreak
+        ),
+        longBreakInterval: getInputErrorMessage(
+          'long-break-interval',
+          convertedInputValues.longBreakInterval
+        ),
+      };
+    });
 
     if (
       !isNaN(convertedInputValues.pomodoro) &&
       !isNaN(convertedInputValues.shortBreak) &&
       !isNaN(convertedInputValues.longBreak) &&
       !isNaN(convertedInputValues.longBreakInterval) &&
-      !(convertedInputValues.longBreakInterval >= 11) &&
-      !(convertedInputValues.longBreakInterval <= 0)
+      checkIsBetweenValues(convertedInputValues.longBreakInterval, 1, 10)
     ) {
       dispatch(
         setSettings({
