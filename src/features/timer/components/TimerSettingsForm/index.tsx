@@ -13,7 +13,7 @@ import { ReactComponent as SvgCross } from 'assets/x.svg';
 import { ReactComponent as SvgCheck } from 'assets/check.svg';
 import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
 
-import { SettingsInput, SvgButton } from 'components';
+import { SettingsInput, SettingsCheck, SvgButton } from 'components';
 
 import styles from './styles.module.css';
 
@@ -21,11 +21,13 @@ export const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.timer.settings);
 
-  const [inputValues, setInputValues] = useState({
+  const [formValues, setFormValues] = useState({
     pomodoro: `${settings.pomodoro}`,
     shortBreak: `${settings.shortBreak}`,
     longBreak: `${settings.longBreak}`,
     longBreakInterval: `${settings.longBreakInterval}`,
+    endSound: settings.endSound,
+    autoContinue: settings.autoContinue,
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -38,26 +40,26 @@ export const TimerSettingsForm = () => {
   const settingsFormSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
 
-    const convertedInputValues = {
-      pomodoro: parseFloat(inputValues.pomodoro),
-      shortBreak: parseFloat(inputValues.shortBreak),
-      longBreak: parseFloat(inputValues.longBreak),
-      longBreakInterval: parseFloat(inputValues.longBreakInterval),
+    const convertedFormValues = {
+      pomodoro: parseFloat(formValues.pomodoro),
+      shortBreak: parseFloat(formValues.shortBreak),
+      longBreak: parseFloat(formValues.longBreak),
+      longBreakInterval: parseFloat(formValues.longBreakInterval),
     };
 
     const errorMessages = {
-      pomodoro: getInputErrorMessage('pomodoro', convertedInputValues.pomodoro),
+      pomodoro: getInputErrorMessage('pomodoro', convertedFormValues.pomodoro),
       shortBreak: getInputErrorMessage(
         'short-break',
-        convertedInputValues.shortBreak
+        convertedFormValues.shortBreak
       ),
       longBreak: getInputErrorMessage(
         'long-break',
-        convertedInputValues.longBreak
+        convertedFormValues.longBreak
       ),
       longBreakInterval: getInputErrorMessage(
         'long-break-interval',
-        convertedInputValues.longBreakInterval
+        convertedFormValues.longBreakInterval
       ),
     };
 
@@ -69,10 +71,12 @@ export const TimerSettingsForm = () => {
     ) {
       dispatch(
         setSettings({
-          pomodoro: convertedInputValues.pomodoro,
-          shortBreak: convertedInputValues.shortBreak,
-          longBreak: convertedInputValues.longBreak,
-          longBreakInterval: convertedInputValues.longBreakInterval,
+          pomodoro: convertedFormValues.pomodoro,
+          shortBreak: convertedFormValues.shortBreak,
+          longBreak: convertedFormValues.longBreak,
+          longBreakInterval: convertedFormValues.longBreakInterval,
+          endSound: formValues.endSound,
+          autoContinue: formValues.autoContinue,
         })
       );
       dispatch(setSettingsVisible(false));
@@ -88,7 +92,7 @@ export const TimerSettingsForm = () => {
     }
   };
 
-  const inputValueChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const settingsInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     // Get id of input and set value of selected input
     const id = event.target.id;
     const value = event.target.value;
@@ -96,7 +100,7 @@ export const TimerSettingsForm = () => {
     if (value.length <= 2) {
       switch (id) {
         case 'pomodoro':
-          setInputValues((state) => {
+          setFormValues((state) => {
             return {
               ...state,
               pomodoro: value,
@@ -104,7 +108,7 @@ export const TimerSettingsForm = () => {
           });
           break;
         case 'short-break':
-          setInputValues((state) => {
+          setFormValues((state) => {
             return {
               ...state,
               shortBreak: value,
@@ -112,7 +116,7 @@ export const TimerSettingsForm = () => {
           });
           break;
         case 'long-break':
-          setInputValues((state) => {
+          setFormValues((state) => {
             return {
               ...state,
               longBreak: value,
@@ -120,7 +124,7 @@ export const TimerSettingsForm = () => {
           });
           break;
         case 'long-break-interval':
-          setInputValues((state) => {
+          setFormValues((state) => {
             return {
               ...state,
               longBreakInterval: value,
@@ -131,14 +135,36 @@ export const TimerSettingsForm = () => {
     }
   };
 
+  const endSoundButtonClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        endSound: !formValues.endSound,
+      };
+    });
+  };
+
+  const autoContinueButtonClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        autoContinue: !formValues.autoContinue,
+      };
+    });
+  };
+
   const resetButtonClickHandler = (event: MouseEvent) => {
     event.preventDefault();
-    setInputValues(() => {
+    setFormValues(() => {
       return {
         pomodoro: `${initialTimerState.settings.pomodoro}`,
         shortBreak: `${initialTimerState.settings.shortBreak}`,
         longBreak: `${initialTimerState.settings.longBreak}`,
         longBreakInterval: `${initialTimerState.settings.longBreakInterval}`,
+        endSound: initialTimerState.settings.endSound,
+        autoContinue: initialTimerState.settings.autoContinue,
       };
     });
   };
@@ -159,30 +185,42 @@ export const TimerSettingsForm = () => {
           <SettingsInput
             id="pomodoro"
             labelText="Pomodoro"
-            inputValue={inputValues.pomodoro}
-            changeHandler={inputValueChangeHandler}
+            inputValue={formValues.pomodoro}
+            changeHandler={settingsInputChangeHandler}
             errorText={formErrors.pomodoro}
           />
           <SettingsInput
             id="short-break"
             labelText="Short Break"
-            inputValue={inputValues.shortBreak}
-            changeHandler={inputValueChangeHandler}
+            inputValue={formValues.shortBreak}
+            changeHandler={settingsInputChangeHandler}
             errorText={formErrors.shortBreak}
           />
           <SettingsInput
             id="long-break"
             labelText="Long Break"
-            inputValue={inputValues.longBreak}
-            changeHandler={inputValueChangeHandler}
+            inputValue={formValues.longBreak}
+            changeHandler={settingsInputChangeHandler}
             errorText={formErrors.longBreak}
           />
           <SettingsInput
             id="long-break-interval"
             labelText="Long Break Interval"
-            inputValue={inputValues.longBreakInterval}
-            changeHandler={inputValueChangeHandler}
+            inputValue={formValues.longBreakInterval}
+            changeHandler={settingsInputChangeHandler}
             errorText={formErrors.longBreakInterval}
+          />
+          <SettingsCheck
+            id="end-sound"
+            labelText="End sound"
+            checked={formValues.endSound}
+            clickHandler={endSoundButtonClickHandler}
+          />
+          <SettingsCheck
+            id="auto-continue"
+            labelText="Auto continue"
+            checked={formValues.autoContinue}
+            clickHandler={autoContinueButtonClickHandler}
           />
         </div>
       </div>

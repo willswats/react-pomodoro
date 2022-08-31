@@ -6,6 +6,8 @@ export const getInputErrorMessage = (inputType: string, value: number) => {
   ) {
     if (isNaN(value)) {
       return 'This must be a number';
+    } else if (value < 1 || value > 99) {
+      return 'This must be between 1 and 99';
     } else {
       return '';
     }

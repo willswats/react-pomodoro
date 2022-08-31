@@ -1,0 +1,19 @@
+.settings-input-check {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-input-check__label {
+  font-size: 1.2rem;
+}
+
+.settings-input-check__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
