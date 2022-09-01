@@ -31,7 +31,11 @@ export const TimerCounter = () => {
     switch (id) {
       case 'minutes':
         const convertedMinutes = parseFloat(counterInputValues.minutes);
-        if (!isNaN(convertedMinutes) && convertedMinutes >= 0) {
+        if (
+          !isNaN(convertedMinutes) &&
+          convertedMinutes >= 0 &&
+          convertedMinutes <= 99
+        ) {
           dispatch(
             setTimeRemaining({
               minutes: convertedMinutes,
@@ -42,7 +46,11 @@ export const TimerCounter = () => {
         break;
       case 'seconds':
         const convertedSeconds = parseFloat(counterInputValues.seconds);
-        if (!isNaN(convertedSeconds) && convertedSeconds >= 0) {
+        if (
+          !isNaN(convertedSeconds) &&
+          convertedSeconds >= 0 &&
+          convertedSeconds <= 59
+        ) {
           dispatch(
             setTimeRemaining({
               minutes: timeRemaining.minutes,
@@ -159,7 +167,7 @@ export const TimerCounter = () => {
         <CounterInput
           id="seconds"
           inputMin="0"
-          inputMax="99"
+          inputMax="59"
           inputValue={counterInputValues.seconds}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}
