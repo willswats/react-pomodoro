@@ -1,14 +1,14 @@
-.settings-input {
+.settings-input-number {
   display: flex;
   flex-direction: column;
   height: 8rem;
 }
 
-.settings-input__label {
+.settings-input-number__label {
   font-size: 1.2rem;
 }
 
-.settings-input__input {
+.settings-input-number__input {
   font-size: 1.2rem;
   width: 100%;
   padding: 0.5rem;
@@ -16,11 +16,11 @@
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.settings-input__input-error {
+.settings-input-number__input-error {
   border: 1px solid #ff0019;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
-.settings-input__error-text {
+.settings-input-number__error-text {
   color: #ff0019;
 }

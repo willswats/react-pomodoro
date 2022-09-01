@@ -1,0 +1,33 @@
+.settings-input-range {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-input-range__label {
+  font-size: 1.2rem;
+}
+
+.settings-input-range__input {
+  width: 100%;
+  height: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+.settings-input-range__input::-webkit-slider-thumb {
+  height: 1rem;
+  width: 0.5rem;
+  border-radius: 4px;
+}
+
+.settings-input-range__input::-moz-range-thumb {
+  height: 1rem;
+  width: 0.5rem;
+  border-radius: 4px;
+}
+
+.settings-input-range__input::-ms-thumb {
+  height: 1rem;
+  width: 0.5rem;
+  border-radius: 4px;
+}

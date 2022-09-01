@@ -1,13 +1,13 @@
-.settings-input-check {
+.settings-button-check {
   display: flex;
   flex-direction: column;
 }
 
-.settings-input-check__label {
+.settings-button-check__label {
   font-size: 1.2rem;
 }
 
-.settings-input-check__button {
+.settings-button-check__button {
   display: flex;
   justify-content: center;
   align-items: center;

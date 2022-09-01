@@ -2,42 +2,40 @@ import { ChangeEvent } from 'react';
 
 import styles from './styles.module.css';
 
-interface SettingsInputProps {
+interface SettingsInputRangeProps {
   id: string;
   labelText: string;
   inputMin: string;
   inputMax: string;
-  inputValue: string;
+  inputStep: string;
+  inputValue: number;
   changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
-  errorText: string;
 }
 
-export const SettingsInput = ({
+export const SettingsInputRange = ({
   id,
   labelText,
   inputMin,
   inputMax,
+  inputStep,
   inputValue,
   changeHandler,
-  errorText,
-}: SettingsInputProps) => {
+}: SettingsInputRangeProps) => {
   return (
-    <div className={styles['settings-input']}>
-      <label className={styles['settings-input__label']} htmlFor={id}>
+    <div className={styles['settings-input-range']}>
+      <label className={styles['settings-input-range__label']} htmlFor={id}>
         {labelText}
       </label>
       <input
-        type="number"
+        type="range"
         min={inputMin}
         max={inputMax}
-        className={`${styles['settings-input__input']} ${
-          errorText.length > 0 ? styles['settings-input__input-error'] : ''
-        }`}
+        step={inputStep}
+        className={styles['settings-input-range__input']}
         id={id}
         value={inputValue}
         onChange={changeHandler}
       />
-      <p className={styles['settings-input__error-text']}>{errorText}</p>
     </div>
   );
 };

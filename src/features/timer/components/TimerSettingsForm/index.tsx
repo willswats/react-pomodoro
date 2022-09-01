@@ -13,9 +13,14 @@ import { ReactComponent as SvgCross } from 'assets/x.svg';
 import { ReactComponent as SvgCheck } from 'assets/check.svg';
 import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
 
-import { SettingsInput, SettingsCheck, SvgButton } from 'components';
+import {
+  SettingsInputNumber,
+  SettingsButtonCheck,
+  SvgButton,
+} from 'components';
 
 import styles from './styles.module.css';
+import { SettingsInputRange } from 'components/SettingsInputRange';
 
 export const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +31,7 @@ export const TimerSettingsForm = () => {
     shortBreak: `${settings.shortBreak}`,
     longBreak: `${settings.longBreak}`,
     longBreakInterval: `${settings.longBreakInterval}`,
-    endSound: settings.endSound,
+    endSoundVolume: settings.endSoundVolume,
     autoContinue: settings.autoContinue,
   });
 
@@ -75,7 +80,7 @@ export const TimerSettingsForm = () => {
           shortBreak: convertedFormValues.shortBreak,
           longBreak: convertedFormValues.longBreak,
           longBreakInterval: convertedFormValues.longBreakInterval,
-          endSound: formValues.endSound,
+          endSoundVolume: formValues.endSoundVolume,
           autoContinue: formValues.autoContinue,
         })
       );
@@ -92,7 +97,9 @@ export const TimerSettingsForm = () => {
     }
   };
 
-  const settingsInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const SettingsInputNumberChangeHandler = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
     // Get id of input and set value of selected input
     const id = event.target.id;
     const value = event.target.value;
@@ -135,21 +142,24 @@ export const TimerSettingsForm = () => {
     }
   };
 
-  const endSoundButtonClickHandler = (event: MouseEvent) => {
-    event.preventDefault();
-    setFormValues((prevState) => {
+  const endSoundVolumeInputChangeHandler = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = parseFloat(event.target.value);
+
+    setFormValues((state) => {
       return {
-        ...prevState,
-        endSound: !formValues.endSound,
+        ...state,
+        endSoundVolume: value,
       };
     });
   };
 
   const autoContinueButtonClickHandler = (event: MouseEvent) => {
     event.preventDefault();
-    setFormValues((prevState) => {
+    setFormValues((state) => {
       return {
-        ...prevState,
+        ...state,
         autoContinue: !formValues.autoContinue,
       };
     });
@@ -163,7 +173,7 @@ export const TimerSettingsForm = () => {
         shortBreak: `${initialTimerState.settings.shortBreak}`,
         longBreak: `${initialTimerState.settings.longBreak}`,
         longBreakInterval: `${initialTimerState.settings.longBreakInterval}`,
-        endSound: initialTimerState.settings.endSound,
+        endSoundVolume: initialTimerState.settings.endSoundVolume,
         autoContinue: initialTimerState.settings.autoContinue,
       };
     });
@@ -183,49 +193,52 @@ export const TimerSettingsForm = () => {
       </div>
       <div className={styles['timer-settings-form__middle']}>
         <div className={styles['timer-settings-form__middle-grid']}>
-          <SettingsInput
+          <SettingsInputNumber
             id="pomodoro"
             labelText="Pomodoro"
             inputMin="1"
             inputMax="99"
             inputValue={formValues.pomodoro}
-            changeHandler={settingsInputChangeHandler}
+            changeHandler={SettingsInputNumberChangeHandler}
             errorText={formErrors.pomodoro}
           />
-          <SettingsInput
+          <SettingsInputNumber
             id="short-break"
             labelText="Short Break"
             inputMin="1"
             inputMax="99"
             inputValue={formValues.shortBreak}
-            changeHandler={settingsInputChangeHandler}
+            changeHandler={SettingsInputNumberChangeHandler}
             errorText={formErrors.shortBreak}
           />
-          <SettingsInput
+          <SettingsInputNumber
             id="long-break"
             labelText="Long Break"
             inputMin="1"
             inputMax="99"
             inputValue={formValues.longBreak}
-            changeHandler={settingsInputChangeHandler}
+            changeHandler={SettingsInputNumberChangeHandler}
             errorText={formErrors.longBreak}
           />
-          <SettingsInput
+          <SettingsInputNumber
             id="long-break-interval"
-            labelText="Long Break Interval"
+            labelText="Long Break interval"
             inputMin="1"
             inputMax="10"
             inputValue={formValues.longBreakInterval}
-            changeHandler={settingsInputChangeHandler}
+            changeHandler={SettingsInputNumberChangeHandler}
             errorText={formErrors.longBreakInterval}
           />
-          <SettingsCheck
-            id="end-sound"
-            labelText="End sound"
-            checked={formValues.endSound}
-            clickHandler={endSoundButtonClickHandler}
+          <SettingsInputRange
+            id="end-sound-volume"
+            labelText="End sound volume"
+            inputMin="0"
+            inputMax="100"
+            inputStep="10"
+            inputValue={formValues.endSoundVolume}
+            changeHandler={endSoundVolumeInputChangeHandler}
           />
-          <SettingsCheck
+          <SettingsButtonCheck
             id="auto-continue"
             labelText="Auto continue"
             checked={formValues.autoContinue}

@@ -11,7 +11,7 @@ interface TimerSettingsState {
   shortBreak: number;
   longBreak: number;
   longBreakInterval: number;
-  endSound: boolean;
+  endSoundVolume: number;
   autoContinue: boolean;
 }
 
@@ -43,7 +43,7 @@ export const initialTimerState: TimerState = {
     shortBreak: 5,
     longBreak: 15,
     longBreakInterval: 5,
-    endSound: true,
+    endSoundVolume: 100,
     autoContinue: false,
   },
   settingsChanged: {
@@ -216,7 +216,7 @@ const timerSlice = createSlice({
         shortBreak: payload.shortBreak,
         longBreak: payload.longBreak,
         longBreakInterval: payload.longBreakInterval,
-        endSound: payload.endSound,
+        endSoundVolume: payload.endSoundVolume,
         autoContinue: payload.autoContinue,
       };
     },
