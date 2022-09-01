@@ -1,5 +1,7 @@
 # React Pomodoro
 
+A pomodoro timer built with React.
+
 I've attempted to use a similar architecture to [bulletproof-react](https://github.com/alan2207/bulletproof-react).
 
 ## Acknowledgements

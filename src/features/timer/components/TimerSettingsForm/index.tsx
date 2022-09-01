@@ -173,6 +173,7 @@ export const TimerSettingsForm = () => {
     <form
       onSubmit={settingsFormSubmitHandler}
       className={styles['timer-settings-form']}
+      noValidate
     >
       <div className={styles['timer-settings-form__top']}>
         <SvgButton
@@ -185,6 +186,8 @@ export const TimerSettingsForm = () => {
           <SettingsInput
             id="pomodoro"
             labelText="Pomodoro"
+            inputMin="1"
+            inputMax="99"
             inputValue={formValues.pomodoro}
             changeHandler={settingsInputChangeHandler}
             errorText={formErrors.pomodoro}
@@ -192,6 +195,8 @@ export const TimerSettingsForm = () => {
           <SettingsInput
             id="short-break"
             labelText="Short Break"
+            inputMin="1"
+            inputMax="99"
             inputValue={formValues.shortBreak}
             changeHandler={settingsInputChangeHandler}
             errorText={formErrors.shortBreak}
@@ -199,6 +204,8 @@ export const TimerSettingsForm = () => {
           <SettingsInput
             id="long-break"
             labelText="Long Break"
+            inputMin="1"
+            inputMax="99"
             inputValue={formValues.longBreak}
             changeHandler={settingsInputChangeHandler}
             errorText={formErrors.longBreak}
@@ -206,6 +213,8 @@ export const TimerSettingsForm = () => {
           <SettingsInput
             id="long-break-interval"
             labelText="Long Break Interval"
+            inputMin="1"
+            inputMax="10"
             inputValue={formValues.longBreakInterval}
             changeHandler={settingsInputChangeHandler}
             errorText={formErrors.longBreakInterval}

@@ -149,6 +149,8 @@ export const TimerCounter = () => {
       <div className={styles['counter__content']}>
         <CounterInput
           id="minutes"
+          inputMin="0"
+          inputMax="99"
           inputValue={counterInputValues.minutes}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}
@@ -156,6 +158,8 @@ export const TimerCounter = () => {
         <span className={styles['counter__colon']}>:</span>
         <CounterInput
           id="seconds"
+          inputMin="0"
+          inputMax="99"
           inputValue={counterInputValues.seconds}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}

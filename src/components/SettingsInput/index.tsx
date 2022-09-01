@@ -5,6 +5,8 @@ import styles from './styles.module.css';
 interface SettingsInputProps {
   id: string;
   labelText: string;
+  inputMin: string;
+  inputMax: string;
   inputValue: string;
   changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   errorText: string;
@@ -13,6 +15,8 @@ interface SettingsInputProps {
 export const SettingsInput = ({
   id,
   labelText,
+  inputMin,
+  inputMax,
   inputValue,
   changeHandler,
   errorText,
@@ -23,6 +27,9 @@ export const SettingsInput = ({
         {labelText}
       </label>
       <input
+        type="number"
+        min={inputMin}
+        max={inputMax}
         className={`${styles['settings-input__input']} ${
           errorText.length > 0 ? styles['settings-input__input-error'] : ''
         }`}
