@@ -1,10 +1,17 @@
 .settings-input-range {
   display: flex;
   flex-direction: column;
+  height: 4rem;
 }
 
 .settings-input-range__label {
   font-size: 1.2rem;
+}
+
+.settings-input-range__input-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .settings-input-range__input {
@@ -18,16 +25,19 @@
   height: 1rem;
   width: 0.5rem;
   border-radius: 4px;
+  border: none;
 }
 
 .settings-input-range__input::-moz-range-thumb {
   height: 1rem;
   width: 0.5rem;
   border-radius: 4px;
+  border: none;
 }
 
 .settings-input-range__input::-ms-thumb {
   height: 1rem;
   width: 0.5rem;
   border-radius: 4px;
+  border: none;
 }
