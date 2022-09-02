@@ -21,33 +21,33 @@ input {
   border: none;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 input[type='number'] {
-  -moz-appearance: textfield;
+  appearance: textfield; /* Remove Firefox default browser style */
   outline: none;
 }
 
+/* Remove WebKit default browser style */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 input[type='range'] {
-  -webkit-appearance: none;
   cursor: pointer;
+  appearance: none; /* Remove WebKit default browser style */
 }
 
 input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
   cursor: pointer;
+  appearance: none; /* Remove WebKit default browser style */
+  background-color: #fff;
 }
 
 input[type='range']::-moz-range-thumb {
   cursor: pointer;
-}
-
-input[type='range']::-ms-thumb {
-  cursor: pointer;
+  border: none; /* Remove Firefox default browser style */
+  background-color: #fff;
 }
 
 @media screen and (max-width: 768px) {
