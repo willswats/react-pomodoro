@@ -11,7 +11,7 @@ A pomodoro timer built with React and TypeScript.
 
 ## General Information
 
-I built this project to familiarise myself with TypeScript, moreover, I needed a pomodoro timer. I've attempted to use a similar architecture to [bulletproof-react](https://github.com/alan2207/bulletproof-react).
+I built this project to familiarise myself with TypeScript, moreover, I needed a pomodoro timer.
 
 ## Features
 
@@ -30,4 +30,6 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 ## Acknowledgements
 
-SVG Icon/s are from [feather](https://github.com/feathericons/feather).
+The SVG Icon/s are from [feather](https://github.com/feathericons/feather).
+
+The architecture is similar to [bulletproof-react](https://github.com/alan2207/bulletproof-react).
