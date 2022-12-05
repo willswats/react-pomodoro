@@ -20,5 +20,3 @@
 ## Low Priority
 
 - [ ] Automated tests (jest)
-
-## Done
