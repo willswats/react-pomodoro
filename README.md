@@ -32,4 +32,4 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 The SVG Icon/s are from [feather](https://github.com/feathericons/feather).
 
-The architecture is similar to [bulletproof-react](https://github.com/alan2207/bulletproof-react).
+The architecture is inspired by [bulletproof-react](https://github.com/alan2207/bulletproof-react).
