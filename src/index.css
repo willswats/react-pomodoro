@@ -1,6 +1,13 @@
 @font-face {
   font-family: 'Roboto';
   src: url('/fonts/Roboto/Roboto-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-Bold.ttf');
+  font-weight: bold;
 }
 
 * {
@@ -12,7 +19,7 @@
 
 body {
   color: #fff;
-  background-color: #761d1a;
+  background-color: #7e201d;
 }
 
 button {
