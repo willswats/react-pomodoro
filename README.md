@@ -30,6 +30,6 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 ## Acknowledgements
 
-The SVG icon/s are from [feather](https://github.com/feathericons/feather).
+The SVG icon/s are from [Remix Icon](https://github.com/Remix-Design/remixicon).
 
 The architecture is inspired by [bulletproof-react](https://github.com/alan2207/bulletproof-react).

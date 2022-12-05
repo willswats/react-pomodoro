@@ -14,12 +14,12 @@ import { SvgButton } from 'components';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 
-import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
-import { ReactComponent as SvgSettings } from 'assets/settings.svg';
-import { ReactComponent as SvgSkipBackwards } from 'assets/skip-back.svg';
-import { ReactComponent as SvgSkipForwards } from 'assets/skip-forward.svg';
-import { ReactComponent as SvgPlay } from 'assets/play.svg';
-import { ReactComponent as SvgPause } from 'assets/pause.svg';
+import { ReactComponent as SvgRefresh } from 'assets/refresh-line.svg';
+import { ReactComponent as SvgSettings } from 'assets/settings-5-line.svg';
+import { ReactComponent as SvgSkipBackwards } from 'assets/skip-back-line.svg';
+import { ReactComponent as SvgSkipForwards } from 'assets/skip-forward-line.svg';
+import { ReactComponent as SvgPlay } from 'assets/play-line.svg';
+import { ReactComponent as SvgPause } from 'assets/pause-line.svg';
 
 import styles from './styles.module.css';
 
@@ -34,7 +34,7 @@ export const Timer = () => {
           <>
             <div className={styles['timer__top']}>
               <SvgButton
-                svg={<SvgRestart />}
+                svg={<SvgRefresh />}
                 clickHandler={() => dispatch(resetToSettings())}
               />
               <SvgButton

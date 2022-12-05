@@ -9,9 +9,9 @@ import {
   getInputErrorMessage,
 } from 'features/timer';
 
-import { ReactComponent as SvgCross } from 'assets/x.svg';
-import { ReactComponent as SvgCheck } from 'assets/check.svg';
-import { ReactComponent as SvgRestart } from 'assets/refresh-cw.svg';
+import { ReactComponent as SvgCross } from 'assets/close-line.svg';
+import { ReactComponent as SvgCheck } from 'assets/check-line.svg';
+import { ReactComponent as SvgRefresh } from 'assets/refresh-line.svg';
 
 import {
   SettingsInputNumber,
@@ -248,7 +248,7 @@ export const TimerSettingsForm = () => {
       </div>
       <div className={styles['timer-settings-form__bottom']}>
         <SvgButton
-          svg={<SvgRestart />}
+          svg={<SvgRefresh />}
           clickHandler={resetButtonClickHandler}
         />
         <SvgButton svg={<SvgCheck />} />
