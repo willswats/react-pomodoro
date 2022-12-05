@@ -19,9 +19,6 @@
 
 ## Low Priority
 
-- [ ] Finish README.md
-- [ ] Add favicons
-- [ ] Edit manifest name and colour
-- [ ] Automated tests
+- [ ] Automated tests (jest)
 
 ## Done
