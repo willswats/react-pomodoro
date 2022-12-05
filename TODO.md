@@ -2,14 +2,13 @@
 
 ## In Progress
 
-- [ ] Add footer
-- [ ] Make branch for new settings
 - [ ] Settings
   - [ ] End sound volume (slider)
   - [ ] Auto continue (on/off)
 
 ## High Priority
 
+- [ ] Add footer
 - [ ] Ensure CounterInput stops instantly when editing
 
 ## Medium Priority
