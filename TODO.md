@@ -2,15 +2,14 @@
 
 ## In Progress
 
+- [ ] Add footer
+- [ ] Make branch for new settings
 - [ ] Settings
   - [ ] End sound volume (slider)
   - [ ] Auto continue (on/off)
 
 ## High Priority
 
-- [ ] Update color scheme
-- [ ] Replace favicons
-- [ ] Add footer
 - [ ] Ensure CounterInput stops instantly when editing
 
 ## Medium Priority
