@@ -8,6 +8,8 @@
 
 ## High Priority
 
+- [ ] Update color scheme
+- [ ] Replace favicons
 - [ ] Ensure CounterInput stops instantly when editing
 
 ## Medium Priority
@@ -19,4 +21,4 @@
 
 ## Low Priority
 
-- [ ] Automated tests (jest)
+- [ ] Automated tests
