@@ -10,6 +10,7 @@
 
 - [ ] Update color scheme
 - [ ] Replace favicons
+- [ ] Add footer
 - [ ] Ensure CounterInput stops instantly when editing
 
 ## Medium Priority
