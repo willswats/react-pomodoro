@@ -9,6 +9,7 @@
 ## High Priority
 
 - [ ] Add footer
+- [ ] Switch to scss
 - [ ] Ensure CounterInput stops instantly when editing
 
 ## Medium Priority
