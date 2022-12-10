@@ -8,6 +8,7 @@
 
 ## High Priority
 
+- [ ] Remove unnecessary vite plugins
 - [ ] Add footer
 - [ ] Ensure CounterInput stops instantly when editing
 
