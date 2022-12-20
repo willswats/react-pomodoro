@@ -26,7 +26,7 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 ## Setup
 
 1. Run `pnpm install`.
-2. Run `pnpm run dev`.
+2. Run `pnpm dev`.
 
 ## Acknowledgements
 
