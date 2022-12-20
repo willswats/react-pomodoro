@@ -25,8 +25,8 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 ## Setup
 
-1. Run `npm install`.
-2. Run `npm run dev`.
+1. Run `pnpm install`.
+2. Run `pnpm run dev`.
 
 ## Acknowledgements
 
