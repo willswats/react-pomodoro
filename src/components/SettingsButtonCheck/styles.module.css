@@ -7,6 +7,13 @@
   font-size: 1.2rem;
 }
 
+.settings-button-check__button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
 .settings-button-check__button {
   display: flex;
   justify-content: center;

@@ -26,16 +26,18 @@ export const SettingsInputRange = ({
       <label className={styles['settings-input-range__label']} htmlFor={id}>
         {labelText}
       </label>
-      <input
-        type="range"
-        min={inputMin}
-        max={inputMax}
-        step={inputStep}
-        className={styles['settings-input-range__input']}
-        id={id}
-        value={inputValue}
-        onChange={changeHandler}
-      />
+      <div className={styles['settings-input-range__input-container']}>
+        <input
+          type="range"
+          min={inputMin}
+          max={inputMax}
+          step={inputStep}
+          className={styles['settings-input-range__input']}
+          id={id}
+          value={inputValue}
+          onChange={changeHandler}
+        />
+      </div>
     </div>
   );
 };

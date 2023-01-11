@@ -22,12 +22,14 @@ export const SettingsButtonCheck = ({
       <label className={styles['settings-button-check__label']} htmlFor={id}>
         {labelText}
       </label>
-      <button
-        onClick={clickHandler}
-        className={styles['settings-button-check__button']}
-      >
-        {checked ? <SvgCheck /> : ''}
-      </button>
+      <div className={styles['settings-button-check__button-container']}>
+        <button
+          onClick={clickHandler}
+          className={styles['settings-button-check__button']}
+        >
+          {checked ? <SvgCheck /> : ''}
+        </button>
+      </div>
     </div>
   );
 };

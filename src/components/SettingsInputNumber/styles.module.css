@@ -1,7 +1,6 @@
 .settings-input-number {
   display: flex;
   flex-direction: column;
-  height: 8rem;
 }
 
 .settings-input-number__label {
