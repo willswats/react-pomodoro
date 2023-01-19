@@ -2,7 +2,7 @@
 
 A pomodoro timer built with React and React Redux.
 
-## Table of Content <!-- omit in toc -->
+## Table of Contents <!-- omit in toc -->
 
 - [General Information](#general-information)
 - [Features](#features)
