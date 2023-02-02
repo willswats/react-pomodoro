@@ -1,17 +1,18 @@
-# React Pomodoro <!-- omit in toc -->
+# React Pomodoro
 
-A pomodoro timer built with React and React Redux.
-
-## Table of Contents <!-- omit in toc -->
+## Table of Contents
 
 - [General Information](#general-information)
 - [Features](#features)
 - [Setup](#setup)
 - [Acknowledgements](#acknowledgements)
 
+A pomodoro timer built with React and React Redux.
+
 ## General Information
 
-I built this project to familiarise myself with TypeScript, moreover, I needed a pomodoro timer.
+I built this project to familiarise myself with TypeScript, moreover, I needed a
+pomodoro timer.
 
 ## Features
 
