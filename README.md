@@ -1,13 +1,16 @@
 # React Pomodoro
 
+A pomodoro timer built with React and React Redux.
+
 ## Table of Contents
+
+<!--toc:start-->
 
 - [General Information](#general-information)
 - [Features](#features)
 - [Setup](#setup)
 - [Acknowledgements](#acknowledgements)
-
-A pomodoro timer built with React and React Redux.
+<!--toc:end-->
 
 ## General Information
 
