@@ -2,7 +2,7 @@
 
 A pomodoro timer.
 
-[https://react-pomodoro-willswats.vercel.app/](https://react-pomodoro-willswats.vercel.app/)
+[react-pomodoro-willswats.vercel.app](https://react-pomodoro-willswats.vercel.app/)
 
 ## Table of Contents
 
