@@ -1,6 +1,6 @@
 # React Pomodoro
 
-A pomodoro timer built with React and React Redux.
+A pomodoro timer.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ A pomodoro timer built with React and React Redux.
 
 ## General Information
 
-I built this project to familiarise myself with TypeScript, moreover, I needed a pomodoro timer.
+I built this project to familiarise myself with TypeScript, moreover, I needed a pomodoro timer. It's built with React and React Redux.
 
 ## Features
 
