@@ -14,3 +14,4 @@
 ## Low Priority
 
 - [ ] Add footer
+- [ ] Rename project
