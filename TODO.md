@@ -13,6 +13,7 @@
 
 ## Low Priority
 
+- [ ] Change styling
 - [ ] Add optional notifications
 - [ ] Add keyboard shortcuts
 - [ ] Add footer
