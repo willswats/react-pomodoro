@@ -3,15 +3,16 @@
 ## High Priority
 
 - [ ] Add auto continue
+- [ ] Add sound for when timer ends
+- [ ] Stop timer instantly when editing
 
 ## Medium Priority
 
-- [ ] Add sound for when timer ends
 - [ ] Display time remaining in page title
-- [ ] Add keyboard shortcuts
-- [ ] Stop timer instantly when editing
 - [ ] Persist settings with cookie
 
 ## Low Priority
 
+- [ ] Add optional notifications
+- [ ] Add keyboard shortcuts
 - [ ] Add footer
