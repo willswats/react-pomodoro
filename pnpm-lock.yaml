@@ -37,8 +37,8 @@ importers:
         specifier: ^5.0.0
         version: 5.2.12
       vite-plugin-svgr:
-        specifier: ^3.2.0
-        version: 3.3.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.12)
+        specifier: ^4.0.0
+        version: 4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.12)
       vite-tsconfig-paths:
         specifier: ^4.2.0
         version: 4.3.2(typescript@5.4.5)(vite@5.2.12)
@@ -801,10 +801,10 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  vite-plugin-svgr@3.3.0:
-    resolution: {integrity: sha512-vWZMCcGNdPqgziYFKQ3Y95XP0d0YGp28+MM3Dp9cTa/px5CKcHHrIoPl2Jw81rgVm6/ZUNONzjXbZQZ7Kw66og==}
+  vite-plugin-svgr@4.2.0:
+    resolution: {integrity: sha512-SC7+FfVtNQk7So0XMjrrtLAbEC8qjFPifyD7+fs/E6aaNdVde6umlVVh0QuwDLdOMu7vp5RiGFsB70nj5yo0XA==}
     peerDependencies:
-      vite: ^2.6.0 || 3 || 4
+      vite: ^2.6.0 || 3 || 4 || 5
 
   vite-tsconfig-paths@4.3.2:
     resolution: {integrity: sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA==}
@@ -1529,7 +1529,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  vite-plugin-svgr@3.3.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.12):
+  vite-plugin-svgr@4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.12):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       '@svgr/core': 8.1.0(typescript@5.4.5)
