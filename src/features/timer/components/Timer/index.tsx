@@ -14,12 +14,12 @@ import { SvgButton } from 'components';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 
-import { ReactComponent as SvgRefresh } from 'assets/refresh-line.svg';
-import { ReactComponent as SvgSettings } from 'assets/settings-5-line.svg';
-import { ReactComponent as SvgSkipBackwards } from 'assets/skip-back-line.svg';
-import { ReactComponent as SvgSkipForwards } from 'assets/skip-forward-line.svg';
-import { ReactComponent as SvgPlay } from 'assets/play-line.svg';
-import { ReactComponent as SvgPause } from 'assets/pause-line.svg';
+import SvgRefresh from 'assets/refresh-line.svg?react';
+import SvgSettings from 'assets/settings-5-line.svg?react';
+import SvgSkipBackwards from 'assets/skip-back-line.svg?react';
+import SvgSkipForwards from 'assets/skip-forward-line.svg?react';
+import SvgPlay from 'assets/play-line.svg?react';
+import SvgPause from 'assets/pause-line.svg?react';
 
 import styles from './styles.module.css';
 

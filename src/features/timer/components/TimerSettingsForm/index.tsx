@@ -9,9 +9,9 @@ import {
   getInputErrorMessage,
 } from 'features/timer';
 
-import { ReactComponent as SvgCross } from 'assets/close-line.svg';
-import { ReactComponent as SvgCheck } from 'assets/check-line.svg';
-import { ReactComponent as SvgRefresh } from 'assets/refresh-line.svg';
+import SvgCross from 'assets/close-line.svg?react';
+import SvgCheck from 'assets/check-line.svg?react';
+import SvgRefresh from 'assets/refresh-line.svg?react';
 
 import {
   SettingsInputNumber,
@@ -56,15 +56,15 @@ export const TimerSettingsForm = () => {
       pomodoro: getInputErrorMessage('pomodoro', convertedFormValues.pomodoro),
       shortBreak: getInputErrorMessage(
         'short-break',
-        convertedFormValues.shortBreak
+        convertedFormValues.shortBreak,
       ),
       longBreak: getInputErrorMessage(
         'long-break',
-        convertedFormValues.longBreak
+        convertedFormValues.longBreak,
       ),
       longBreakInterval: getInputErrorMessage(
         'long-break-interval',
-        convertedFormValues.longBreakInterval
+        convertedFormValues.longBreakInterval,
       ),
     };
 
@@ -82,7 +82,7 @@ export const TimerSettingsForm = () => {
           longBreakInterval: convertedFormValues.longBreakInterval,
           endSoundVolume: formValues.endSoundVolume,
           autoContinue: formValues.autoContinue,
-        })
+        }),
       );
       dispatch(setSettingsVisible(false));
     } else {
@@ -98,7 +98,7 @@ export const TimerSettingsForm = () => {
   };
 
   const SettingsInputNumberChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ) => {
     // Get id of input and set value of selected input
     const id = event.target.id;
@@ -143,7 +143,7 @@ export const TimerSettingsForm = () => {
   };
 
   const endSoundVolumeInputChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ) => {
     const value = parseFloat(event.target.value);
 

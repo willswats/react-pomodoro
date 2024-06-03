@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 
-import { ReactComponent as SvgCheck } from 'assets/check-line.svg';
+import SvgCheck from 'assets/check-line.svg?react';
 
 import styles from './styles.module.css';
 
