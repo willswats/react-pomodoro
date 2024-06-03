@@ -5,7 +5,7 @@
   ],
   "timezone": "Europe/London",
   "schedule": [
-    "every weekend"
+    "before 4am on Saturday"
   ],
   "packageRules": [
     {
