@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+.footer svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  fill: rgba(255, 255, 255, 1);
+}

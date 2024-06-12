@@ -10,7 +10,7 @@ import {
   setRunning,
 } from 'features/timer';
 
-import { SvgButton } from 'components';
+import { SvgButton, Footer } from 'components';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 
@@ -28,51 +28,54 @@ export const Timer = () => {
   const timer = useAppSelector((state) => state.timer);
 
   return (
-    <div className={styles['timer']}>
-      <div className={styles['timer__content']}>
-        {!timer.settingsVisible ? (
-          <>
-            <div className={styles['timer__top']}>
-              <SvgButton
-                svg={<SvgRefresh />}
-                clickHandler={() => dispatch(resetToSettings())}
-              />
-              <SvgButton
-                svg={<SvgSettings />}
-                clickHandler={() => dispatch(setSettingsVisible(true))}
-              />
-            </div>
-            <div className={styles['timer__middle']}>
-              <TimerIndicators />
-              <TimerModes />
-              <TimerCounter />
-            </div>
-            <div className={styles['timer__bottom']}>
-              <SvgButton
-                svg={<SvgSkipBackwards />}
-                clickHandler={() => dispatch(setPomodoroCountBackwards())}
-              />
-              {timer.running === false ? (
+    <main>
+      <div className={styles['timer']}>
+        <div className={styles['timer__content']}>
+          {!timer.settingsVisible ? (
+            <>
+              <div className={styles['timer__top']}>
                 <SvgButton
-                  svg={<SvgPlay />}
-                  clickHandler={() => dispatch(setRunning(true))}
+                  svg={<SvgRefresh />}
+                  clickHandler={() => dispatch(resetToSettings())}
                 />
-              ) : (
                 <SvgButton
-                  svg={<SvgPause />}
-                  clickHandler={() => dispatch(setRunning(false))}
+                  svg={<SvgSettings />}
+                  clickHandler={() => dispatch(setSettingsVisible(true))}
                 />
-              )}
-              <SvgButton
-                svg={<SvgSkipForwards />}
-                clickHandler={() => dispatch(setPomodoroCountForwards())}
-              />
-            </div>
-          </>
-        ) : (
-          <TimerSettingsForm />
-        )}
+              </div>
+              <div className={styles['timer__middle']}>
+                <TimerIndicators />
+                <TimerModes />
+                <TimerCounter />
+              </div>
+              <div className={styles['timer__bottom']}>
+                <SvgButton
+                  svg={<SvgSkipBackwards />}
+                  clickHandler={() => dispatch(setPomodoroCountBackwards())}
+                />
+                {timer.running === false ? (
+                  <SvgButton
+                    svg={<SvgPlay />}
+                    clickHandler={() => dispatch(setRunning(true))}
+                  />
+                ) : (
+                  <SvgButton
+                    svg={<SvgPause />}
+                    clickHandler={() => dispatch(setRunning(false))}
+                  />
+                )}
+                <SvgButton
+                  svg={<SvgSkipForwards />}
+                  clickHandler={() => dispatch(setPomodoroCountForwards())}
+                />
+              </div>
+            </>
+          ) : (
+            <TimerSettingsForm />
+          )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </main>
   );
 };
