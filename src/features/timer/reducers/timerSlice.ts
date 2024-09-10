@@ -76,9 +76,11 @@ const timerSlice = createSlice({
       state.running = false;
       state.timeRemaining.seconds = 0;
     },
+
     setRunning(state, { payload }: PayloadAction<boolean>) {
       state.running = payload;
     },
+
     setTimeRemaining(
       state,
       { payload }: PayloadAction<{ minutes: number; seconds: number }>,
@@ -86,7 +88,8 @@ const timerSlice = createSlice({
       // Stop running when minutes and seconds are less than or equal to 0
       if (
         state.timeRemaining.minutes <= 0 &&
-        state.timeRemaining.seconds <= 0
+        state.timeRemaining.seconds <= 0 &&
+        state.running
       ) {
         state.running = false;
       } else {
@@ -96,6 +99,7 @@ const timerSlice = createSlice({
         };
       }
     },
+
     setTimeRemainingToSettings(state) {
       if (
         state.mode === TIMER_MODES.POMODORO &&
@@ -132,6 +136,7 @@ const timerSlice = createSlice({
         };
       }
     },
+
     setPomodoroCountBackwards(state) {
       if (state.pomodoroCount > 0) {
         if (state.mode === TIMER_MODES.POMODORO) {
@@ -151,6 +156,7 @@ const timerSlice = createSlice({
         state.running = false;
       }
     },
+
     setPomodoroCountForwards(state) {
       // Long break condition
       if (
@@ -192,14 +198,17 @@ const timerSlice = createSlice({
         state.running = false;
       }
     },
+
     setPomodoroCount(state, { payload }: PayloadAction<number>) {
       state.running = false;
       state.pomodoroCount = payload;
     },
+
     setSettingsVisible(state, { payload }: PayloadAction<boolean>) {
       state.running = false;
       state.settingsVisible = payload;
     },
+
     setSettings(state, { payload }: PayloadAction<TimerSettingsState>) {
       if (state.settings.pomodoro !== payload.pomodoro) {
         state.settingsChanged.pomodoro = true;
@@ -220,6 +229,7 @@ const timerSlice = createSlice({
         autoContinue: payload.autoContinue,
       };
     },
+
     resetToSettings(state) {
       state.running = false;
       state.pomodoroCount = 0;
