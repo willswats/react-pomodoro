@@ -15,7 +15,7 @@ interface TimerSettingsState {
   autoContinue: boolean;
 }
 
-interface TimerState {
+export interface TimerState {
   mode: string;
   running: boolean;
   timeRemaining: { minutes: number; seconds: number };
@@ -81,7 +81,7 @@ const timerSlice = createSlice({
     },
     setTimeRemaining(
       state,
-      { payload }: PayloadAction<{ minutes: number; seconds: number }>
+      { payload }: PayloadAction<{ minutes: number; seconds: number }>,
     ) {
       // Stop running when minutes and seconds are less than or equal to 0
       if (

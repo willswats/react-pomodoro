@@ -8,3 +8,4 @@ export * from './reducers/timerSlice';
 
 export * from './utils/convertTime';
 export * from './utils/getInputErrorMessage';
+export * from './utils/notifyTimerFinished';

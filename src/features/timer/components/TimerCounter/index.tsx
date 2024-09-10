@@ -8,6 +8,7 @@ import {
   setTimeRemainingToSettings,
   setPomodoroCountForwards,
   convertTime,
+  notifyTimerFinished,
 } from 'features/timer';
 
 import { CounterInput } from 'components';
@@ -40,7 +41,7 @@ export const TimerCounter = () => {
             setTimeRemaining({
               minutes: convertedMinutes,
               seconds: timeRemaining.seconds,
-            })
+            }),
           );
         }
         break;
@@ -55,7 +56,7 @@ export const TimerCounter = () => {
             setTimeRemaining({
               minutes: timeRemaining.minutes,
               seconds: convertedSeconds,
-            })
+            }),
           );
         }
     }
@@ -117,13 +118,14 @@ export const TimerCounter = () => {
         // Skip forwards if minutes and seconds are 0
         // Skip forwards if minutes or seconds are less than 0 (user could input negative numbers)
         dispatch(setPomodoroCountForwards());
+        notifyTimerFinished(timer);
       } else if (timeRemaining.seconds === 0) {
         // Subtract minute if seconds === 0
         dispatch(
           setTimeRemaining({
             minutes: timeRemaining.minutes - 1,
             seconds: 59,
-          })
+          }),
         );
       } else {
         // Subtract second
@@ -131,7 +133,7 @@ export const TimerCounter = () => {
           setTimeRemaining({
             minutes: timeRemaining.minutes,
             seconds: timeRemaining.seconds - 1,
-          })
+          }),
         );
       }
     }, 1000);
