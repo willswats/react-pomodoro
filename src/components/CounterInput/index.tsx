@@ -1,4 +1,4 @@
-import { FocusEvent, ChangeEvent } from 'react';
+import { FocusEvent, ChangeEvent, MouseEvent } from 'react';
 
 import styles from './styles.module.css';
 
@@ -9,6 +9,7 @@ interface CounterInputProps {
   inputValue: string;
   changeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   blurHandler: (event: FocusEvent<HTMLInputElement>) => void;
+  clickHandler: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
 export const CounterInput = ({
@@ -18,6 +19,7 @@ export const CounterInput = ({
   inputValue,
   changeHandler,
   blurHandler,
+  clickHandler,
 }: CounterInputProps) => {
   return (
     <input
@@ -29,6 +31,7 @@ export const CounterInput = ({
       value={inputValue}
       onChange={changeHandler}
       onBlur={blurHandler}
+      onClick={clickHandler}
     />
   );
 };

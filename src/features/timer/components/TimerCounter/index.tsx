@@ -167,6 +167,9 @@ export const TimerCounter = () => {
           inputValue={counterInputValues.minutes}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}
+          clickHandler={() => {
+            dispatch(setRunning(false));
+          }}
         />
         <span className={styles['counter__colon']}>:</span>
         <CounterInput
@@ -176,6 +179,9 @@ export const TimerCounter = () => {
           inputValue={counterInputValues.seconds}
           changeHandler={counterInputChangeHandler}
           blurHandler={counterInputBlurHandler}
+          clickHandler={() => {
+            dispatch(setRunning(false));
+          }}
         />
       </div>
     </div>
