@@ -74,16 +74,16 @@ export const TimerSettingsForm = () => {
       errorMessages.longBreak === '' &&
       errorMessages.longBreakInterval === ''
     ) {
-      dispatch(
-        setSettings({
-          pomodoro: convertedFormValues.pomodoro,
-          shortBreak: convertedFormValues.shortBreak,
-          longBreak: convertedFormValues.longBreak,
-          longBreakInterval: convertedFormValues.longBreakInterval,
-          endSoundVolume: formValues.endSoundVolume,
-          autoContinue: formValues.autoContinue,
-        }),
-      );
+      const settings = {
+        pomodoro: convertedFormValues.pomodoro,
+        shortBreak: convertedFormValues.shortBreak,
+        longBreak: convertedFormValues.longBreak,
+        longBreakInterval: convertedFormValues.longBreakInterval,
+        endSoundVolume: formValues.endSoundVolume,
+        autoContinue: formValues.autoContinue,
+      };
+      dispatch(setSettings(settings));
+      localStorage.setItem('settings', JSON.stringify(settings));
       dispatch(setSettingsVisible(false));
     } else {
       setFormErrors(() => {

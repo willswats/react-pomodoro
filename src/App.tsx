@@ -1,12 +1,18 @@
 import { Footer } from 'components';
-import { Timer } from 'features/timer';
+import { Timer, setSettings } from 'features/timer';
+import { useAppDispatch } from 'hooks';
 
 import './App.css';
 
 const App = () => {
-  Notification.requestPermission((result) => {
-    console.log(result);
-  });
+  const dispatch = useAppDispatch();
+  Notification.requestPermission();
+
+  const localStorageSettings = localStorage.getItem('settings');
+  if (localStorageSettings !== null) {
+    const settings = JSON.parse(localStorageSettings);
+    dispatch(setSettings(settings));
+  }
 
   return (
     <div className="app">
