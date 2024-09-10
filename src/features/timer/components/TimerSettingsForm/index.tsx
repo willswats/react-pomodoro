@@ -15,12 +15,12 @@ import SvgRefresh from 'assets/refresh-line.svg?react';
 
 import {
   SettingsInputNumber,
-  SettingsButtonCheck,
+  // SettingsButtonCheck,
   SvgButton,
 } from 'components';
 
 import styles from './styles.module.css';
-import { SettingsInputRange } from 'components/SettingsInputRange';
+// import { SettingsInputRange } from 'components/SettingsInputRange';
 
 export const TimerSettingsForm = () => {
   const dispatch = useAppDispatch();
@@ -142,28 +142,28 @@ export const TimerSettingsForm = () => {
     }
   };
 
-  const endSoundVolumeInputChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const value = parseFloat(event.target.value);
+  // const endSoundVolumeInputChangeHandler = (
+  //   event: ChangeEvent<HTMLInputElement>,
+  // ) => {
+  //   const value = parseFloat(event.target.value);
+  //
+  //   setFormValues((state) => {
+  //     return {
+  //       ...state,
+  //       endSoundVolume: value,
+  //     };
+  //   });
+  // };
 
-    setFormValues((state) => {
-      return {
-        ...state,
-        endSoundVolume: value,
-      };
-    });
-  };
-
-  const autoContinueButtonClickHandler = (event: MouseEvent) => {
-    event.preventDefault();
-    setFormValues((state) => {
-      return {
-        ...state,
-        autoContinue: !formValues.autoContinue,
-      };
-    });
-  };
+  // const autoContinueButtonClickHandler = (event: MouseEvent) => {
+  //   event.preventDefault();
+  //   setFormValues((state) => {
+  //     return {
+  //       ...state,
+  //       autoContinue: !formValues.autoContinue,
+  //     };
+  //   });
+  // };
 
   const resetButtonClickHandler = (event: MouseEvent) => {
     event.preventDefault();
@@ -229,6 +229,7 @@ export const TimerSettingsForm = () => {
             changeHandler={SettingsInputNumberChangeHandler}
             errorText={formErrors.longBreakInterval}
           />
+          {/*
           <SettingsInputRange
             id="end-sound-volume"
             labelText="End sound volume"
@@ -244,6 +245,7 @@ export const TimerSettingsForm = () => {
             checked={formValues.autoContinue}
             clickHandler={autoContinueButtonClickHandler}
           />
+          */}
         </div>
       </div>
       <div className={styles['timer-settings-form__bottom']}>
