@@ -9,8 +9,8 @@
 .timer__content {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
   width: 42rem;
   height: 28rem;
   padding: 2rem;
