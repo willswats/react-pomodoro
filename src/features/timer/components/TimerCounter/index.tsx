@@ -119,6 +119,9 @@ export const TimerCounter = () => {
         // Skip forwards if minutes or seconds are less than 0 (user could input negative numbers)
         dispatch(setPomodoroCountForwards());
         notifyTimerFinished(timer);
+        if (timer.settings.autoContinue === true) {
+          dispatch(setRunning(true));
+        }
       } else if (timeRemaining.seconds === 0) {
         // Subtract minute if seconds === 0
         dispatch(

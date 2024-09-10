@@ -15,7 +15,7 @@ import SvgRefresh from 'assets/refresh-line.svg?react';
 
 import {
   SettingsInputNumber,
-  // SettingsButtonCheck,
+  SettingsButtonCheck,
   SvgButton,
 } from 'components';
 
@@ -155,15 +155,15 @@ export const TimerSettingsForm = () => {
   //   });
   // };
 
-  // const autoContinueButtonClickHandler = (event: MouseEvent) => {
-  //   event.preventDefault();
-  //   setFormValues((state) => {
-  //     return {
-  //       ...state,
-  //       autoContinue: !formValues.autoContinue,
-  //     };
-  //   });
-  // };
+  const autoContinueButtonClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+    setFormValues((state) => {
+      return {
+        ...state,
+        autoContinue: !formValues.autoContinue,
+      };
+    });
+  };
 
   const resetButtonClickHandler = (event: MouseEvent) => {
     event.preventDefault();
@@ -239,13 +239,13 @@ export const TimerSettingsForm = () => {
             inputValue={formValues.endSoundVolume}
             changeHandler={endSoundVolumeInputChangeHandler}
           />
+          */}
           <SettingsButtonCheck
             id="auto-continue"
             labelText="Auto continue"
             checked={formValues.autoContinue}
             clickHandler={autoContinueButtonClickHandler}
           />
-          */}
         </div>
       </div>
       <div className={styles['timer-settings-form__bottom']}>
