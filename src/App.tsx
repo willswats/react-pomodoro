@@ -6,7 +6,6 @@ import './App.css';
 
 const App = () => {
   const dispatch = useAppDispatch();
-  Notification.requestPermission();
 
   const localStorageSettings = localStorage.getItem('settings');
   if (localStorageSettings !== null) {

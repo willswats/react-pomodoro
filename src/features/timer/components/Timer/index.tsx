@@ -55,7 +55,10 @@ export const Timer = () => {
               {timer.running === false ? (
                 <SvgButton
                   svg={<SvgPlay />}
-                  clickHandler={() => dispatch(setRunning(true))}
+                  clickHandler={() => {
+                    dispatch(setRunning(true));
+                    Notification.requestPermission();
+                  }}
                 />
               ) : (
                 <SvgButton
