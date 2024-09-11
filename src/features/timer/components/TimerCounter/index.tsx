@@ -13,6 +13,8 @@ import {
 
 import { CounterInput } from 'components';
 
+import { Howl } from 'howler';
+
 import ding from 'assets/sounds/ding.mp3';
 
 import styles from './styles.module.css';
@@ -23,7 +25,7 @@ export const TimerCounter = () => {
   const timeRemaining = useAppSelector((state) => state.timer.timeRemaining);
 
   const playDing = () => {
-    new Audio(ding).play();
+    new Howl({ src: [ding], volume: timer.settings.endSoundVolume }).play();
   };
 
   const [counterInputValues, setCounterInputValues] = useState({
