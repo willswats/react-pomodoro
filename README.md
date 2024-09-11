@@ -1,6 +1,6 @@
 # React Pomodoro
 
-A pomodoro timer.
+A pomodoro timer built with React and React Redux.
 
 [react-pomodoro-willswats.vercel.app](https://react-pomodoro-willswats.vercel.app/)
 
@@ -20,13 +20,14 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 ## Features
 
-- Seperate modes; pomodoro, short break, long break
-- Settings for the length of the modes
-- An end sound with adjustable volume
-- Auto continue option
-- Long break occurs after a set amount of pomodoro's
-- Edit the remaining time
-- Skip the current pomodoro, short break, or long break
+- Separate modes; pomodoro, short break, long break.
+- Settings for the length of the modes.
+- Persistent settings via the browser's local storage.
+- An end sound with adjustable volume.
+- Auto continue option.
+- Long break occurs after a set amount of pomodoro's.
+- Edit the remaining time.
+- Skip the current pomodoro, short break, or long break.
 
 ## Setup
 
