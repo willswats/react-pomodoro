@@ -13,12 +13,18 @@ import {
 
 import { CounterInput } from 'components';
 
+import ding from 'assets/sounds/ding.mp3';
+
 import styles from './styles.module.css';
 
 export const TimerCounter = () => {
   const dispatch = useAppDispatch();
   const timer = useAppSelector((state) => state.timer);
   const timeRemaining = useAppSelector((state) => state.timer.timeRemaining);
+
+  const playDing = () => {
+    new Audio(ding).play();
+  };
 
   const [counterInputValues, setCounterInputValues] = useState({
     minutes: `${timeRemaining.minutes}`,
@@ -122,6 +128,7 @@ export const TimerCounter = () => {
         if (timer.settings.autoContinue === true) {
           dispatch(setRunning(true));
         }
+        playDing();
       } else if (timeRemaining.seconds === 0) {
         // Subtract minute if seconds === 0
         dispatch(

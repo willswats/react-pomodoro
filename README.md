@@ -35,4 +35,5 @@ I built this project to familiarise myself with TypeScript, moreover, I needed a
 
 ## Acknowledgements
 
-The SVG icon/s are from [Remix Icon](https://github.com/Remix-Design/remixicon).
+- The SVG icon/s are from [Remix Icon](https://github.com/Remix-Design/remixicon).
+- Ding sound by [Aiwha](https://freesound.org/s/196106/) -- License: Attribution 4.0
