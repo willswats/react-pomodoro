@@ -43,7 +43,7 @@ export const initialTimerState: TimerState = {
     shortBreak: 5,
     longBreak: 15,
     longBreakInterval: 5,
-    endSoundVolume: 100,
+    endSoundVolume: 0.5,
     autoContinue: false,
   },
   settingsChanged: {
