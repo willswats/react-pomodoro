@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@reduxjs/toolkit':
         specifier: ^2.4.0
-        version: 2.5.0(react-redux@9.2.0(@types/react@19.0.1)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
+        version: 2.5.0(react-redux@9.2.0(@types/react@19.0.2)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
       '@types/howler':
         specifier: ^2.2.12
         version: 2.2.12
@@ -25,14 +25,14 @@ importers:
         version: 19.0.0(react@19.0.0)
       react-redux:
         specifier: ^9.1.2
-        version: 9.2.0(@types/react@19.0.1)(react@19.0.0)(redux@5.0.1)
+        version: 9.2.0(@types/react@19.0.2)(react@19.0.0)(redux@5.0.1)
     devDependencies:
       '@types/react':
         specifier: ^19.0.1
-        version: 19.0.1
+        version: 19.0.2
       '@types/react-dom':
         specifier: ^19.0.1
-        version: 19.0.2(@types/react@19.0.1)
+        version: 19.0.2(@types/react@19.0.2)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.3.4(vite@6.0.3)
@@ -502,8 +502,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.0.1':
-    resolution: {integrity: sha512-YW6614BDhqbpR5KtUYzTA+zlA7nayzJRA9ljz9CQoxthR0sDisYZLuvSMsil36t4EH/uAt8T52Xb4sVw17G+SQ==}
+  '@types/react@19.0.2':
+    resolution: {integrity: sha512-USU8ZI/xyKJwFTpjSVIrSeHBVAGagkHQKPNbxeWwql/vDmnTIBgx+TJnhFnj1NXgz8XfprU0egV2dROLGpsBEg==}
 
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
@@ -1030,7 +1030,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@reduxjs/toolkit@2.5.0(react-redux@9.2.0(@types/react@19.0.1)(react@19.0.0)(redux@5.0.1))(react@19.0.0)':
+  '@reduxjs/toolkit@2.5.0(react-redux@9.2.0(@types/react@19.0.2)(react@19.0.0)(redux@5.0.1))(react@19.0.0)':
     dependencies:
       immer: 10.1.1
       redux: 5.0.1
@@ -1038,7 +1038,7 @@ snapshots:
       reselect: 5.1.1
     optionalDependencies:
       react: 19.0.0
-      react-redux: 9.2.0(@types/react@19.0.1)(react@19.0.0)(redux@5.0.1)
+      react-redux: 9.2.0(@types/react@19.0.2)(react@19.0.0)(redux@5.0.1)
 
   '@rollup/pluginutils@5.1.4(rollup@4.28.1)':
     dependencies:
@@ -1200,11 +1200,11 @@ snapshots:
 
   '@types/howler@2.2.12': {}
 
-  '@types/react-dom@19.0.2(@types/react@19.0.1)':
+  '@types/react-dom@19.0.2(@types/react@19.0.2)':
     dependencies:
-      '@types/react': 19.0.1
+      '@types/react': 19.0.2
 
-  '@types/react@19.0.1':
+  '@types/react@19.0.2':
     dependencies:
       csstype: 3.1.3
 
@@ -1378,13 +1378,13 @@ snapshots:
       react: 19.0.0
       scheduler: 0.25.0
 
-  react-redux@9.2.0(@types/react@19.0.1)(react@19.0.0)(redux@5.0.1):
+  react-redux@9.2.0(@types/react@19.0.2)(react@19.0.0)(redux@5.0.1):
     dependencies:
       '@types/use-sync-external-store': 0.0.6
       react: 19.0.0
       use-sync-external-store: 1.4.0(react@19.0.0)
     optionalDependencies:
-      '@types/react': 19.0.1
+      '@types/react': 19.0.2
       redux: 5.0.1
 
   react-refresh@0.14.2: {}
