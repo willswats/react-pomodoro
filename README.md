@@ -2,8 +2,6 @@
 
 A pomodoro timer built with React and React Redux.
 
-[react-pomodoro-willswats.vercel.app](https://react-pomodoro-willswats.vercel.app/)
-
 ## Table of Contents
 
 <!--toc:start-->
